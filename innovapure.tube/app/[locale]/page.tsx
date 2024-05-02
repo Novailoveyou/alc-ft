@@ -5,7 +5,6 @@ import { Props } from '@/types'
 import { getStaticParams } from '@/locales/server'
 import ChangeLocale from '@/app/[locale]/ChangeLocale'
 import Form from './Form'
-import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ThemeToggle'
 import {
   GhostButton,
