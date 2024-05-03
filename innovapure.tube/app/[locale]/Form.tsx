@@ -77,9 +77,6 @@ const Form = ({ formName }: Pick<Store, 'formName'>) => {
   const utmCampaign = useUTMStore(state => state.utm_campaign)
   const utmContent = useUTMStore(state => state.utm_content)
 
-  console.log('utmCampaign: ', utmCampaign)
-  console.log('utmContent: ', utmContent)
-
   return (
     <>
       {/* <button

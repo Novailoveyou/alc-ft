@@ -1,23 +1,18 @@
 import 'server-only'
 import { getFooter } from './actions'
 
-type Footer = Partial<Awaited<ReturnType<typeof getFooter>>>
+type Footer = Exclude<Awaited<ReturnType<typeof getFooter>>, null>
 
-export const Footer = <_Footer extends Footer>(props: _Footer) => {
-  const buttons = props?.buttons || []
-  const form = props?.form
-
-  console.log('Footer props: ', props)
+export const Footer = <_Footer extends Footer>({ form, buttons }: _Footer) => {
+  console.log('Footer form: ', form)
+  console.log('Footer buttons: ', buttons)
 
   return (
     <header>
-      <div></div>
-      footer
-      <br />
-      {form?.title}
-      {form?.description}
-      <br />
-      {buttons.map(button => button.text)}
+      <p>Footer</p>
+      <p>{form?.title}</p>
+      <p>{form?.description}</p>
+      <div>{buttons.map(button => button.text)}</div>
     </header>
   )
 }

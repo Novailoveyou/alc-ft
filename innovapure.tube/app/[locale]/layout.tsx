@@ -5,11 +5,7 @@ import { Inter } from 'next/font/google'
 import './globals.scss'
 import { Props } from '@/types'
 import { SWRProvider, ThemeProvider } from '@/components/shared/providers'
-import { Fragment } from 'react'
 import { PageName } from '@prisma/client'
-import { Header, getHeader } from './sections/Header'
-import { Footer, getFooter } from './sections/Footer'
-
 export const PAGE = 'home' satisfies PageName
 
 const inter = Inter({ subsets: ['latin'] })
@@ -28,9 +24,6 @@ export default async function RootLayout({
 }: Props.Children & Props.NextLocaleParams) {
   const { direction: dir } = new Locale(locale).textInfo
 
-  const header = await getHeader({ locale, page: PAGE })
-  const footer = await getFooter({ locale, page: PAGE })
-
   return (
     <html
       lang={locale}
@@ -39,13 +32,7 @@ export default async function RootLayout({
       suppressHydrationWarning>
       <body className={inter.className}>
         <SWRProvider>
-          <ThemeProvider>
-            <Fragment>
-              <Header {...(header || {})} />
-              <main>{children}</main>
-              <Footer {...(footer || {})} />
-            </Fragment>
-          </ThemeProvider>
+          <ThemeProvider>{children}</ThemeProvider>
         </SWRProvider>
       </body>
     </html>

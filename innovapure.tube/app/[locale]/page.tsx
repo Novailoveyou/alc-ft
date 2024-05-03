@@ -3,17 +3,16 @@ import { NextPage } from 'next'
 import { setStaticParamsLocale } from 'next-international/server'
 import { Props } from '@/types'
 import { getStaticParams } from '@/locales/server'
-import ChangeLocale from '@/app/[locale]/ChangeLocale'
-import Form from './Form'
-import { ThemeToggle } from '@/components/ThemeToggle'
-import {
-  GhostButton,
-  PrimaryButton,
-  SecondaryButton,
-} from '@/components/shared/buttons'
 import { ONE_HOUR_IN_SECONDS } from '@/constants'
 import { Fragment } from 'react'
 import { Revalidate } from 'next/dist/server/lib/revalidate'
+import { Gallery } from './sections/Gallery/Gallery'
+import { Catalog } from './sections/Catalog/Catalog'
+import { PAGE } from './layout'
+import { Header, getHeader } from './sections/Header'
+import { Footer, getFooter } from './sections/Footer'
+import { getGallery } from './sections/Gallery'
+import { getCatalog } from './sections/Catalog'
 
 /**
  * @description The `generateStaticParams` function can be used in combination with **dynamic route segments** to **statically generate** routes at build time instead of on-demand at request time
@@ -32,23 +31,21 @@ const HomePage: NextPage<Props.NextLocaleParams> = async ({
   /** @see https://next-international.vercel.app/docs/app-static-rendering */
   setStaticParamsLocale(locale)
 
-  // const posts = await getPosts(locale)
-  console.log('rerender')
+  // const gallery = await getGallery(locale, page: PAGE)
+
+  const header = await getHeader({ locale, page: PAGE })
+  const gallery = await getGallery({ locale, page: PAGE })
+  const catalog = await getCatalog({ locale, page: PAGE })
+  const footer = await getFooter({ locale, page: PAGE })
 
   return (
     <Fragment>
-      Main
-      <ChangeLocale />
-      <Form />
-      <div>
-        <h1>Buttons</h1>
-        <PrimaryButton>PrimaryButton</PrimaryButton>
-        <SecondaryButton>SecondaryButton</SecondaryButton>
-        <GhostButton>GhostButton</GhostButton>
-        <h1>Buttons End</h1>
-      </div>
-      <ThemeToggle />
-      {/* {posts.map(post => JSON.stringify(post))} */}
+      <Header buttons={header?.buttons || []} />
+      <main>
+        <Gallery strap={gallery?.strap || ''} slides={gallery?.slides || []} />
+        <Catalog title={catalog?.title || ''} cards={catalog?.cards || []} />
+      </main>
+      <Footer form={footer?.form || null} buttons={footer?.buttons || []} />
     </Fragment>
   )
 }

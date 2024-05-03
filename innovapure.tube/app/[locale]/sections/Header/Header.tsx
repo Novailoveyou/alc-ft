@@ -1,17 +1,15 @@
 import 'server-only'
 import { getHeader } from './actions'
 
-type Header = Partial<Awaited<ReturnType<typeof getHeader>>>
+type Header = Exclude<Awaited<ReturnType<typeof getHeader>>, null>
 
-export const Header = <_Header extends Header>(props: _Header) => {
-  const buttons = props?.buttons || []
+export const Header = <_Header extends Header>({ buttons }: _Header) => {
+  console.log('Header buttons: ', buttons)
 
-  console.log('Header props: ', props)
   return (
     <header>
-      header
-      <br />
-      {buttons.map(button => button.text)}
+      <p>Header</p>
+      <div>{buttons.map(button => button.text)}</div>
     </header>
   )
 }
