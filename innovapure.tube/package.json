@@ -8,7 +8,7 @@
   },
   "scripts": {
     "pnpm:update": "pnpm up --latest",
-    "init": "pnpm i && pnpm run prisma:init && pnpm run prisma:push && pnpm run prisma:generate && pnpm run prisma:seed",
+    "init": "pnpm i && pnpm run prisma:init && pnpm run prisma:push && pnpm run prisma:generate && pnpm run snaplet:sync && pnpm run prisma:seed",
     "start": "next start",
     "build": "next build",
     "lint": "next lint",
@@ -20,7 +20,8 @@
     "prisma:studio": "pnpm dlx prisma studio",
     "prisma:generate": "pnpm dlx prisma generate",
     "prisma:seed": "pnpm dlx prisma db seed",
-    "seed:init": "pnpm dlx @snaplet/seed init"
+    "snaplet:init": "pnpm dlx @snaplet/seed init",
+    "snaplet:sync": "pnpm dlx @snaplet/seed sync"
   },
   "dependencies": {
     "@anatine/zod-mock": "^3.13.4",
@@ -56,6 +57,7 @@
     "embla-carousel-react": "8.0.2",
     "immer": "^10.1.1",
     "intl-locale-textinfo-polyfill": "^2.1.1",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.376.0",
     "negotiator": "^0.6.3",
     "next": "14.2.3",
@@ -88,10 +90,12 @@
     "@redux-devtools/extension": "^3.3.0",
     "@snaplet/copycat": "^5.0.0",
     "@snaplet/seed": "0.97.6",
+    "@types/lodash": "^4.17.0",
     "@types/negotiator": "^0.6.3",
     "@types/node": "^20.12.8",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
+    "@types/uuid": "^9.0.8",
     "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
     "eslint": "^9.1.1",
