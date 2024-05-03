@@ -31,12 +31,12 @@ const HomePage: NextPage<Props.NextLocaleParams> = async ({
   /** @see https://next-international.vercel.app/docs/app-static-rendering */
   setStaticParamsLocale(locale)
 
-  const PAGE_NAME = 'home' satisfies PageName
+  const page = 'home' satisfies PageName
 
-  const header = await getHeader({ locale, page: PAGE_NAME })
-  const gallery = await getGallery({ locale, page: PAGE_NAME })
-  const catalog = await getCatalog({ locale, page: PAGE_NAME })
-  const footer = await getFooter({ locale, page: PAGE_NAME })
+  const header = await getHeader({ locale, page })
+  const gallery = await getGallery({ locale, page })
+  const catalog = await getCatalog({ locale, page })
+  const footer = await getFooter({ locale, page })
 
   return (
     <Fragment>

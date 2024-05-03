@@ -1,6 +1,8 @@
+import 'server-only'
 import Link from 'next/link'
+import { NextPage } from 'next'
 
-export const NotFound = () => {
+const NotFoundPage: NextPage = () => {
   return (
     <div>
       <h2>Not Found</h2>
@@ -9,3 +11,5 @@ export const NotFound = () => {
     </div>
   )
 }
+
+export default NotFoundPage
