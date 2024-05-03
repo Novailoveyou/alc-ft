@@ -3,18 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "author": "github.com/novailoveyou",
+  "prisma": {
+    "seed": "pnpm dlx tsx ./seed.ts"
+  },
   "scripts": {
     "pnpm:update": "pnpm up --latest",
+    "init": "pnpm i && pnpm run prisma:init && pnpm run prisma:push && pnpm run prisma:generate && pnpm run prisma:seed",
     "start": "next start",
     "build": "next build",
     "lint": "next lint",
-    "dev": "pnpm i && pnpm run docker:devdb && pnpm run prisma:push && pnpm run prisma:generate && concurrently \"pnpm run prisma:studio\" \"pnpm run next:dev\"",
+    "dev": "pnpm run prisma:init && concurrently \"BROWSER=none pnpm run prisma:studio\" \"pnpm run next:dev\"",
     "browser:open": "open http://localhost:3000 || cmd.exe /c start http://localhost:3000",
     "next:dev": "pnpm run browser:open && next dev --turbo",
+    "prisma:init": "docker compose up -d",
     "prisma:push": "pnpm dlx prisma db push",
     "prisma:studio": "pnpm dlx prisma studio",
     "prisma:generate": "pnpm dlx prisma generate",
-    "docker:devdb": "docker compose up -d"
+    "prisma:seed": "pnpm dlx prisma db seed",
+    "seed:init": "pnpm dlx @snaplet/seed init"
   },
   "dependencies": {
     "@anatine/zod-mock": "^3.13.4",
@@ -69,6 +75,7 @@
     "swr": "^2.2.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
+    "uuid": "^9.0.1",
     "vaul": "^0.9.0",
     "zod": "^3.23.5",
     "zod-form-data": "^2.0.2",
@@ -79,6 +86,8 @@
   },
   "devDependencies": {
     "@redux-devtools/extension": "^3.3.0",
+    "@snaplet/copycat": "^5.0.0",
+    "@snaplet/seed": "0.97.6",
     "@types/negotiator": "^0.6.3",
     "@types/node": "^20.12.8",
     "@types/react": "^18.3.1",

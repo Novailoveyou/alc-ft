@@ -9,6 +9,7 @@ export const Footer = <_Footer extends Footer>(props: _Footer) => {
 
   return (
     <header>
+      <div></div>
       footer
       <br />
       {form?.title}

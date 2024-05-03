@@ -1,8 +1,5 @@
 'use client'
 import { useChangeLocale, useCurrentLocale } from '@/locales/client'
-import { useEffect } from 'react'
-import { getPosts } from '@/actions'
-import { Locale } from '@/types'
 import { useStore } from '@/store'
 import { useSearchParams } from 'next/navigation'
 import {
@@ -34,10 +31,12 @@ export default function Component() {
         <GhostButton>GhostButton</GhostButton>
         <h1>Buttons End</h1>
       </div>
-      <button onClick={() => changeLocale('en')}>en</button>
-      <button onClick={() => changeLocale('ru')}>ru</button>
-      <button onClick={() => changeLocale('kk')}>kk</button>
-      <button onClick={() => changeLocale('be')}>be</button>
+      <div className='flex flex-col'>
+        <button onClick={() => changeLocale('en')}>en</button>
+        <button onClick={() => changeLocale('ru')}>ru</button>
+        <button onClick={() => changeLocale('kk')}>kk</button>
+        <button onClick={() => changeLocale('be')}>be</button>
+      </div>
     </>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
+import { Locale } from '@prisma/client'
 import { createI18nClient } from 'next-international/client'
-import { Locale } from '@/types'
 
 export const {
   useI18n,

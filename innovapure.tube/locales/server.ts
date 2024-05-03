@@ -1,5 +1,5 @@
+import { Locale } from '@prisma/client'
 import { createI18nServer } from 'next-international/server'
-import { Locale } from '@/types'
 
 export const { getI18n, getScopedI18n, getStaticParams, getCurrentLocale } =
   createI18nServer({
