@@ -88,6 +88,12 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
+      text: 'Перезвоните мне',
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
       text: '+7 (777) 777-77-77',
     },
     {
@@ -109,7 +115,21 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      // TODO: add buttons
+      _ButtonToHeader: Button.button
+        .filter(
+          record =>
+            record.text &&
+            [
+              'Область применения',
+              'О нас',
+              'Продукция',
+              'Документация',
+              'Новости',
+              '+7 (777) 777-77-77',
+              'Смена языка',
+            ].includes(record.text),
+        )
+        .map(record => ({ A: record.id })),
     }),
   )
 
@@ -135,7 +155,13 @@ const main = async () => {
       imageId: Image.image.find(record => record.id)?.id,
       sectionGalleryId: SectionGallery.sectionGallery.find(record => record.id)
         ?.id,
-      // TODO: add buttons
+      _ButtonToSlide: Button.button
+        .filter(
+          record =>
+            record.text &&
+            ['Заказать', 'Узнать больше о нас'].includes(record.text),
+        )
+        .map(record => ({ A: record.id })),
     }),
   )
 
@@ -187,7 +213,23 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       formId: Form.form.find(record => record.id)?.id,
-      // TODO: add buttons
+      _ButtonToFooter: Button.button
+        .filter(
+          record =>
+            record.text &&
+            [
+              '+7 (777) 777-77-77',
+              'Москва, Улица 28',
+              'sales@innovapure.tube',
+              'Области применения',
+              'Документация',
+              'О нас',
+              'Новости',
+              'Продукция',
+              'Контакты',
+            ].includes(record.text),
+        )
+        .map(record => ({ A: record.id })),
     }),
   )
 
@@ -208,7 +250,7 @@ const main = async () => {
 
   // Type completion not working? You might want to reload your TypeScript Server to pick up the changes
 
-  console.log('Database seeded successfully!')
+  console.log('SUCCESS: Database seeded successfully!')
 
   process.exit()
 }

@@ -7,6 +7,8 @@ export const Footer = <_Footer extends Footer>(props: _Footer) => {
   const buttons = props?.buttons || []
   const form = props?.form
 
+  console.log('Footer props: ', props)
+
   return (
     <header>
       <div></div>
