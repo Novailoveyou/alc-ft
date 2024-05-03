@@ -108,6 +108,12 @@ const main = async () => {
       isPublished: true,
       text: 'sales@innovapure.tube',
     },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      text: 'Контакты',
+    },
   ])
 
   const Header = await seed.header(x =>
@@ -120,7 +126,7 @@ const main = async () => {
           record =>
             record.text &&
             [
-              'Область применения',
+              'Области применения',
               'О нас',
               'Продукция',
               'Документация',
