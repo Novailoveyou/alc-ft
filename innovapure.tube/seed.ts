@@ -103,7 +103,11 @@ const main = async () => {
   await seed.sectionGallery(x => x(1))
   await seed.sectionCatalog(x => x(1))
   await seed.footer(x => x(1))
-  await seed.page(x => x(1))
+  await seed.page(x =>
+    x(1, {
+      name: 'home',
+    }),
+  )
 
   // Type completion not working? You might want to reload your TypeScript Server to pick up the changes
 

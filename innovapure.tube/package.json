@@ -12,7 +12,7 @@
     "start": "next start",
     "build": "next build",
     "lint": "next lint",
-    "dev": "pnpm run prisma:init && concurrently \"BROWSER=none pnpm run prisma:studio\" \"pnpm run next:dev\"",
+    "dev": "pnpm run prisma:init && concurrently \"pnpm run prisma:studio\" \"pnpm run next:dev\"",
     "browser:open": "open http://localhost:3000 || cmd.exe /c start http://localhost:3000",
     "next:dev": "pnpm run browser:open && next dev --turbo",
     "prisma:init": "docker compose up -d",
