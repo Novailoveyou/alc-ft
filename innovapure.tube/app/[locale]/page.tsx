@@ -8,11 +8,11 @@ import { Fragment } from 'react'
 import { Revalidate } from 'next/dist/server/lib/revalidate'
 import { Gallery } from './sections/Gallery/Gallery'
 import { Catalog } from './sections/Catalog/Catalog'
-import { PAGE } from './layout'
 import { Header, getHeader } from './sections/Header'
 import { Footer, getFooter } from './sections/Footer'
 import { getGallery } from './sections/Gallery'
 import { getCatalog } from './sections/Catalog'
+import { PageName } from '@prisma/client'
 
 /**
  * @description The `generateStaticParams` function can be used in combination with **dynamic route segments** to **statically generate** routes at build time instead of on-demand at request time
@@ -31,12 +31,12 @@ const HomePage: NextPage<Props.NextLocaleParams> = async ({
   /** @see https://next-international.vercel.app/docs/app-static-rendering */
   setStaticParamsLocale(locale)
 
-  // const gallery = await getGallery(locale, page: PAGE)
+  const PAGE_NAME = 'home' satisfies PageName
 
-  const header = await getHeader({ locale, page: PAGE })
-  const gallery = await getGallery({ locale, page: PAGE })
-  const catalog = await getCatalog({ locale, page: PAGE })
-  const footer = await getFooter({ locale, page: PAGE })
+  const header = await getHeader({ locale, page: PAGE_NAME })
+  const gallery = await getGallery({ locale, page: PAGE_NAME })
+  const catalog = await getCatalog({ locale, page: PAGE_NAME })
+  const footer = await getFooter({ locale, page: PAGE_NAME })
 
   return (
     <Fragment>

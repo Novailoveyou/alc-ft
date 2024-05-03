@@ -5,8 +5,6 @@ import { Inter } from 'next/font/google'
 import './globals.scss'
 import { Props } from '@/types'
 import { SWRProvider, ThemeProvider } from '@/components/shared/providers'
-import { PageName } from '@prisma/client'
-export const PAGE = 'home' satisfies PageName
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -7,9 +7,6 @@ export const Gallery = <_Gallery extends Gallery>({
   strap,
   slides,
 }: _Gallery) => {
-  console.log('Gallery strap: ', strap)
-  console.log('Gallery slides: ', slides)
-
   return (
     <section>
       <p>Gallery</p>
