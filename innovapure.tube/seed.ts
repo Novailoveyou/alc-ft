@@ -29,82 +29,120 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: 'АЛСИ-ФТ',
-      linkTo: 'home'
+      linkTo: 'home',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Области применения',
-      linkTo: 'usage'
+      linkTo: 'usage',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'О нас',
-      linkTo: 'about'
+      linkTo: 'about',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Продукция',
-      linkTo: 'catalog'
+      linkTo: 'catalog',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Документация',
-      linkTo: 'docs'
+      linkTo: 'docs',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Новости',
-      linkTo: 'articles'
+      linkTo: 'articles',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Заказать'
+      text: 'Заказать',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Узнать больше о нас',
-      linkTo: 'about'
+      linkTo: 'about',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Выбрать модель'
+      text: 'Выбрать модель',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Русский',
-      localeTo: 'ru'
+      localeTo: 'ru',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'English',
-      localeTo: 'en'
+      localeTo: 'en',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Қазақ',
-      localeTo: 'kk'
+      localeTo: 'kk',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
 
     {
@@ -112,46 +150,70 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: 'Беларускі',
-      localeTo: 'be'
+      localeTo: 'be',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Перезвоните мне'
+      text: 'Перезвоните мне',
+      localeTo: null,
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: '+7 (777) 777-77-77',
-      phoneNumberTo: '+7-777-777-77-77'
+      phoneNumberTo: '+7-777-777-77-77',
+      localeTo: null,
+      linkTo: null,
+      emailTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Москва, Улица 28'
+      text: 'Москва, Улица 28',
+      localeTo: null,
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'sales@innovapure.tube',
-      emailTo: 'sales@innovapure.tube'
+      emailTo: 'sales@innovapure.tube',
+      localeTo: null,
+      linkTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Контакты',
-      linkTo: 'contact'
+      linkTo: 'contact',
+      localeTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Купить сейчас'
+      text: 'Купить сейчас',
+      localeTo: null,
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     }
   ])
 
