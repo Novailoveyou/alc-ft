@@ -281,6 +281,52 @@ const main = async () => {
     })
   )
 
+  const Testimonial = await seed.testimonial([
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      index: 0,
+      title: 'Передовые технологии',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
+      imageId: Image.image.find(record => record.id)?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      index: 0,
+      title: 'Срок поставки',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
+      imageId: Image.image.find(record => record.id)?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      index: 0,
+      title: 'Цена/качество',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
+      imageId: Image.image.find(record => record.id)?.id
+    }
+  ])
+
+  const SectionTestimonials = await seed.sectionTestimonials(x =>
+    x(1, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      index: 0,
+      title: 'Каталог продукции',
+      _SectionTestimonialsToTestimonial: Testimonial.testimonial
+        .filter((record, idx) => idx <= 3)
+        .map(record => ({ B: record.id }))
+    })
+  )
+
   const Page = await seed.page([
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -300,11 +346,16 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       headerId: Header.header.find(record => record.id)?.id,
+      sectionTestimonialsId: SectionTestimonials.sectionTestimonials.find(
+        record => record.id
+      )?.id,
+      sectionCatalogId: SectionCatalog.sectionCatalog.find(record => record.id)
+        ?.id,
       footerId: Footer.footer.find(record => record.id)?.id
     }
   ])
 
-  // Type completion not working? You might want to reload your TypeScript Server to pick up the changes
+  // Type completion not working? Try ctrl + shirt + p > TypeScript: Restart TS Server
 
   console.log('SUCCESS: Database seeded successfully!')
 

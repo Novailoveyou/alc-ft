@@ -1,6 +1,6 @@
 import * as z from "zod"
 import { PageName, Locale } from "@prisma/client"
-import { CompleteHeader, RelatedHeaderModel, CompleteSectionGallery, RelatedSectionGalleryModel, CompleteSectionCatalog, RelatedSectionCatalogModel, CompleteFooter, RelatedFooterModel } from "./index"
+import { CompleteHeader, RelatedHeaderModel, CompleteSectionGallery, RelatedSectionGalleryModel, CompleteSectionCatalog, RelatedSectionCatalogModel, CompleteFooter, RelatedFooterModel, CompleteSectionTestimonials, RelatedSectionTestimonialsModel } from "./index"
 
 export const PageModel = z.object({
   /**
@@ -24,6 +24,7 @@ export const PageModel = z.object({
   sectionGalleryId: z.string().nullish(),
   sectionCatalogId: z.string().nullish(),
   footerId: z.string().nullish(),
+  sectionTestimonialsId: z.string().nullish(),
 })
 
 export interface CompletePage extends z.infer<typeof PageModel> {
@@ -31,6 +32,7 @@ export interface CompletePage extends z.infer<typeof PageModel> {
   sectionGallery?: CompleteSectionGallery | null
   sectionCatalog?: CompleteSectionCatalog | null
   footer?: CompleteFooter | null
+  sectionTestimonials?: CompleteSectionTestimonials | null
 }
 
 /**
@@ -40,19 +42,23 @@ export interface CompletePage extends z.infer<typeof PageModel> {
  */
 export const RelatedPageModel: z.ZodSchema<CompletePage> = z.lazy(() => PageModel.extend({
   /**
-   * home page header
+   * page header
    */
   header: RelatedHeaderModel.nullish(),
   /**
-   * home page gallery
+   * page gallery section
    */
   sectionGallery: RelatedSectionGalleryModel.nullish(),
   /**
-   * home page catalog
+   * page catalog section
    */
   sectionCatalog: RelatedSectionCatalogModel.nullish(),
   /**
-   * home page footer
+   * page footer
    */
   footer: RelatedFooterModel.nullish(),
+  /**
+   * page testimonials section
+   */
+  sectionTestimonials: RelatedSectionTestimonialsModel.nullish(),
 }))

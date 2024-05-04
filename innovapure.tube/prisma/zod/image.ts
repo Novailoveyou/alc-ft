@@ -1,6 +1,6 @@
 import * as z from "zod"
 import { Locale } from "@prisma/client"
-import { CompleteSlide, RelatedSlideModel, CompleteCatalogCard, RelatedCatalogCardModel } from "./index"
+import { CompleteSlide, RelatedSlideModel, CompleteCatalogCard, RelatedCatalogCardModel, CompleteTestimonial, RelatedTestimonialModel } from "./index"
 
 export const ImageModel = z.object({
   /**
@@ -29,6 +29,7 @@ export const ImageModel = z.object({
 export interface CompleteImage extends z.infer<typeof ImageModel> {
   slides: CompleteSlide[]
   catalogCards: CompleteCatalogCard[]
+  testimonials: CompleteTestimonial[]
 }
 
 /**
@@ -45,4 +46,8 @@ export const RelatedImageModel: z.ZodSchema<CompleteImage> = z.lazy(() => ImageM
    * catalogCards with this image
    */
   catalogCards: RelatedCatalogCardModel.array(),
+  /**
+   * testimonials with this image
+   */
+  testimonials: RelatedTestimonialModel.array(),
 }))
