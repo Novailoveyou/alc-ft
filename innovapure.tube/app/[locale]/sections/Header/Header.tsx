@@ -1,9 +1,9 @@
-import 'server-only';
-import { getHeader } from './actions';
-import { PageName } from '@prisma/client';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-type Header = Exclude<Awaited<ReturnType<typeof getHeader>>, null>;
+import 'server-only'
+import { getHeader } from './actions'
+import { PageName } from '@prisma/client'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+type Header = Exclude<Awaited<ReturnType<typeof getHeader>>, null>
 
 const Logo = () => {
   return (
@@ -20,8 +20,8 @@ const Logo = () => {
         fill='#445FF8'
       />
     </svg>
-  );
-};
+  )
+}
 
 export const Header = <_Header extends Header>({ buttons }: _Header) => {
   const links = [
@@ -29,10 +29,10 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
     PageName.about,
     PageName.catalog,
     PageName.docs,
-    PageName.articles
-  ];
+    PageName.articles,
+  ]
 
-  const pages = buttons.slice(0, 5);
+  const pages = buttons.slice(0, 5)
 
   return (
     <header className='flex'>
@@ -45,9 +45,8 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
           <Link href={links[idx]} passHref legacyBehavior>
             <Button variant={'ghost'}>{buttons[idx].text}</Button>
           </Link>
-        );
+        )
       })}
-
     </header>
-  );
-};
+  )
+}
