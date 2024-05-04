@@ -8,7 +8,7 @@
   },
   "scripts": {
     "pnpm:update": "pnpm up --latest",
-    "init": "pnpm i && pnpm run prisma:init && pnpm run prisma:push && pnpm run prisma:generate && pnpm run snaplet:init && pnpm run snaplet:sync && pnpm run prisma:seed",
+    "init": "pnpm i && pnpm run prisma:init && pnpm run prisma:push && pnpm run prisma:generate && pnpm run snaplet:sync && pnpm run prisma:seed",
     "start": "next start",
     "build": "next build",
     "lint": "next lint",
