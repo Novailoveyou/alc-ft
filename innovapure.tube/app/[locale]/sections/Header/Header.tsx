@@ -23,8 +23,8 @@ const Logo = () => {
         fill='#445FF8'
       />
     </svg>
-  );
-};
+  )
+}
 
 const Hamburger = () => {
   return (
@@ -49,9 +49,9 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
     PageName.catalog,
     PageName.docs,
     PageName.articles
-  ];
+  ]
 
-  const pages = buttons.slice(0, 5);
+  const pages = buttons.slice(0, 5)
 
   return (
     <header className='flex'>
@@ -75,5 +75,5 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
       </Button>
       <LocaleSwitch />
     </header>
-  );
-};
+  )
+}
