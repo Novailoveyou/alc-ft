@@ -47,7 +47,7 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
           </Link>
         );
       })}
-      
+
     </header>
   );
 };

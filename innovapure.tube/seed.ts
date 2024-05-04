@@ -29,36 +29,42 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: 'АЛСИ-ФТ',
+      linkTo: 'home',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Области применения',
+      linkTo: 'usage',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'О нас',
+      linkTo: 'about',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Продукция',
+      linkTo: 'catalog',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Документация',
+      linkTo: 'docs',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Новости',
+      linkTo: 'articles',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -71,6 +77,7 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: 'Узнать больше о нас',
+      linkTo: 'about',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -82,7 +89,30 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Смена языка',
+      text: 'Русский',
+      localeTo: 'ru',
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      text: 'English',
+      localeTo: 'en',
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      text: 'Қазақ',
+      localeTo: 'kk',
+    },
+
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      text: 'Беларускі',
+      localeTo: 'be',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -95,6 +125,7 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: '+7 (777) 777-77-77',
+      phoneNumberTo: '+7-777-777-77-77',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -107,12 +138,14 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: 'sales@innovapure.tube',
+      emailTo: 'sales@innovapure.tube',
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Контакты',
+      linkTo: 'contact',
     },
   ])
 
