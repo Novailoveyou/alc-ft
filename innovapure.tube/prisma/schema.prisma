@@ -89,6 +89,18 @@ model Button {
   /// @zod.trim().min(1).max(80)
   text String @default("")
 
+  /// if button is intended to be a link, then linkTo is the link
+  linkTo PageName?
+
+  /// if button is intended to be a language change, then localeTo is the language
+  localeTo Locale?
+
+  /// if button is intended to be a trigger to phoen call, then phoneNumberTo is the number to call
+  phoneNumberTo String?
+
+  /// if button is intended to be a trigger to email, then emailTo is the number to email
+  emailTo String?
+
   /// button locale
   locale Locale @default(ru)
 

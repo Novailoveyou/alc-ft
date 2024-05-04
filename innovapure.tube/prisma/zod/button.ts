@@ -1,5 +1,5 @@
 import * as z from "zod"
-import { Locale } from "@prisma/client"
+import { PageName, Locale, Locale } from "@prisma/client"
 import { CompleteCatalogCard, RelatedCatalogCardModel, CompleteSlide, RelatedSlideModel, CompleteForm, RelatedFormModel, CompleteHeader, RelatedHeaderModel, CompleteFooter, RelatedFooterModel } from "./index"
 
 export const ButtonModel = z.object({
@@ -12,6 +12,22 @@ export const ButtonModel = z.object({
    * button text
    */
   text: z.string().trim().min(1).max(80),
+  /**
+   * if button is intended to be a link, then linkTo is the link
+   */
+  linkTo: z.nativeEnum(PageName).nullish(),
+  /**
+   * if button is intended to be a language change, then localeTo is the language
+   */
+  localeTo: z.nativeEnum(Locale).nullish(),
+  /**
+   * if button is intended to be a trigger to phoen call, then phoneNumberTo is the number to call
+   */
+  phoneNumberTo: z.string().nullish(),
+  /**
+   * if button is intended to be a trigger to email, then emailTo is the number to email
+   */
+  emailTo: z.string().nullish(),
   /**
    * button locale
    */

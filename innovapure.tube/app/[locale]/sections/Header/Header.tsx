@@ -1,5 +1,7 @@
 import 'server-only'
 import { getHeader } from './actions'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 
 type Header = Exclude<Awaited<ReturnType<typeof getHeader>>, null>
 
