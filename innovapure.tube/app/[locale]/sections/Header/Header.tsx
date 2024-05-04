@@ -1,16 +1,13 @@
 import 'server-only'
 import { getHeader } from './actions'
-import { PageName } from '@prisma/client'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { LocaleSwitch } from './Dropdown'
+import { LocaleSwitch } from './LocaleSwitch'
 import { Icon } from '@/components/shared/icons'
-import { BY } from 'country-flag-icons/react/3x2'
-import { useCurrentLocale } from '@/locales/client'
 
 type Header = Exclude<Awaited<ReturnType<typeof getHeader>>, null>
 
-const Logo = () => {
+const LogoSvg = () => {
   return (
     <svg
       width='38'
@@ -47,33 +44,33 @@ const Hamburger = () => {
 export const Header = <_Header extends Header>({ buttons }: _Header) => {
   const links = buttons.filter(item => item.linkTo)
 
-  console.log(buttons)
-  // console.log(links)
   return (
-    <header className='flex'>
-      <div className='flex flex-row items-center'>
-        <Logo />
-        <span>АЛСИ-ФТ</span>
+    <header>
+      <div className='container flex justify-between gap-1 py-4'>
+        <div className='flex flex-row flex-nowrap items-center grow sm:grow-0 gap-2 '>
+          <LogoSvg />
+          <span className='text-nowrap'>АЛСИ-ФТ</span>
+        </div>
+        <div className='items-center hidden sm:flex flex-wrap justify-center'>
+          {links.map((link, idx) => {
+            return (
+              <Link
+                key={`header_link_${idx}`}
+                href={link.linkTo!}
+                passHref
+                legacyBehavior>
+                <Button variant={'ghost'}>{link.text}</Button>
+              </Link>
+            )
+          })}
+        </div>
+        <Button variant={'outline'} className='sm:hidden'>
+          <Icon>
+            <Hamburger />
+          </Icon>
+        </Button>
+        <LocaleSwitch />
       </div>
-      <div className='hidden sm:block'>
-        {links.map((link, idx) => {
-          return (
-            <Link
-              key={`header_link_${idx}`}
-              href={link.linkTo!}
-              passHref
-              legacyBehavior>
-              <Button variant={'ghost'}>{link.text}</Button>
-            </Link>
-          )
-        })}
-      </div>
-      <Button variant={'outline'} className='sm:hidden'>
-        <Icon>
-          <Hamburger />
-        </Icon>
-      </Button>
-      <LocaleSwitch />
     </header>
   )
 }

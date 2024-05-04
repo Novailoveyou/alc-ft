@@ -6,16 +6,16 @@ import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
-  DropdownMenuItem,
   DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem
 } from '@/components/ui/dropdown-menu'
 import { RU, GB, KZ, BY, FlagComponent } from 'country-flag-icons/react/3x2'
 import { Icon } from '@/components/shared/icons'
 import { Locale } from '@prisma/client'
 import { useChangeLocale, useCurrentLocale } from '@/locales/client'
+import { cn } from '@/utils'
 
 type Checked = DropdownMenuCheckboxItemProps['checked']
 
@@ -31,38 +31,51 @@ const buttons = [
   { locale: 'be', text: 'BY', Flag: BY }
 ] satisfies LocaleIcon[]
 
+const LocaleSwitchItem = ({
+  text,
+  Flag,
+  strong
+}: Pick<LocaleIcon, 'text' | 'Flag'> & { strong?: boolean }) => {
+  return (
+    <span className='flex gap-1 items-center'>
+      <Icon className='w-5'>
+        <Flag />
+      </Icon>
+      <span className={cn(strong && 'font-bold')}>{text}</span>
+    </span>
+  )
+}
+
 export const LocaleSwitch = () => {
   const [selected, setSelected] = React.useState<Checked>(true)
   const changeLocale = useChangeLocale()
-  const locale = useCurrentLocale()
+  const currentLocale = useCurrentLocale()
+  const button = buttons.find(button => currentLocale === button.locale)!
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant='ghost'>
-          <strong>
-            {buttons.find(button => locale === button.locale)!.text}
-          </strong>
+          <LocaleSwitchItem text={button.text} Flag={button.Flag} strong />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <>
+      <DropdownMenuContent className=''>
+        <DropdownMenuRadioGroup
+          value={currentLocale}
+          onValueChange={value => {
+            changeLocale(value as Locale)
+          }}>
           {buttons.map(({ locale, text, Flag }, idx) => {
             return (
-              <DropdownMenuItem
-                onSelect={() => {
-                  changeLocale(locale)
-                  console.log(locale)
-                }}
-                key={`locale_dropdown_${idx}`}>
-                {text}
-                <Icon className='w-5 flex justify-center'>
-                  <Flag />
-                </Icon>
-              </DropdownMenuItem>
+              <DropdownMenuRadioItem
+                value={locale}
+                key={`locale_dropdown_${idx}`}
+                className='[&>*:nth-child(1)]:hidden gap-1 pl-2'>
+                <LocaleSwitchItem text={text} Flag={Flag} />
+              </DropdownMenuRadioItem>
             )
           })}
-        </>
+        </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   )

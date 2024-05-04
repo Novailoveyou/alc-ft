@@ -14,29 +14,31 @@ export const getCatalog = cache(
         title: true,
         cards: {
           select: {
+            name: true,
+            description: true,
             image: {
               select: {
                 src: true,
-                alt: true,
-              },
+                alt: true
+              }
             },
             button: {
               select: {
-                text: true,
-              },
-            },
-          },
-        },
+                text: true
+              }
+            }
+          }
+        }
       },
       where: {
         locale,
         isPublished: true,
         pages: {
           some: {
-            name: page,
-          },
-        },
-      },
+            name: page
+          }
+        }
+      }
     })
-  },
+  }
 )
