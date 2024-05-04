@@ -26,7 +26,7 @@ export const generateStaticParams = () => getStaticParams()
 export const revalidate: Revalidate = ONE_HOUR_IN_SECONDS
 
 const HomePage: NextPage<Props.NextLocaleParams> = async ({
-  params: { locale },
+  params: { locale }
 }) => {
   /** @see https://next-international.vercel.app/docs/app-static-rendering */
   setStaticParamsLocale(locale)

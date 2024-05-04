@@ -29,82 +29,120 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: 'АЛСИ-ФТ',
-      linkTo: 'home'
+      linkTo: 'home',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Области применения',
-      linkTo: 'usage'
+      linkTo: 'usage',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'О нас',
-      linkTo: 'about'
+      linkTo: 'about',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Продукция',
-      linkTo: 'catalog'
+      linkTo: 'catalog',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Документация',
-      linkTo: 'docs'
+      linkTo: 'docs',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Новости',
-      linkTo: 'articles'
+      linkTo: 'articles',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Заказать'
+      text: 'Заказать',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Узнать больше о нас',
-      linkTo: 'about'
+      linkTo: 'about',
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Выбрать модель'
+      text: 'Выбрать модель',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null,
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Русский',
-      localeTo: 'ru'
+      localeTo: 'ru',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'English',
-      localeTo: 'en'
+      localeTo: 'en',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Қазақ',
-      localeTo: 'kk'
+      localeTo: 'kk',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
 
     {
@@ -112,46 +150,70 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: 'Беларускі',
-      localeTo: 'be'
+      localeTo: 'be',
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Перезвоните мне'
+      text: 'Перезвоните мне',
+      localeTo: null,
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: '+7 (777) 777-77-77',
-      phoneNumberTo: '+7-777-777-77-77'
+      phoneNumberTo: '+7-777-777-77-77',
+      localeTo: null,
+      linkTo: null,
+      emailTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Москва, Улица 28'
+      text: 'Москва, Улица 28',
+      localeTo: null,
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'sales@innovapure.tube',
-      emailTo: 'sales@innovapure.tube'
+      emailTo: 'sales@innovapure.tube',
+      localeTo: null,
+      linkTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Контакты',
-      linkTo: 'contact'
+      linkTo: 'contact',
+      localeTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Купить сейчас'
+      text: 'Купить сейчас',
+      localeTo: null,
+      linkTo: null,
+      emailTo: null,
+      phoneNumberTo: null
     }
   ])
 
@@ -281,6 +343,52 @@ const main = async () => {
     })
   )
 
+  const Testimonial = await seed.testimonial([
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      index: 0,
+      title: 'Передовые технологии',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
+      imageId: Image.image.find(record => record.id)?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      index: 0,
+      title: 'Срок поставки',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
+      imageId: Image.image.find(record => record.id)?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      index: 0,
+      title: 'Цена/качество',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
+      imageId: Image.image.find(record => record.id)?.id
+    }
+  ])
+
+  const SectionTestimonials = await seed.sectionTestimonials(x =>
+    x(1, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      index: 0,
+      title: 'Каталог продукции',
+      _SectionTestimonialsToTestimonial: Testimonial.testimonial
+        .filter((record, idx) => idx <= 3)
+        .map(record => ({ B: record.id }))
+    })
+  )
+
   const Page = await seed.page([
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -300,11 +408,16 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       headerId: Header.header.find(record => record.id)?.id,
+      sectionTestimonialsId: SectionTestimonials.sectionTestimonials.find(
+        record => record.id
+      )?.id,
+      sectionCatalogId: SectionCatalog.sectionCatalog.find(record => record.id)
+        ?.id,
       footerId: Footer.footer.find(record => record.id)?.id
     }
   ])
 
-  // Type completion not working? You might want to reload your TypeScript Server to pick up the changes
+  // Type completion not working? Try ctrl + shirt + p > TypeScript: Restart TS Server
 
   console.log('SUCCESS: Database seeded successfully!')
 
