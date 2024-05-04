@@ -19,8 +19,8 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       src: 'http://localhost',
-      alt: 'Тест изображение',
-    }),
+      alt: 'Тест изображение'
+    })
   )
 
   const Button = await seed.button([
@@ -29,82 +29,82 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: 'АЛСИ-ФТ',
-      linkTo: 'home',
+      linkTo: 'home'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Области применения',
-      linkTo: 'usage',
+      linkTo: 'usage'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'О нас',
-      linkTo: 'about',
+      linkTo: 'about'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Продукция',
-      linkTo: 'catalog',
+      linkTo: 'catalog'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Документация',
-      linkTo: 'docs',
+      linkTo: 'docs'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Новости',
-      linkTo: 'articles',
+      linkTo: 'articles'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Заказать',
+      text: 'Заказать'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Узнать больше о нас',
-      linkTo: 'about',
+      linkTo: 'about'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Выбрать модель',
+      text: 'Выбрать модель'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Русский',
-      localeTo: 'ru',
+      localeTo: 'ru'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'English',
-      localeTo: 'en',
+      localeTo: 'en'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Қазақ',
-      localeTo: 'kk',
+      localeTo: 'kk'
     },
 
     {
@@ -112,41 +112,47 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: 'Беларускі',
-      localeTo: 'be',
+      localeTo: 'be'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Перезвоните мне',
+      text: 'Перезвоните мне'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: '+7 (777) 777-77-77',
-      phoneNumberTo: '+7-777-777-77-77',
+      phoneNumberTo: '+7-777-777-77-77'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Москва, Улица 28',
+      text: 'Москва, Улица 28'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'sales@innovapure.tube',
-      emailTo: 'sales@innovapure.tube',
+      emailTo: 'sales@innovapure.tube'
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'Контакты',
-      linkTo: 'contact',
+      linkTo: 'contact'
     },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      text: 'Купить сейчас'
+    }
   ])
 
   const Header = await seed.header(x =>
@@ -165,11 +171,14 @@ const main = async () => {
               'Документация',
               'Новости',
               '+7 (777) 777-77-77',
-              'Смена языка',
-            ].includes(record.text),
+              'Русский',
+              'English',
+              'Қазақ',
+              'Беларускі'
+            ].includes(record.text)
         )
-        .map(record => ({ A: record.id })),
-    }),
+        .map(record => ({ A: record.id }))
+    })
   )
 
   const SectionGallery = await seed.sectionGallery(x =>
@@ -178,8 +187,8 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       index: 0,
-      strap: 'Innovaprene',
-    }),
+      strap: 'Innovaprene'
+    })
   )
 
   const Slide = await seed.slide(x =>
@@ -198,10 +207,10 @@ const main = async () => {
         .filter(
           record =>
             record.text &&
-            ['Заказать', 'Узнать больше о нас'].includes(record.text),
+            ['Заказать', 'Узнать больше о нас'].includes(record.text)
         )
-        .map(record => ({ A: record.id })),
-    }),
+        .map(record => ({ A: record.id }))
+    })
   )
 
   const SectionCatalog = await seed.sectionCatalog(x =>
@@ -210,8 +219,8 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       index: 1,
-      title: 'Каталог продукции',
-    }),
+      title: 'Каталог продукции'
+    })
   )
 
   const CatalogCard = await seed.catalogCard(x =>
@@ -226,8 +235,8 @@ const main = async () => {
       buttonId: Button.button.find(record => record.text === 'Выбрать модель')
         ?.id,
       sectionCatalogId: SectionCatalog.sectionCatalog.find(record => record.id)
-        ?.id,
-    }),
+        ?.id
+    })
   )
 
   const Form = await seed.form(x =>
@@ -242,8 +251,8 @@ const main = async () => {
       isEmail: false,
       isAgreement: true,
       buttonId: Button.button.find(record => record.text === 'Перезвоните мне')
-        ?.id,
-    }),
+        ?.id
+    })
   )
 
   const Footer = await seed.footer(x =>
@@ -265,15 +274,15 @@ const main = async () => {
               'О нас',
               'Новости',
               'Продукция',
-              'Контакты',
-            ].includes(record.text),
+              'Контакты'
+            ].includes(record.text)
         )
-        .map(record => ({ A: record.id })),
-    }),
+        .map(record => ({ A: record.id }))
+    })
   )
 
-  const Page = await seed.page(x =>
-    x(1, {
+  const Page = await seed.page([
+    {
       id: ({ seed }) => copycat.uuid(seed),
       name: 'home',
       locale: 'ru',
@@ -283,9 +292,17 @@ const main = async () => {
         ?.id,
       sectionCatalogId: SectionCatalog.sectionCatalog.find(record => record.id)
         ?.id,
-      footerId: Footer.footer.find(record => record.id)?.id,
-    }),
-  )
+      footerId: Footer.footer.find(record => record.id)?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      name: 'catalog',
+      locale: 'ru',
+      isPublished: true,
+      headerId: Header.header.find(record => record.id)?.id,
+      footerId: Footer.footer.find(record => record.id)?.id
+    }
+  ])
 
   // Type completion not working? You might want to reload your TypeScript Server to pick up the changes
 

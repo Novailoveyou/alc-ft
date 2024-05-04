@@ -29,7 +29,7 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
     PageName.about,
     PageName.catalog,
     PageName.docs,
-    PageName.articles,
+    PageName.articles
   ]
 
   const pages = buttons.slice(0, 5)
