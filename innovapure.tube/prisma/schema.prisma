@@ -41,7 +41,8 @@ enum Locale {
 enum PageName {
   home
   catalog
-  manufacturer
+  manucfacturer
+  category
   product
   cart
   articles
@@ -743,8 +744,9 @@ model SectionCategory {
   /// @default {now()}
   updatedAt DateTime @default(now()) @updatedAt @map(name: "updated_at")
 
-  /// section category slug
-  categories Category[]
+  /// section category
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String
 
   /// pages with this section
   pages Page[]

@@ -4,7 +4,7 @@ import { UnionToTuple } from '@/types'
 import { Locale } from '@prisma/client'
 
 const I18nMiddleware = createI18nMiddleware({
-  locales: ['ru', 'en', 'kk', 'be'] satisfies UnionToTuple<Locale>,
+  locales: ['ru', 'en', 'kk', 'be'] as const satisfies UnionToTuple<Locale>,
   defaultLocale: 'ru',
   urlMappingStrategy: 'rewriteDefault'
 })
