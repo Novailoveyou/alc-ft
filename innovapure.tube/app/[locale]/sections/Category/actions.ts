@@ -25,6 +25,24 @@ export const getCategory = cache(
             name: true,
             slug: true,
             description: true,
+            products: {
+              select: {
+                category: {
+                  select: {
+                    slug: true
+                  }
+                },
+                name: true,
+                slug: true,
+                description: true,
+                image: {
+                  select: {
+                    src: true,
+                    alt: true
+                  }
+                }
+              }
+            },
             image: {
               select: {
                 src: true,

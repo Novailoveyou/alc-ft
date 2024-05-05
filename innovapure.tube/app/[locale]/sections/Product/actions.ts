@@ -2,19 +2,29 @@ import 'server-only'
 import { prisma } from '@/prisma'
 import { cache } from 'react'
 import { Locale, PageName } from '@prisma/client'
-import { CompleteCategory } from '@/prisma/zod'
+import { CompleteCategory, CompleteProduct } from '@/prisma/zod'
 
 /**
  * @description Server Action - asynchronous function that is executed on the server. It can be used in Server and Client Components to handle form submissions and data mutations
  * @see https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations
  */
-export const getCatalog = cache(
-  async ({ locale, page }: { locale: Locale; page: PageName }) => {
+export const getProduct = cache(
+  async ({
+    locale,
+    page,
+    slug,
+    categorySlug
+  }: {
+    locale: Locale
+    page: PageName
+    slug: CompleteProduct['slug']
+    categorySlug: CompleteCategory['slug']
+  }) => {
     return await prisma.sectionProduct.findFirst({
       select: {
-        title: true,
-        categories: {
+        product: {
           select: {
+            id: true,
             name: true,
             slug: true,
             description: true,
@@ -24,9 +34,10 @@ export const getCatalog = cache(
                 alt: true
               }
             },
-            button: {
+            category: {
               select: {
-                text: true
+                name: true,
+                slug: true
               }
             }
           }
@@ -38,6 +49,12 @@ export const getCatalog = cache(
         pages: {
           some: {
             name: page
+          }
+        },
+        product: {
+          slug,
+          category: {
+            slug: categorySlug
           }
         }
       }
