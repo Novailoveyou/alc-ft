@@ -45,7 +45,7 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
   const links = buttons.filter(item => item.linkTo)
 
   return (
-    <header>
+    <header className='bg-background-accent'>
       <div className='container flex justify-between gap-1 py-4'>
         <div className='flex flex-row flex-nowrap items-center grow sm:grow-0 gap-2 '>
           <LogoSvg />
