@@ -15,6 +15,11 @@ import {
 import { Catalog } from './Catalog'
 import Link from 'next/link'
 
+type CardContent = { category: Catalog['categories'][number] } & {
+  descriptionHidden?: boolean
+  className?: string
+}
+
 export const CategoryCard = ({
   category: {
     name,
@@ -23,8 +28,9 @@ export const CategoryCard = ({
     image: { src, alt },
     button: { text }
   },
+  descriptionHidden,
   className
-}: { category: Catalog['categories'][number] } & { className?: string }) => {
+}: CardContent) => {
   return (
     <Card className={cn('flex flex-col justify-between', className)}>
       <CardContent>
@@ -32,7 +38,9 @@ export const CategoryCard = ({
       </CardContent>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription hidden={descriptionHidden}>
+          {description}
+        </CardDescription>
       </CardHeader>
 
       <CardFooter>
