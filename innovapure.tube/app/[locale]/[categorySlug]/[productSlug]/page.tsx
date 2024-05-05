@@ -6,10 +6,11 @@ import { Revalidate } from 'next/dist/server/lib/revalidate'
 import { Header, getHeader } from '@/app/[locale]/sections/Header'
 import { Footer, getFooter } from '@/app/[locale]/sections/Footer'
 import { PageName } from '@prisma/client'
+import { getProductStaticParams } from './actions'
 
-// type ProductPage = {
-//   params: Awaited<ReturnType<typeof generateStaticParams>>[number]
-// }
+type ProductPage = {
+  params: Awaited<ReturnType<typeof getProductStaticParams>>[number]
+}
 
 /**
  * @description The `generateStaticParams` function can be used in combination with **dynamic route segments** to **statically generate** routes at build time instead of on-demand at request time
@@ -22,16 +23,14 @@ import { PageName } from '@prisma/client'
  * @see https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating#revalidating-data */
 export const revalidate: Revalidate = ONE_HOUR_IN_SECONDS
 
-const ProductPage: NextPage<{}> = async (
-  {
-    // params: { locale, categorySlug }
-  }
-) => {
+const ProductPage: NextPage<ProductPage> = async ({
+  params: { locale, categorySlug, productSlug }
+}) => {
   const page = 'product' satisfies PageName
 
-  const header = await getHeader({ locale: 'ru', page })
+  const header = await getHeader({ locale, page })
   // const category = await getCategory({ locale, page, categorySlug })
-  const footer = await getFooter({ locale: 'ru', page })
+  const footer = await getFooter({ locale, page })
 
   return (
     <Fragment>
