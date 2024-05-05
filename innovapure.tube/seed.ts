@@ -285,7 +285,7 @@ const main = async () => {
     })
   )
 
-  const CatalogCard = await seed.catalogCard(x =>
+  const CategoryCard = await seed.catalogCard(x =>
     x(5, {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
