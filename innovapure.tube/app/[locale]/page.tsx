@@ -37,7 +37,6 @@ const HomePage: NextPage<Props.NextLocaleParams> = async ({
   const gallery = await getGallery({ locale, page })
   const catalog = await getCatalog({ locale, page })
   const footer = await getFooter({ locale, page })
-
   return (
     <Fragment>
       <Header buttons={header?.buttons || []} />

@@ -10,16 +10,26 @@ import { Locale, PageName } from '@prisma/client'
 export const getHeader = cache(
   async ({ locale, page }: { locale: Locale; page: PageName }) => {
     return await prisma.header.findFirst({
-      select: { buttons: { select: { text: true } } },
+      select: {
+        buttons: {
+          select: {
+            text: true,
+            linkTo: true,
+            localeTo: true,
+            phoneNumberTo: true,
+            emailTo: true
+          }
+        }
+      },
       where: {
         locale,
         isPublished: true,
         pages: {
           some: {
-            name: page,
-          },
-        },
-      },
+            name: page
+          }
+        }
+      }
     })
-  },
+  }
 )

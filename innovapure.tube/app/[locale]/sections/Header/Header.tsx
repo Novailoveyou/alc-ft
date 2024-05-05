@@ -1,14 +1,13 @@
-import 'server-only';
-import { getHeader } from './actions';
-import { PageName } from '@prisma/client';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { LocaleSwitch } from './Dropdown';
-import { Icon } from '@/components/shared/icons';
+import 'server-only'
+import { getHeader } from './actions'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { LocaleSwitch } from './LocaleSwitch'
+import { Icon } from '@/components/shared/icons'
 
-type Header = Exclude<Awaited<ReturnType<typeof getHeader>>, null>;
+type Header = Exclude<Awaited<ReturnType<typeof getHeader>>, null>
 
-const Logo = () => {
+const LogoSvg = () => {
   return (
     <svg
       width='38'
@@ -37,43 +36,41 @@ const Hamburger = () => {
       <path
         d='M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.2239 1.22386 11 1.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H1.5C1.22386 12 1 11.7761 1 11.5Z'
         fill='currentColor'
-        fill-rule='evenodd'
-        clip-rule='evenodd'></path>
+        fillRule='evenodd'
+        clipRule='evenodd'></path>
     </svg>
-  );
-};
+  )
+}
 export const Header = <_Header extends Header>({ buttons }: _Header) => {
-  const links = [
-    PageName.usage,
-    PageName.about,
-    PageName.catalog,
-    PageName.docs,
-    PageName.articles
-  ]
-
-  const pages = buttons.slice(0, 5)
+  const links = buttons.filter(item => item.linkTo)
 
   return (
-    <header className='flex'>
-      <div className='flex flex-row items-center'>
-        <Logo />
-        <span>АЛСИ-ФТ</span>
+    <header>
+      <div className='container flex justify-between gap-1 py-4'>
+        <div className='flex flex-row flex-nowrap items-center grow sm:grow-0 gap-2 '>
+          <LogoSvg />
+          <span className='text-nowrap'>АЛСИ-ФТ</span>
+        </div>
+        <div className='items-center hidden sm:flex flex-wrap justify-center'>
+          {links.map((link, idx) => {
+            return (
+              <Link
+                key={`header_link_${idx}`}
+                href={link.linkTo!}
+                passHref
+                legacyBehavior>
+                <Button variant={'ghost'}>{link.text}</Button>
+              </Link>
+            )
+          })}
+        </div>
+        <Button variant={'outline'} className='sm:hidden'>
+          <Icon>
+            <Hamburger />
+          </Icon>
+        </Button>
+        <LocaleSwitch />
       </div>
-      <div className='hidden sm:block'>
-        {pages.map((page, idx) => {
-          return (
-            <Link key={`link_${idx}`} href={links[idx]} passHref legacyBehavior>
-              <Button variant={'ghost'}>{buttons[idx].text}</Button>
-            </Link>
-          );
-        })}
-      </div>
-      <Button variant={'outline'} className='sm:hidden'>
-        <Icon>
-          <Hamburger />
-        </Icon>
-      </Button>
-      <LocaleSwitch />
     </header>
   )
 }
