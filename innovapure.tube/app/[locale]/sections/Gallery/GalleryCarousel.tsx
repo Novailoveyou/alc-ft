@@ -48,6 +48,15 @@ const ArrowRight = () => (
 
 const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
   const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    if (!api) return
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+  }, [api])
+
   return (
     <Carousel setApi={setApi}>
       <CarouselContent>
@@ -86,11 +95,13 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
         </Button>
         <div className='flex gap-4 ml-44'>
           {slides.map((slide, idx) => {
+            console.log(api?.selectedScrollSnap())
             return (
               <Button variant='ghost' onClick={() => api?.scrollTo(idx)}>
                 <span
                   className={cn(
-                    'w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-foreground'
+                    'w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-inactive',
+                    current === idx && 'bg-secondary'
                   )}
                 />
               </Button>
