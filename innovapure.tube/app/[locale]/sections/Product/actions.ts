@@ -10,7 +10,7 @@ import { CompleteCategory } from '@/prisma/zod'
  */
 export const getCatalog = cache(
   async ({ locale, page }: { locale: Locale; page: PageName }) => {
-    return await prisma.sectionCatalog.findFirst({
+    return await prisma.sectionProduct.findFirst({
       select: {
         title: true,
         categories: {
