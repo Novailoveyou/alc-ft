@@ -469,6 +469,15 @@ const main = async () => {
     })
   )
 
+  const SectionProduct = await seed.sectionProduct(x =>
+    x(1, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      productId: Product.product.find(record => record.id)?.id
+    })
+  )
+
   const Footer = await seed.footer(x =>
     x(1, {
       id: ({ seed }) => copycat.uuid(seed),
@@ -542,7 +551,8 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       headerId: Header.header.find(record => record.id)?.id,
-      sectionProductId: Product.sectionProduct.find(record => record.id)?.id,
+      sectionProductId: SectionProduct.sectionProduct.find(record => record.id)
+        ?.id,
       footerId: Footer.footer.find(record => record.id)?.id
     }
   ])

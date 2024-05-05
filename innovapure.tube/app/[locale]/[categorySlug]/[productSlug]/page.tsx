@@ -5,6 +5,7 @@ import { Fragment } from 'react'
 import { Revalidate } from 'next/dist/server/lib/revalidate'
 import { Header, getHeader } from '@/app/[locale]/sections/Header'
 import { Footer, getFooter } from '@/app/[locale]/sections/Footer'
+import { Product, getProduct } from '@/app/[locale]/sections/Product'
 import { PageName } from '@prisma/client'
 import { getProductStaticParams } from './actions'
 
@@ -29,13 +30,18 @@ const ProductPage: NextPage<ProductPage> = async ({
   const page = 'product' satisfies PageName
 
   const header = await getHeader({ locale, page })
-  // const category = await getCategory({ locale, page, categorySlug })
+  const product = await getProduct({
+    locale,
+    page,
+    slug: productSlug,
+    categorySlug
+  })
   const footer = await getFooter({ locale, page })
 
   return (
     <Fragment>
       <Header buttons={header?.buttons || []} />
-      <main>Product</main>
+      <main>{product?.product && <Product product={product.product} />}</main>
       <Footer form={footer?.form || null} buttons={footer?.buttons || []} />
     </Fragment>
   )
