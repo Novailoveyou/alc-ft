@@ -3,7 +3,7 @@ import {
   StateStorage,
   createJSONStorage,
   devtools,
-  persist,
+  persist
 } from 'zustand/middleware'
 import type {} from '@redux-devtools/extension' // required for devtools typing
 import { z } from 'zod'
@@ -14,11 +14,11 @@ import { immer } from 'zustand/middleware/immer'
 
 const formData = UserModel.pick({
   name: true,
-  phoneNumber: true,
-  email: true,
+  // phoneNumber: true,
+  // email: true,
   company: true,
   locale: true,
-  isDataUsageAgreement: true,
+  isDataUsageAgreement: true
 })
 
 const formDataSchema = zfd.formData(formData)
@@ -70,13 +70,13 @@ export const useStore = create<Store>()(
         // utm_campaign: '',
         // utm_content: '',
         // utm_term: '',
-        setStore: formData => set(() => lead.parse({ ...formData })),
+        setStore: formData => set(() => lead.parse({ ...formData }))
       }),
       {
-        name: 'store',
-      },
-    ),
-  ),
+        name: 'store'
+      }
+    )
+  )
 )
 
 export const utms = LeadModel.pick({
@@ -84,7 +84,7 @@ export const utms = LeadModel.pick({
   utm_medium: true,
   utm_campaign: true,
   utm_content: true,
-  utm_term: true,
+  utm_term: true
 })
 
 export type Utms = z.infer<typeof utms>
@@ -104,7 +104,7 @@ export const useUTMStore = create<UTMStore>()(
           utm_campaign: null,
           utm_content: null,
           utm_term: null,
-          setUTMStore: UTMState => set(() => utms.parse({ ...UTMState })),
+          setUTMStore: UTMState => set(() => utms.parse({ ...UTMState }))
         }
       },
       {
@@ -113,10 +113,10 @@ export const useUTMStore = create<UTMStore>()(
           utm_medium: true,
           utm_campaign: true,
           utm_content: true,
-          utm_term: true,
+          utm_term: true
         }),
-        key: '',
-      },
-    ),
-  ),
+        key: ''
+      }
+    )
+  )
 )

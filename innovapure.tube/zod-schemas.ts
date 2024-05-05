@@ -1,5 +1,2 @@
-import * as validator from 'validator'
-
-validator.isSlug
-validator.isEmail
-validator.isURL
+import * as imports from 'validator'
+// TODO: make this work

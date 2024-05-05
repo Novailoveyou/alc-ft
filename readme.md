@@ -15,6 +15,7 @@ git clone https://github.com/Novailoveyou/alc-ft.git alc-ft
 
 cd ./alc-ft/innovapure.tube
 
+pnpm run snaplet:init
 pnpm run init
 ```
 

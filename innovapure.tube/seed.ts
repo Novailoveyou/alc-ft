@@ -18,10 +18,30 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      src: 'http://localhost',
-      alt: 'Тест изображение'
+      src: ({ seed }) => copycat.url(seed),
+      alt: ({ seed }) => copycat.word(seed)
     })
   )
+
+  const PhoneNumber = await seed.phoneNumer([
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      value: ({ seed }) => copycat.phoneNumber(seed),
+      label: ({ data }) => data.value || 'телефон'
+    }
+  ])
+
+  const Email = await seed.email([
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      value: ({ seed }) => copycat.email(seed),
+      label: ({ data }) => data.value || 'email'
+    }
+  ])
 
   const Button = await seed.button([
     {
@@ -141,9 +161,9 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: '+7 (777) 777-77-77',
-      localeTo: null,
-      linkTo: null
+      text:
+        PhoneNumber.phoneNumer.find(record => record.id)?.label || 'телефон',
+      phoneNumberToId: PhoneNumber.phoneNumer.find(record => record.id)?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -157,9 +177,8 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'sales@innovapure.tube',
-      localeTo: null,
-      linkTo: null
+      text: Email.email.find(record => record.id)?.value || 'email',
+      emailToId: Email.email.find(record => record.id)?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -176,8 +195,180 @@ const main = async () => {
       text: 'Купить сейчас',
       localeTo: null,
       linkTo: null
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      text: 'Положить в корзину',
+      localeTo: null,
+      linkTo: null
     }
   ])
+
+  // const Slide = await seed.slide(x =>
+  //   x(3, {
+  //     id: ({ seed }) => copycat.uuid(seed),
+  //     locale: 'ru',
+  //     isPublished: true,
+  //     strap: ({ seed }) =>
+  //       copycat.oneOfString(['Innovaprene', 'Innovaflex', 'Innovafluor'])(seed),
+  //     title: 'Силиконовые трубки Innovaprene P 60',
+  //     subtitle: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
+  //     isDecoration: ({ seed }) => copycat.bool(seed),
+  //     imageId: Image.image.find(record => record.alt === 'slide')?.id,
+  //     _ButtonToSlide: Button.button
+  //       .filter(
+  //         record =>
+  //           record.text &&
+  //           ['Заказать', 'Узнать больше о нас'].includes(record.text)
+  //       )
+  //       .map(record => ({ A: record.id }))
+  //   })
+  // )
+
+  const Testimonial = await seed.testimonial([
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      title: 'Передовые технологии',
+      description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
+      imageId: Image.image.find(record => record.alt === 'slide')?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      title: 'Срок поставки',
+      description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
+      imageId: Image.image.find(record => record.alt === 'slide')?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      title: 'Цена/качество',
+      description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
+      imageId: Image.image.find(record => record.alt === 'slide')?.id
+    }
+  ])
+
+  const Form = await seed.form(x =>
+    x(1, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      title: 'Узнайте больше',
+      description: 'Остаавьте свой номер телефона и мы свяжемся с вами',
+      isName: false,
+      isPhoneNumber: true,
+      isEmail: false,
+      isAgreement: true,
+      buttonId: Button.button.find(record => record.text === 'Перезвоните мне')
+        ?.id
+    })
+  )
+
+  const Category = await seed.category(x =>
+    x(5, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      slug: ({ seed }) => copycat.url(seed),
+      name: ({ seed }) =>
+        copycat.oneOfString([
+          'Innovaprene',
+          'Innovaflex',
+          'Innovafluor',
+          'Innovalene',
+          'Innovaprene'
+        ])(seed),
+      description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
+      longDescription: ({ seed }) =>
+        copycat.paragraph(seed, { maxSentences: 8 }),
+      imageId: Image.image.find(record => record.alt === 'slide')?.id,
+      buttonId: Button.button.find(record => record.text === 'Выбрать модель')
+        ?.id
+    })
+  )
+
+  const ProductTestimonial = await seed.productTestimonial(x =>
+    x(4, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      title: ({ seed }) =>
+        copycat.oneOfString([
+          'Диапозон температур от -60С до 280С',
+          'Эластичный, морозо-теплостойкий',
+          'Электрической прочности: не менее 20 кв/мм',
+          'Используемые материал: кремнийорганическая резина'
+        ])(seed)
+    })
+  )
+
+  const Parameter = await seed.parameter(x =>
+    x(3, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      title: ({ seed }) =>
+        copycat.oneOfString([
+          'Толщина стенки',
+          'Внутренний диаметр',
+          'Длина',
+          'Наружный диаметр'
+        ])(seed),
+      isHighlighted: ({ seed }) => copycat.bool(seed)
+    })
+  )
+
+  const ParameterValue = await seed.parameterValue(x =>
+    x(6, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      value: ({ seed }) => copycat.oneOfString(['5мм', '10мм', '15мм'])(seed),
+      parameterId: Parameter.parameter.find(record => record.id)?.id
+    })
+  )
+
+  const Product = await seed.product(x =>
+    x(20, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      slug: ({ seed }) => copycat.url(seed),
+      name: ({ seed }) =>
+        copycat.oneOfString([
+          'Innovalloy® 62V',
+          'Innovaflex ® 58F',
+          'Innovafluor ® 14A'
+        ])(seed),
+      description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
+      longDescription: ({ seed }) =>
+        copycat.paragraph(seed, { maxSentences: 8 }),
+      categorySlug: Category.category.find(record => record.id)?.slug,
+      formId: Form.form.find(record => record.id)?.id,
+      imageId: Image.image.find(record => record.alt === 'slide')?.id,
+      _ParameterToProduct: Parameter.parameter.map(record => ({
+        A: record.id
+      })),
+      _ProductToProductTestimonial: ProductTestimonial.productTestimonial.map(
+        record => ({ B: record.id })
+      ),
+      _ButtonToProduct: Button.button
+        .filter(
+          record =>
+            record.text &&
+            ['Купить сейчас', 'Положить в корзину'].includes(record.text)
+        )
+        .map(record => ({
+          A: record.id
+        }))
+    })
+  )
 
   const Header = await seed.header(x =>
     x(1, {
@@ -205,34 +396,43 @@ const main = async () => {
     })
   )
 
+  // await seed.sectionGallery(
+  //   [
+  //     {
+  //       id: ({ seed }) => copycat.uuid(seed),
+  //       locale: 'ru',
+  //       isPublished: true,
+  //       slides: Slide.slide
+  //     }
+  //   ],
+  // )
+
   const SectionGallery = await seed.sectionGallery(x =>
     x(1, {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
-      isPublished: true
-    })
-  )
-
-  const Slide = await seed.slide(x =>
-    x(3, {
-      id: ({ seed }) => copycat.uuid(seed),
-      locale: 'ru',
       isPublished: true,
-      strap: 'Innovaprene',
-      title: 'Силиконовые трубки Innovaprene P 60',
-      subtitle:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
-      isDecoration: true,
-      imageId: Image.image.find(record => record.id)?.id,
-      sectionGalleryId: SectionGallery.sectionGallery.find(record => record.id)
-        ?.id,
-      _ButtonToSlide: Button.button
-        .filter(
-          record =>
-            record.text &&
-            ['Заказать', 'Узнать больше о нас'].includes(record.text)
-        )
-        .map(record => ({ A: record.id }))
+      slides: x =>
+        x(3, {
+          id: ({ seed }) => copycat.uuid(seed),
+          locale: 'ru',
+          isPublished: true,
+          strap: ({ seed }) =>
+            copycat.oneOfString(['Innovaprene', 'Innovaflex', 'Innovafluor'])(
+              seed
+            ),
+          title: 'Силиконовые трубки Innovaprene P 60',
+          subtitle: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
+          isDecoration: ({ seed }) => copycat.bool(seed),
+          imageId: Image.image.find(record => record.alt === 'slide')?.id,
+          _ButtonToSlide: Button.button
+            .filter(
+              record =>
+                record.text &&
+                ['Заказать', 'Узнать больше о нас'].includes(record.text)
+            )
+            .map(record => ({ A: record.id }))
+        })
     })
   )
 
@@ -241,39 +441,33 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      title: 'Каталог продукции'
+      title: 'Каталог продукции',
+      _CategoryToSectionCatalog: Category.category.map(record => ({
+        A: record.id
+      }))
     })
   )
 
-  const CategoryCard = await seed.category(x =>
-    x(5, {
-      id: ({ seed }) => copycat.uuid(seed),
-      locale: 'ru',
-      isPublished: true,
-      name: 'Innovalloy',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
-      imageId: Image.image.find(record => record.id)?.id,
-      buttonId: Button.button.find(record => record.text === 'Выбрать модель')
-        ?.id,
-      sectionCatalogId: SectionCatalog.sectionCatalog.find(record => record.id)
-        ?.id
-    })
-  )
-
-  const Form = await seed.form(x =>
+  const SectionTestimonials = await seed.sectionTestimonials(x =>
     x(1, {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      title: 'Узнайте больше',
-      description: 'Остаавьте свой номер телефона и мы свяжемся с вами',
-      isName: false,
-      isPhoneNumber: true,
-      isEmail: false,
-      isAgreement: true,
-      buttonId: Button.button.find(record => record.text === 'Перезвоните мне')
-        ?.id
+      title: 'Преимущества для вас',
+      _SectionTestimonialsToTestimonial: Testimonial.testimonial
+        .filter((record, idx) => idx <= 3)
+        .map(record => ({ B: record.id }))
+    })
+  )
+
+  const SectionCategory = await seed.sectionCategory(x =>
+    x(1, {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      _CategoryToSectionCategory: Category.category.map(record => ({
+        A: record.id
+      }))
     })
   )
 
@@ -303,48 +497,6 @@ const main = async () => {
     })
   )
 
-  const Testimonial = await seed.testimonial([
-    {
-      id: ({ seed }) => copycat.uuid(seed),
-      locale: 'ru',
-      isPublished: true,
-      title: 'Передовые технологии',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
-      imageId: Image.image.find(record => record.id)?.id
-    },
-    {
-      id: ({ seed }) => copycat.uuid(seed),
-      locale: 'ru',
-      isPublished: true,
-      title: 'Срок поставки',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
-      imageId: Image.image.find(record => record.id)?.id
-    },
-    {
-      id: ({ seed }) => copycat.uuid(seed),
-      locale: 'ru',
-      isPublished: true,
-      title: 'Цена/качество',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
-      imageId: Image.image.find(record => record.id)?.id
-    }
-  ])
-
-  const SectionTestimonials = await seed.sectionTestimonials(x =>
-    x(1, {
-      id: ({ seed }) => copycat.uuid(seed),
-      locale: 'ru',
-      isPublished: true,
-      title: 'Каталог продукции',
-      _SectionTestimonialsToTestimonial: Testimonial.testimonial
-        .filter((record, idx) => idx <= 3)
-        .map(record => ({ B: record.id }))
-    })
-  )
-
   const Page = await seed.page([
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -364,11 +516,21 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       headerId: Header.header.find(record => record.id)?.id,
+      sectionCategoryId: SectionCategory.sectionCategory.find(
+        record => record.id
+      )?.id,
       sectionTestimonialsId: SectionTestimonials.sectionTestimonials.find(
         record => record.id
       )?.id,
-      sectionCatalogId: SectionCatalog.sectionCatalog.find(record => record.id)
-        ?.id,
+      footerId: Footer.footer.find(record => record.id)?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      name: 'product',
+      locale: 'ru',
+      isPublished: true,
+      headerId: Header.header.find(record => record.id)?.id,
+      sectionProductId: Product.sectionProduct.find(record => record.id)?.id,
       footerId: Footer.footer.find(record => record.id)?.id
     }
   ])
