@@ -28,10 +28,11 @@ export const SectionCategoryModel = z.object({
    * @default {now()}
    */
   updatedAt: z.date(),
+  categoryId: z.string(),
 })
 
 export interface CompleteSectionCategory extends z.infer<typeof SectionCategoryModel> {
-  categories: CompleteCategory[]
+  category: CompleteCategory
   pages: CompletePage[]
 }
 
@@ -42,9 +43,9 @@ export interface CompleteSectionCategory extends z.infer<typeof SectionCategoryM
  */
 export const RelatedSectionCategoryModel: z.ZodSchema<CompleteSectionCategory> = z.lazy(() => SectionCategoryModel.extend({
   /**
-   * section category slug
+   * section category
    */
-  categories: RelatedCategoryModel.array(),
+  category: RelatedCategoryModel,
   /**
    * pages with this section
    */

@@ -275,7 +275,7 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      slug: ({ seed }) => copycat.url(seed),
+      slug: ({ seed }) => copycat.word(seed),
       name: ({ seed }) =>
         copycat.oneOfString([
           'Innovaprene',
@@ -339,7 +339,7 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      slug: ({ seed }) => copycat.url(seed),
+      slug: ({ seed }) => copycat.word(seed),
       name: ({ seed }) =>
         copycat.oneOfString([
           'Innovalloy® 62V',
@@ -465,9 +465,7 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      _CategoryToSectionCategory: Category.category.map(record => ({
-        A: record.id
-      }))
+      categoryId: Category.category.find(record => record.id)?.id
     })
   )
 
@@ -513,6 +511,20 @@ const main = async () => {
     {
       id: ({ seed }) => copycat.uuid(seed),
       name: 'catalog',
+      locale: 'ru',
+      isPublished: true,
+      headerId: Header.header.find(record => record.id)?.id,
+      sectionCatalogId: SectionCatalog.sectionCatalog.find(record => record.id)
+        ?.id,
+      sectionTestimonialsId: SectionTestimonials.sectionTestimonials.find(
+        record => record.id
+      )?.id,
+      footerId: Footer.footer.find(record => record.id)?.id
+    },
+
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      name: 'category',
       locale: 'ru',
       isPublished: true,
       headerId: Header.header.find(record => record.id)?.id,

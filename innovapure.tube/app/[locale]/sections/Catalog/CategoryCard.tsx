@@ -13,11 +13,13 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import { Catalog } from './Catalog'
+import Link from 'next/link'
 
 export const CategoryCard = ({
   category: {
     name,
     description,
+    slug,
     image: { src, alt },
     button: { text }
   },
@@ -34,9 +36,11 @@ export const CategoryCard = ({
       </CardHeader>
 
       <CardFooter>
-        <Button className='w-full'>
-          <CheckIcon className='mr-2 h-4 w-4' /> Mark all as read
-        </Button>
+        <Link href={`/${slug}`} passHref legacyBehavior>
+          <Button className='w-full'>
+            <CheckIcon className='mr-2 h-4 w-4' /> {text}
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   )
