@@ -23,7 +23,7 @@ const Form = ({ formName }: Pick<Store, 'formName'>) => {
     utm_campaign,
     utm_content,
     utm_term,
-    setStore,
+    setStore
   } = useStore(
     useShallow(
       ({
@@ -32,16 +32,16 @@ const Form = ({ formName }: Pick<Store, 'formName'>) => {
         utm_campaign,
         utm_content,
         utm_term,
-        setStore,
+        setStore
       }) => ({
         utm_source,
         utm_medium,
         utm_campaign,
         utm_content,
         utm_term,
-        setStore,
-      }),
-    ),
+        setStore
+      })
+    )
   )
 
   const form = useForm<FormData>({
@@ -53,8 +53,8 @@ const Form = ({ formName }: Pick<Store, 'formName'>) => {
       utm_medium,
       utm_campaign,
       utm_content,
-      utm_term,
-    },
+      utm_term
+    }
   })
 
   const onMyFormSubmit = async (data: FormData) => {
@@ -91,7 +91,7 @@ const Form = ({ formName }: Pick<Store, 'formName'>) => {
       {'utmContent'}
       {utmContent} */}
 
-      <form onSubmit={form.handleSubmit(data => onMyFormSubmit(data))}>
+      {/* <form onSubmit={form.handleSubmit(data => onMyFormSubmit(data))}>
         <input {...form.register('name')} />
         <br />
         <br />
@@ -109,7 +109,7 @@ const Form = ({ formName }: Pick<Store, 'formName'>) => {
         <input type='checkbox' {...form.register('isDataUsageAgreement')} />
 
         <button type='submit'>Submit</button>
-      </form>
+      </form> */}
     </>
   )
 }

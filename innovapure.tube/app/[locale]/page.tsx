@@ -37,12 +37,16 @@ const HomePage: NextPage<Props.NextLocaleParams> = async ({
   const gallery = await getGallery({ locale, page })
   const catalog = await getCatalog({ locale, page })
   const footer = await getFooter({ locale, page })
+
   return (
     <Fragment>
       <Header buttons={header?.buttons || []} />
       <main>
-        <Gallery strap={gallery?.strap || ''} slides={gallery?.slides || []} />
-        <Catalog title={catalog?.title || ''} cards={catalog?.cards || []} />
+        <Gallery slides={gallery?.slides || []} />
+        <Catalog
+          title={catalog?.title || ''}
+          categories={catalog?.categories || []}
+        />
       </main>
       <Footer form={footer?.form || null} buttons={footer?.buttons || []} />
     </Fragment>

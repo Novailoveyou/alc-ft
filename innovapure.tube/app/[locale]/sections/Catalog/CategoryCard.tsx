@@ -12,21 +12,25 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card'
-import { Switch } from '@/components/ui/switch'
 import { Catalog } from './Catalog'
 
 export const CategoryCard = ({
-  card,
+  category: {
+    name,
+    description,
+    image: { src, alt },
+    button: { text }
+  },
   className
-}: { card: Catalog['cards'][number] } & { className?: string }) => {
+}: { category: Catalog['categories'][number] } & { className?: string }) => {
   return (
     <Card className={cn('flex flex-col justify-between', className)}>
       <CardContent>
         <div className='flex items-center space-x-4 rounded-md border p-4'></div>
       </CardContent>
       <CardHeader>
-        <CardTitle>{card.name}</CardTitle>
-        <CardDescription>{card.description}</CardDescription>
+        <CardTitle>{name}</CardTitle>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
 
       <CardFooter>

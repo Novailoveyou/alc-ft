@@ -30,8 +30,6 @@ const main = async () => {
       isPublished: true,
       text: 'АЛСИ-ФТ',
       linkTo: 'home',
-      emailTo: null,
-      phoneNumberTo: null,
       localeTo: null
     },
     {
@@ -40,8 +38,6 @@ const main = async () => {
       isPublished: true,
       text: 'Области применения',
       linkTo: 'usage',
-      emailTo: null,
-      phoneNumberTo: null,
       localeTo: null
     },
     {
@@ -50,8 +46,6 @@ const main = async () => {
       isPublished: true,
       text: 'О нас',
       linkTo: 'about',
-      emailTo: null,
-      phoneNumberTo: null,
       localeTo: null
     },
     {
@@ -60,8 +54,6 @@ const main = async () => {
       isPublished: true,
       text: 'Продукция',
       linkTo: 'catalog',
-      emailTo: null,
-      phoneNumberTo: null,
       localeTo: null
     },
     {
@@ -70,8 +62,6 @@ const main = async () => {
       isPublished: true,
       text: 'Документация',
       linkTo: 'docs',
-      emailTo: null,
-      phoneNumberTo: null,
       localeTo: null
     },
     {
@@ -80,8 +70,6 @@ const main = async () => {
       isPublished: true,
       text: 'Новости',
       linkTo: 'articles',
-      emailTo: null,
-      phoneNumberTo: null,
       localeTo: null
     },
     {
@@ -90,8 +78,6 @@ const main = async () => {
       isPublished: true,
       text: 'Заказать',
       linkTo: null,
-      emailTo: null,
-      phoneNumberTo: null,
       localeTo: null
     },
     {
@@ -100,8 +86,6 @@ const main = async () => {
       isPublished: true,
       text: 'Узнать больше о нас',
       linkTo: 'about',
-      emailTo: null,
-      phoneNumberTo: null,
       localeTo: null
     },
     {
@@ -110,8 +94,6 @@ const main = async () => {
       isPublished: true,
       text: 'Выбрать модель',
       linkTo: null,
-      emailTo: null,
-      phoneNumberTo: null,
       localeTo: null
     },
     {
@@ -120,9 +102,7 @@ const main = async () => {
       isPublished: true,
       text: 'Русский',
       localeTo: 'ru',
-      linkTo: null,
-      emailTo: null,
-      phoneNumberTo: null
+      linkTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -130,9 +110,7 @@ const main = async () => {
       isPublished: true,
       text: 'English',
       localeTo: 'en',
-      linkTo: null,
-      emailTo: null,
-      phoneNumberTo: null
+      linkTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -140,9 +118,7 @@ const main = async () => {
       isPublished: true,
       text: 'Қазақ',
       localeTo: 'kk',
-      linkTo: null,
-      emailTo: null,
-      phoneNumberTo: null
+      linkTo: null
     },
 
     {
@@ -151,9 +127,7 @@ const main = async () => {
       isPublished: true,
       text: 'Беларускі',
       localeTo: 'be',
-      linkTo: null,
-      emailTo: null,
-      phoneNumberTo: null
+      linkTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -161,19 +135,15 @@ const main = async () => {
       isPublished: true,
       text: 'Перезвоните мне',
       localeTo: null,
-      linkTo: null,
-      emailTo: null,
-      phoneNumberTo: null
+      linkTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: '+7 (777) 777-77-77',
-      phoneNumberTo: '+7-777-777-77-77',
       localeTo: null,
-      linkTo: null,
-      emailTo: null
+      linkTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -181,19 +151,15 @@ const main = async () => {
       isPublished: true,
       text: 'Москва, Улица 28',
       localeTo: null,
-      linkTo: null,
-      emailTo: null,
-      phoneNumberTo: null
+      linkTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
       text: 'sales@innovapure.tube',
-      emailTo: 'sales@innovapure.tube',
       localeTo: null,
-      linkTo: null,
-      phoneNumberTo: null
+      linkTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -201,9 +167,7 @@ const main = async () => {
       isPublished: true,
       text: 'Контакты',
       linkTo: 'contact',
-      localeTo: null,
-      emailTo: null,
-      phoneNumberTo: null
+      localeTo: null
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -211,9 +175,7 @@ const main = async () => {
       isPublished: true,
       text: 'Купить сейчас',
       localeTo: null,
-      linkTo: null,
-      emailTo: null,
-      phoneNumberTo: null
+      linkTo: null
     }
   ])
 
@@ -247,9 +209,7 @@ const main = async () => {
     x(1, {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
-      isPublished: true,
-      index: 0,
-      strap: 'Innovaprene'
+      isPublished: true
     })
   )
 
@@ -258,6 +218,7 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
+      strap: 'Innovaprene',
       title: 'Силиконовые трубки Innovaprene P 60',
       subtitle:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
@@ -280,12 +241,11 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      index: 1,
       title: 'Каталог продукции'
     })
   )
 
-  const CategoryCard = await seed.catalogCard(x =>
+  const CategoryCard = await seed.category(x =>
     x(5, {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
@@ -348,7 +308,6 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      index: 0,
       title: 'Передовые технологии',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
@@ -358,7 +317,6 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      index: 0,
       title: 'Срок поставки',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
@@ -368,7 +326,6 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      index: 0,
       title: 'Цена/качество',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam enim neque, blandit in sem eget',
@@ -381,7 +338,6 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      index: 0,
       title: 'Каталог продукции',
       _SectionTestimonialsToTestimonial: Testimonial.testimonial
         .filter((record, idx) => idx <= 3)

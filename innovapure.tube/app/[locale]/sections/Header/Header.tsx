@@ -55,7 +55,7 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
           {links.map((link, idx) => {
             return (
               <Link
-                key={`header_link_${idx}`}
+                key={`Header__Link--${idx + 1}`}
                 href={link.linkTo!}
                 passHref
                 legacyBehavior>

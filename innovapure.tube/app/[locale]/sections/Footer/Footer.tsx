@@ -9,7 +9,6 @@ export const Footer = <_Footer extends Footer>({ form, buttons }: _Footer) => {
       <p>Footer</p>
       <p>{form?.title}</p>
       <p>{form?.description}</p>
-      <div>{buttons.map(button => button.text)}</div>
     </footer>
   )
 }

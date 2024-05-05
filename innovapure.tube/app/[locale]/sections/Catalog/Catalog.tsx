@@ -9,7 +9,7 @@ export type Catalog = Exclude<Awaited<ReturnType<typeof getCatalog>>, null> & {
 
 export const Catalog = <_Catalog extends Catalog>({
   title,
-  cards,
+  categories,
   isFullWidth
 }: _Catalog) => {
   return (
@@ -17,13 +17,14 @@ export const Catalog = <_Catalog extends Catalog>({
       <div className='container'>
         <h2>{title}</h2>
         <div className='grid grid-cols-2 grid-rows-2 gap-7 sm:grid-cols-6 sm:grid-rows-1 sm:stretch '>
-          {cards.map((card, idx) => (
+          {categories.map((category, idx) => (
             <div
+              key={`Catalog__CategoryCard--${idx + 1}`}
               className={cn('sm:row-span-2', {
                 'sm:row-span-4 sm:col-span-2': [0, 1].includes(idx),
                 'sm:col-span-2': [2].includes(idx)
               })}>
-              <CategoryCard card={card} className='h-full' />
+              <CategoryCard category={category} className='h-full' />
             </div>
           ))}
         </div>

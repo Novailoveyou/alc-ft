@@ -12,9 +12,10 @@ export const getCatalog = cache(
     return await prisma.sectionCatalog.findFirst({
       select: {
         title: true,
-        cards: {
+        categories: {
           select: {
             name: true,
+            slug: true,
             description: true,
             image: {
               select: {

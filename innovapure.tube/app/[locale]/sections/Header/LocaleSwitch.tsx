@@ -68,8 +68,8 @@ export const LocaleSwitch = () => {
           {buttons.map(({ locale, text, Flag }, idx) => {
             return (
               <DropdownMenuRadioItem
+                key={`LocaleSwitch__DropdownMenuRadioItem--${idx + 1}`}
                 value={locale}
-                key={`locale_dropdown_${idx}`}
                 className='[&>*:nth-child(1)]:hidden gap-1 pl-2'>
                 <LocaleSwitchItem text={text} Flag={Flag} />
               </DropdownMenuRadioItem>

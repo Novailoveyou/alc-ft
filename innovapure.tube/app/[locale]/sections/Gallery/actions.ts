@@ -11,35 +11,35 @@ export const getGallery = cache(
   async ({ locale, page }: { locale: Locale; page: PageName }) => {
     return await prisma.sectionGallery.findFirst({
       select: {
-        strap: true,
         slides: {
           select: {
+            strap: true,
             title: true,
             subtitle: true,
             isDecoration: true,
             image: {
               select: {
                 src: true,
-                alt: true,
-              },
+                alt: true
+              }
             },
             buttons: {
               select: {
-                text: true,
-              },
-            },
-          },
-        },
+                text: true
+              }
+            }
+          }
+        }
       },
       where: {
         locale,
         isPublished: true,
         pages: {
           some: {
-            name: page,
-          },
-        },
-      },
+            name: page
+          }
+        }
+      }
     })
-  },
+  }
 )
