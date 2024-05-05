@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react'
 import { Gallery } from './Gallery'
 import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/shared/icons'
+import { cn } from '@/utils'
 
 const ArrowLeft = () => (
   <svg
@@ -84,12 +85,15 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
           </Icon>
         </Button>
         <div className='flex gap-4 ml-44'>
-          {slides.map(() => {
+          {slides.map((slide, idx) => {
             return (
-              <span
-                onClick={() => console.log(1)}
-                className='w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-foreground'
-              />
+              <Button variant='ghost' onClick={() => api?.scrollTo(idx)}>
+                <span
+                  className={cn(
+                    'w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-foreground'
+                  )}
+                />
+              </Button>
             )
           })}
         </div>
