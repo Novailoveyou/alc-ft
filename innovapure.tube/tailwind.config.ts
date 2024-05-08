@@ -22,6 +22,7 @@ const config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        inactive: 'hsl(var(--inactive))',
         background: 'hsl(var(--background))',
         'background-accent': 'hsl(var(--background-accent))',
         foreground: 'hsl(var(--foreground))',
