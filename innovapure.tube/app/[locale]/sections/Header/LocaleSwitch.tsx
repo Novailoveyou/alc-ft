@@ -29,7 +29,7 @@ const buttons = [
   { locale: 'en', text: 'EN', Flag: GB },
   { locale: 'kk', text: 'KZ', Flag: KZ },
   { locale: 'be', text: 'BY', Flag: BY }
-] satisfies LocaleIcon[]
+] as const satisfies LocaleIcon[]
 
 const LocaleSwitchItem = ({
   text,
@@ -62,8 +62,8 @@ export const LocaleSwitch = () => {
       <DropdownMenuContent className=''>
         <DropdownMenuRadioGroup
           value={currentLocale}
-          onValueChange={value => {
-            changeLocale(value as Locale)
+          onValueChange={locale => {
+            changeLocale(locale as Locale)
           }}>
           {buttons.map(({ locale, text, Flag }, idx) => {
             return (

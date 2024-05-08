@@ -2,10 +2,11 @@ import { createI18nMiddleware } from 'next-international/middleware'
 import { NextRequest } from 'next/server'
 import { UnionToTuple } from '@/types'
 import { Locale } from '@prisma/client'
+import { DEFAULT_LOCALE } from './constants'
 
 const I18nMiddleware = createI18nMiddleware({
   locales: ['ru', 'en', 'kk', 'be'] as const satisfies UnionToTuple<Locale>,
-  defaultLocale: 'ru',
+  defaultLocale: DEFAULT_LOCALE,
   urlMappingStrategy: 'rewriteDefault'
 })
 

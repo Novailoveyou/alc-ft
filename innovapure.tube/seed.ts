@@ -216,7 +216,7 @@ const main = async () => {
   //     title: 'Силиконовые трубки Innovaprene P 60',
   //     subtitle: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
   //     isDecoration: ({ seed }) => copycat.bool(seed),
-  //     imageId: Image.image.find(record => record.alt === 'slide')?.id,
+  //     imageId: Image.image.find(record => record.id)?.id,
   //     _ButtonToSlide: Button.button
   //       .filter(
   //         record =>
@@ -234,7 +234,7 @@ const main = async () => {
       isPublished: true,
       title: 'Передовые технологии',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
-      imageId: Image.image.find(record => record.alt === 'slide')?.id
+      imageId: Image.image.find(record => record.id)?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -242,7 +242,7 @@ const main = async () => {
       isPublished: true,
       title: 'Срок поставки',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
-      imageId: Image.image.find(record => record.alt === 'slide')?.id
+      imageId: Image.image.find(record => record.id)?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -250,7 +250,7 @@ const main = async () => {
       isPublished: true,
       title: 'Цена/качество',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
-      imageId: Image.image.find(record => record.alt === 'slide')?.id
+      imageId: Image.image.find(record => record.id)?.id
     }
   ])
 
@@ -287,7 +287,7 @@ const main = async () => {
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
       longDescription: ({ seed }) =>
         copycat.paragraph(seed, { maxSentences: 8 }),
-      imageId: Image.image.find(record => record.alt === 'slide')?.id,
+      imageId: Image.image.find(record => record.id)?.id,
       buttonId: Button.button.find(record => record.text === 'Выбрать модель')
         ?.id
     })
@@ -351,7 +351,7 @@ const main = async () => {
         copycat.paragraph(seed, { maxSentences: 8 }),
       categorySlug: Category.category.find(record => record.id)?.slug,
       formId: Form.form.find(record => record.id)?.id,
-      imageId: Image.image.find(record => record.alt === 'slide')?.id,
+      imageId: Image.image.find(record => record.id)?.id,
       _ParameterToProduct: Parameter.parameter.map(record => ({
         A: record.id
       })),
@@ -424,7 +424,7 @@ const main = async () => {
           title: 'Силиконовые трубки Innovaprene P 60',
           subtitle: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
           isDecoration: ({ seed }) => copycat.bool(seed),
-          imageId: Image.image.find(record => record.alt === 'slide')?.id,
+          imageId: Image.image.find(record => record.id)?.id,
           _ButtonToSlide: Button.button
             .filter(
               record =>

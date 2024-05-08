@@ -53,7 +53,7 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
       <CarouselContent>
         {slides.map((slide, idx) => {
           return (
-            <CarouselItem key={`carousel-item-${idx}`}>
+            <CarouselItem key={`CarouselItem__button--${idx}`}>
               <div>
                 <p>{slide.strap}</p>
                 <h2>{slide.title}</h2>
@@ -64,8 +64,8 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
               </div>
               {slide.buttons.map((button, buttonIdx) => (
                 <Button
-                  variant={buttonIdx == 1 ? 'outline' : 'secondary'}
-                  key={`carousel-button-${buttonIdx}`}>
+                  key={`GalleryCarousel__button--${buttonIdx + 1}`}
+                  variant={buttonIdx == 1 ? 'outline' : 'secondary'}>
                   {button.text}
                 </Button>
               ))}
@@ -87,7 +87,10 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
         <div className='flex gap-4 ml-44'>
           {slides.map((slide, idx) => {
             return (
-              <Button variant='ghost' onClick={() => api?.scrollTo(idx)}>
+              <Button
+                key={`GalleryCarousel__slide--${idx + 1}`}
+                variant='ghost'
+                onClick={() => api?.scrollTo(idx)}>
                 <span
                   className={cn(
                     'w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-foreground'

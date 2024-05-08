@@ -22,7 +22,7 @@ export const getHeader = cache(
         }
       },
       where: {
-        locale,
+        locale: locale || 'ru',
         isPublished: true,
         pages: {
           some: {
