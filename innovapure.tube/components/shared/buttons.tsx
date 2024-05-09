@@ -42,7 +42,7 @@ export const PhoneNumberButton = <_PhoneNumber extends PhoneNumber>({
 
   return (
     <a href={`tel:${phoneNumber.value}`} {...props}>
-      {phoneNumber?.label || text || phoneNumber.value}
+      {text || phoneNumber?.label || phoneNumber.value}
     </a>
   )
 }
