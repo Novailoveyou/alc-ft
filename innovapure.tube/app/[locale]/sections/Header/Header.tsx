@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { LocaleSwitch } from './LocaleSwitch'
 import { Icon } from '@/components/shared/icons'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 type Header = Exclude<Awaited<ReturnType<typeof getHeader>>, null>
 
@@ -69,7 +70,10 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
             <Hamburger />
           </Icon>
         </Button>
-        <LocaleSwitch />
+        <div>
+          <LocaleSwitch />
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   )
