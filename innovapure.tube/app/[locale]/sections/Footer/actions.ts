@@ -21,22 +21,27 @@ export const getFooter = cache(
             isAgreement: true,
             button: {
               select: {
-                text: true,
-              },
-            },
-          },
+                text: true
+              }
+            }
+          }
         },
-        buttons: { select: { text: true } },
+        buttons: {
+          select: {
+            text: true,
+            phoneNumberTo: { select: { label: true, value: true } }
+          }
+        }
       },
       where: {
         locale,
         isPublished: true,
         pages: {
           some: {
-            name: page,
-          },
-        },
-      },
+            name: page
+          }
+        }
+      }
     })
-  },
+  }
 )
