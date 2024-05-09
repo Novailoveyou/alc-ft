@@ -38,7 +38,9 @@ export const getCategory = cache(
                 image: {
                   select: {
                     src: true,
-                    alt: true
+                    alt: true,
+                    width: true,
+                    height: true
                   }
                 }
               }
@@ -46,7 +48,9 @@ export const getCategory = cache(
             image: {
               select: {
                 src: true,
-                alt: true
+                alt: true,
+                width: true,
+                height: true
               }
             },
             button: {

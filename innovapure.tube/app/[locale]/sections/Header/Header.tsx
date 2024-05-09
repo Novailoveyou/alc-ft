@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button'
 import { LocaleSwitch } from './LocaleSwitch'
 import { Icon } from '@/components/shared/icons'
 import { ThemeToggle } from '@/components/ThemeToggle'
-import Image from 'next/image'
 
 type Header = Exclude<Awaited<ReturnType<typeof getHeader>>, null>
 
@@ -48,7 +47,6 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
 
   return (
     <header className='bg-background-accent'>
-      <Image src={'https://res.cloudinary.com/innovapure-tube/image/upload/v1715246766/cld-sample-5.jpg'} width={1263} height={844} alt='123'/>
       <div className='container flex justify-between gap-1 py-4'>
         <div className='flex flex-row flex-nowrap items-center grow sm:grow-0 gap-2 '>
           <LogoSvg />

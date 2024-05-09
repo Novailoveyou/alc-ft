@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/card'
 import { Catalog } from './Catalog'
 import Link from 'next/link'
+import { ResponsiveImage } from '@/components/shared/imagex'
 
 type CardContent = { category: Catalog['categories'][number] } & {
   descriptionHidden?: boolean
@@ -25,7 +26,7 @@ export const CategoryCard = ({
     name,
     description,
     slug,
-    image: { src, alt },
+    image: { src, alt, width, height },
     button: { text }
   },
   descriptionHidden,
@@ -34,7 +35,14 @@ export const CategoryCard = ({
   return (
     <Card className={cn('flex flex-col justify-between', className)}>
       <CardContent>
-        <div className='flex items-center space-x-4 rounded-md border p-4'></div>
+        <div className='flex items-center space-x-4 rounded-md border p-4'>
+          <ResponsiveImage
+            src={src}
+            alt={alt}
+            width={width / 2}
+            height={height / 2}
+          />
+        </div>
       </CardContent>
       <CardHeader>
         <CardTitle>{name}</CardTitle>

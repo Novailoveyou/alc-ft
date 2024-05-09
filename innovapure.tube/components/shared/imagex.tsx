@@ -7,7 +7,7 @@ export const ResponsiveImage = ({
   height
 }: Pick<ImageProps, 'src' | 'alt' | 'width' | 'height'>) => {
   return (
-    <div className='relative'>
+    <span className='relative'>
       <Image
         src={src}
         alt={alt}
@@ -19,6 +19,6 @@ export const ResponsiveImage = ({
         //   objectFit: 'contain'
         // }}
       />
-    </div>
+    </span>
   )
 }

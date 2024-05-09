@@ -12,6 +12,7 @@ import { Gallery } from './Gallery'
 import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/shared/icons'
 import { cn } from '@/utils'
+import { ResponsiveImage } from '@/components/shared/imagex'
 
 const ArrowLeft = () => (
   <svg
@@ -60,27 +61,29 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
   return (
     <Carousel setApi={setApi}>
       <CarouselContent>
-        {slides.map((slide, idx) => {
-          return (
-            <CarouselItem key={`CarouselItem__button--${idx}`}>
-              <div>
-                <p>{slide.strap}</p>
-                <h2>{slide.title}</h2>
-                <p>{slide.subtitle}</p>
-              </div>
-              <div>
-                <img src={slide.image.src} alt={slide.image.alt} />
-              </div>
-              {slide.buttons.map((button, buttonIdx) => (
-                <Button
-                  key={`GalleryCarousel__button--${buttonIdx + 1}`}
-                  variant={buttonIdx == 1 ? 'outline' : 'secondary'}>
-                  {button.text}
-                </Button>
-              ))}
-            </CarouselItem>
-          )
-        })}
+        {slides.map(
+          ({ strap, title, subtitle, image, buttons, isDecoration }, idx) => {
+            return (
+              <CarouselItem key={`CarouselItem__button--${idx}`}>
+                <div>
+                  <p>{strap}</p>
+                  <h2>{title}</h2>
+                  <p>{subtitle}</p>
+                </div>
+                <div>
+                  <ResponsiveImage {...image} />
+                </div>
+                {buttons.map((button, buttonIdx) => (
+                  <Button
+                    key={`GalleryCarousel__button--${buttonIdx + 1}`}
+                    variant={buttonIdx == 1 ? 'outline' : 'secondary'}>
+                    {button.text}
+                  </Button>
+                ))}
+              </CarouselItem>
+            )
+          }
+        )}
       </CarouselContent>
       <div className='flex items-center gap-4'>
         <Button variant='outline' onClick={() => api?.scrollPrev()}>

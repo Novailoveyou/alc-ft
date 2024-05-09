@@ -31,7 +31,9 @@ export const getProduct = cache(
             image: {
               select: {
                 src: true,
-                alt: true
+                alt: true,
+                width: true,
+                height: true
               }
             },
             category: {

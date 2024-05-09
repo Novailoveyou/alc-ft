@@ -21,7 +21,9 @@ export const getCatalog = cache(
             image: {
               select: {
                 src: true,
-                alt: true
+                alt: true,
+                width: true,
+                height: true
               }
             },
             button: {
