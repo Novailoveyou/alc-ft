@@ -1,6 +1,7 @@
 export * from "./image"
 export * from "./phonenumer"
 export * from "./email"
+export * from "./address"
 export * from "./button"
 export * from "./slide"
 export * from "./testimonial"

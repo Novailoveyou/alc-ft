@@ -16,8 +16,8 @@ export const getHeader = cache(
             text: true,
             linkTo: true,
             localeTo: true,
-            phoneNumberTo: true,
-            emailTo: true
+            phoneNumber: true,
+            email: true
           }
         }
       },

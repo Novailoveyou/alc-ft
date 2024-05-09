@@ -5,6 +5,8 @@ import {
   RelatedPhoneNumerModel,
   CompleteEmail,
   RelatedEmailModel,
+  CompleteAddress,
+  RelatedAddressModel,
   CompleteCategory,
   RelatedCategoryModel,
   CompleteSlide,
@@ -49,8 +51,9 @@ export const ButtonModel = z.object({
    * button text
    */
   text: z.string().trim().min(1).max(80),
-  phoneNumberToId: z.string().nullish(),
-  emailToId: z.string().nullish(),
+  phoneNumberId: z.string().nullish(),
+  emailId: z.string().nullish(),
+  addressId: z.string().nullish(),
   /**
    * if button is intended to be a link, then linkTo is the link
    */
@@ -62,8 +65,9 @@ export const ButtonModel = z.object({
 })
 
 export interface CompleteButton extends z.infer<typeof ButtonModel> {
-  phoneNumberTo?: CompletePhoneNumer | null
-  emailTo?: CompleteEmail | null
+  phoneNumber?: CompletePhoneNumer | null
+  email?: CompleteEmail | null
+  address?: CompleteAddress | null
   categories: CompleteCategory[]
   slides: CompleteSlide[]
   forms: CompleteForm[]
@@ -80,13 +84,17 @@ export interface CompleteButton extends z.infer<typeof ButtonModel> {
 export const RelatedButtonModel: z.ZodSchema<CompleteButton> = z.lazy(() =>
   ButtonModel.extend({
     /**
-     * if button is intended to be a trigger to phone call, then phoneNumberTo is the number to call
+     * if button is intended to be a trigger to phone call, then phoneNumber is the number to call
      */
-    phoneNumberTo: RelatedPhoneNumerModel.nullish(),
+    phoneNumber: RelatedPhoneNumerModel.nullish(),
     /**
-     * if button is intended to be a trigger to email, then emailTo is the email to send to
+     * if button is intended to be a trigger to email, then email is the email to send to
      */
-    emailTo: RelatedEmailModel.nullish(),
+    email: RelatedEmailModel.nullish(),
+    /**
+     * if button is intended to be an address, then address is the address
+     */
+    address: RelatedAddressModel.nullish(),
     /**
      * categories with this button
      */

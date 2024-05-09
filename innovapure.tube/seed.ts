@@ -13,23 +13,83 @@ const main = async () => {
   // Truncate all tables in the database
   await seed.$resetDatabase()
 
-  const Image = await seed.image(x =>
-    x(5, {
+  const Image = await seed.image([
+    {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      src: ({ seed }) => copycat.url(seed),
-      alt: ({ seed }) => copycat.word(seed)
-    })
-  )
+      src: '/',
+      alt: 'Test'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1715253642/assets/tube_8a5b726b-6810-4ad8-8f8a-ef86c8132b14-PhotoRoom.png-PhotoRoom_qhpgdk.png',
+      width: 1200,
+      height: 870,
+      alt: 'Innovaprene P 60'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1715253674/assets/Innovaprene_6b85c088-de5e-412a-a15b-d487aec6208b-PhotoRoom.png-PhotoRoom_1_pcziiw.png',
+      width: 962,
+      height: 723,
+      alt: 'Innovalloy'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1715253673/assets/InnovapreneFW-PhotoRoom.png-PhotoRoom_1_javkgz.png',
+      width: 930,
+      height: 727,
+      alt: 'Innovaflex'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1715253675/assets/188-0133-13-Blue-Blue-PhotoRoom.png-PhotoRoom_1_nqljbs.png',
+      width: 665,
+      height: 775,
+      alt: 'Innovafluor'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1715253674/assets/R_988161ee-310a-4017-86a7-c525624f67dc_wjdhd0.png',
+      width: 728,
+      height: 490,
+      alt: 'Innovalene'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1715253675/assets/ipg-3-PhotoRoom.png-PhotoRoom_o4hiha.png',
+      width: 1050,
+      height: 460,
+      alt: 'Innovaprene'
+    }
+  ])
 
   const PhoneNumber = await seed.phoneNumer([
     {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
+      value: '+7 (777) 777-77-77',
+      label: '+7 (777) 777-77-77'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      isPublished: true,
       value: ({ seed }) => copycat.phoneNumber(seed),
-      label: ({ data }) => data.value || 'телефон'
+      label: ({ data }) => data.value || null
     }
   ])
 
@@ -38,8 +98,14 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
+      value: 'sales@innovapure.tube',
+      label: 'sales@innovapure.tube'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      isPublished: true,
       value: ({ seed }) => copycat.email(seed),
-      label: ({ data }) => data.value || 'email'
+      label: ({ data }) => data.value || null
     }
   ])
 
@@ -163,7 +229,7 @@ const main = async () => {
       isPublished: true,
       text:
         PhoneNumber.phoneNumer.find(record => record.id)?.label || 'телефон',
-      phoneNumberToId: PhoneNumber.phoneNumer.find(record => record.id)?.id
+      phoneNumberId: PhoneNumber.phoneNumer.find(record => record.id)?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -178,7 +244,7 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: Email.email.find(record => record.id)?.value || 'email',
-      emailToId: Email.email.find(record => record.id)?.id
+      emailId: Email.email.find(record => record.id)?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -234,7 +300,7 @@ const main = async () => {
       isPublished: true,
       title: 'Передовые технологии',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
-      imageId: Image.image.find(record => record.id)?.id
+      imageId: Image.image.find(record => record.src === '/')?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -242,7 +308,7 @@ const main = async () => {
       isPublished: true,
       title: 'Срок поставки',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
-      imageId: Image.image.find(record => record.id)?.id
+      imageId: Image.image.find(record => record.src === '/')?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -250,7 +316,7 @@ const main = async () => {
       isPublished: true,
       title: 'Цена/качество',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
-      imageId: Image.image.find(record => record.id)?.id
+      imageId: Image.image.find(record => record.src === '/')?.id
     }
   ])
 
@@ -270,28 +336,73 @@ const main = async () => {
     })
   )
 
-  const Category = await seed.category(x =>
-    x(5, {
+  const Category = await seed.category([
+    {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      slug: ({ seed }) => copycat.word(seed),
-      name: ({ seed }) =>
-        copycat.oneOfString([
-          'Innovaprene',
-          'Innovaflex',
-          'Innovafluor',
-          'Innovalene',
-          'Innovaprene'
-        ])(seed),
+      slug: 'innovalloy',
+      name: 'Innovalloy',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
       longDescription: ({ seed }) =>
         copycat.paragraph(seed, { maxSentences: 8 }),
-      imageId: Image.image.find(record => record.id)?.id,
+      imageId: Image.image.find(image => image.alt === 'Innovalloy')?.id,
       buttonId: Button.button.find(record => record.text === 'Выбрать модель')
         ?.id
-    })
-  )
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      slug: 'innovaflex',
+      name: 'Innovaflex',
+      description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
+      longDescription: ({ seed }) =>
+        copycat.paragraph(seed, { maxSentences: 8 }),
+      imageId: Image.image.find(image => image.alt === 'Innovaflex')?.id,
+      buttonId: Button.button.find(record => record.text === 'Выбрать модель')
+        ?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      slug: 'innovafluor',
+      name: 'Innovafluor',
+      description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
+      longDescription: ({ seed }) =>
+        copycat.paragraph(seed, { maxSentences: 8 }),
+      imageId: Image.image.find(image => image.alt === 'Innovafluor')?.id,
+      buttonId: Button.button.find(record => record.text === 'Выбрать модель')
+        ?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      slug: 'innovalene',
+      name: 'Innovalene',
+      description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
+      longDescription: ({ seed }) =>
+        copycat.paragraph(seed, { maxSentences: 8 }),
+      imageId: Image.image.find(image => image.alt === 'Innovalene')?.id,
+      buttonId: Button.button.find(record => record.text === 'Выбрать модель')
+        ?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      slug: 'innovaprene',
+      name: 'Innovaprene',
+      description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
+      longDescription: ({ seed }) =>
+        copycat.paragraph(seed, { maxSentences: 8 }),
+      imageId: Image.image.find(image => image.alt === 'Innovaprene')?.id,
+      buttonId: Button.button.find(record => record.text === 'Выбрать модель')
+        ?.id
+    }
+  ])
 
   const ProductTestimonial = await seed.productTestimonial(x =>
     x(4, {
@@ -378,19 +489,16 @@ const main = async () => {
       _ButtonToHeader: Button.button
         .filter(
           record =>
-            record.text &&
-            [
-              'Области применения',
-              'О нас',
-              'Продукция',
-              'Документация',
-              'Новости',
-              '+7 (777) 777-77-77',
-              'Русский',
-              'English',
-              'Қазақ',
-              'Беларускі'
-            ].includes(record.text)
+            (record.text &&
+              [
+                'Области применения',
+                'О нас',
+                'Продукция',
+                'Документация',
+                'Новости'
+              ].includes(record.text)) ||
+            record.phoneNumberId ||
+            record.localeTo
         )
         .map(record => ({ A: record.id }))
     })
@@ -424,7 +532,8 @@ const main = async () => {
           title: 'Силиконовые трубки Innovaprene P 60',
           subtitle: ({ seed }) => copycat.paragraph(seed, { maxSentences: 3 }),
           isDecoration: ({ seed }) => copycat.bool(seed),
-          imageId: Image.image.find(record => record.id)?.id,
+          imageId: Image.image.find(record => record.alt === 'Innovaprene P 60')
+            ?.id,
           _ButtonToSlide: Button.button
             .filter(
               record =>
@@ -497,8 +606,8 @@ const main = async () => {
                 'Продукция',
                 'Контакты'
               ].includes(record.text)) ||
-            record.phoneNumberToId ||
-            record.emailToId
+            record.phoneNumberId ||
+            record.emailId
         )
         .map(record => ({ A: record.id }))
     })

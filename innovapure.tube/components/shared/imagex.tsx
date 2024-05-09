@@ -1,16 +1,23 @@
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 
-export const ResponsiveImage = () => {
+export const ResponsiveImage = ({
+  src,
+  alt,
+  width,
+  height
+}: Pick<ImageProps, 'src' | 'alt' | 'width' | 'height'>) => {
   return (
-    <div style={{ position: 'relative', width: '300px', height: '500px' }}>
+    <div className='relative'>
       <Image
-        src={photoUrl}
-        alt='Picture of the author'
-        sizes='300px'
-        fill
-        style={{
-          objectFit: 'contain'
-        }}
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        // sizes='300px'
+        // fill
+        // style={{
+        //   objectFit: 'contain'
+        // }}
       />
     </div>
   )

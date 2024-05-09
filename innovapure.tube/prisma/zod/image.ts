@@ -36,6 +36,14 @@ export const ImageModel = z.object({
    * alternative text for the image
    */
   alt: z.string().trim().min(2).max(5000),
+  /**
+   * width of the image
+   */
+  width: z.number().int().int().gte(12).lte(2560),
+  /**
+   * height of the image
+   */
+  height: z.number().int().int().gte(12).lte(2560),
 })
 
 export interface CompleteImage extends z.infer<typeof ImageModel> {
