@@ -55,13 +55,11 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
         <div className='items-center hidden sm:flex flex-wrap justify-center'>
           {links.map((link, idx) => {
             return (
-              <Link
-                key={`Header__Link--${idx + 1}`}
-                href={link.linkTo!}
-                passHref
-                legacyBehavior>
-                <Button variant={'ghost'}>{link.text}</Button>
-              </Link>
+              <Button asChild variant={'ghost'}>
+                <Link key={`Header__Link--${idx + 1}`} href={link.linkTo!}>
+                  {link.text}
+                </Link>
+              </Button>
             )
           })}
         </div>

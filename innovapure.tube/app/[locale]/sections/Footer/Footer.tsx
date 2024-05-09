@@ -2,7 +2,7 @@ import 'server-only'
 import { getFooter } from './actions'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { PhoneNumber } from '@/components/shared/phoneNumbers'
+import { PhoneNumberButton } from '@/components/shared/buttons'
 
 type Footer = Exclude<Awaited<ReturnType<typeof getFooter>>, null>
 
@@ -24,20 +24,18 @@ export const Footer = <_Footer extends Footer>({ form, buttons }: _Footer) => {
 
         <div>
           {phoneNumberButtons.map((phoneNumber, idx) => (
-            <PhoneNumber
+            <PhoneNumberButton
               key={`Footer__phoneNumber--${idx + 1}`}
               {...phoneNumber}
             />
           ))}
         </div>
         {linkButtons.map(({ linkTo, text }, idx) => (
-          <Link
-            key={`Header__Link--${idx + 1}`}
-            href={linkTo!}
-            passHref
-            legacyBehavior>
-            <Button variant={'ghost'}>{text}</Button>
-          </Link>
+          <Button asChild variant={'ghost'}>
+            <Link key={`Header__Link--${idx + 1}`} href={linkTo!}>
+              {text}
+            </Link>
+          </Button>
         ))}
       </div>
     </footer>

@@ -33,7 +33,6 @@ export const getFooter = cache(
             email: { select: { value: true, label: true } },
             address: { select: { value: true, label: true } },
             linkTo: true,
-            localeTo: true
           }
         }
       },

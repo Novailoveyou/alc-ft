@@ -1,5 +1,7 @@
 import { Button, ButtonProps } from '@/components/ui/button'
 import { Props } from '@/types'
+import { CompleteButton, CompletePhoneNumer } from '@/prisma/zod'
+import { ComponentProps } from 'react'
 
 type Button = Props.Children & Pick<ButtonProps, 'onClick'>
 
@@ -25,3 +27,22 @@ export const GhostButton = <_Button extends Button>({
     {children}
   </Button>
 )
+
+type PhoneNumber = Pick<ComponentProps<'a'>, 'className'> &
+  Pick<CompleteButton, 'text'> & {
+    phoneNumber: Pick<CompletePhoneNumer, 'label' | 'value'> | null
+  }
+
+export const PhoneNumberButton = <_PhoneNumber extends PhoneNumber>({
+  text,
+  phoneNumber,
+  ...props
+}: _PhoneNumber) => {
+  if (!phoneNumber?.value) return <></>
+
+  return (
+    <a href={`tel:${phoneNumber.value}`} {...props}>
+      {phoneNumber?.label || text || phoneNumber.value}
+    </a>
+  )
+}

@@ -52,11 +52,11 @@ export const CategoryCard = ({
       </CardHeader>
 
       <CardFooter>
-        <Link href={`/${slug}`} passHref legacyBehavior>
-          <Button className='w-full'>
+        <Button asChild className='w-full'>
+          <Link href={`/${slug}`}>
             <CheckIcon className='mr-2 h-4 w-4' /> {text}
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </CardFooter>
     </Card>
   )

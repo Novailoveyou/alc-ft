@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import {
   GhostButton,
   PrimaryButton,
-  SecondaryButton,
+  SecondaryButton
 } from '@/components/shared/buttons'
 
 export default function Component() {
@@ -20,7 +20,6 @@ export default function Component() {
 
   return (
     <>
-      <button></button>
       <p>Current locale: {locale}</p>
       <div>
         <h1>Buttons client</h1>
