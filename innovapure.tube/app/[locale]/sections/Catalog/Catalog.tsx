@@ -27,7 +27,7 @@ export const Catalog = <_Catalog extends Catalog>({
               <CategoryCard
                 category={category}
                 descriptionHidden={[3, 4].includes(idx)}
-                className='h-full'
+                className={cn('h-full', [4].includes(idx) && 'hidden sm:block')}
               />
             </div>
           ))}

@@ -38,7 +38,7 @@ export const CategoryCard = ({
       </CardContent>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
-        <CardDescription hidden={descriptionHidden}>
+        <CardDescription className={cn(descriptionHidden && 'sm:hidden')}>
           {description}
         </CardDescription>
       </CardHeader>

@@ -95,7 +95,6 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
         </Button>
         <div className='flex gap-4 ml-44'>
           {slides.map((slide, idx) => {
-            console.log(api?.selectedScrollSnap())
             return (
               <Button
                 key={`GalleryCarousel__slide--${idx + 1}`}
