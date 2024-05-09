@@ -245,6 +245,8 @@ const main = async () => {
       isPublished: true,
       text:
         PhoneNumber.phoneNumer.find(record => record.id)?.label || 'телефон',
+      localeTo: null,
+      linkTo: null,
       phoneNumberId: PhoneNumber.phoneNumer.find(record => record.id)?.id
     },
     {
@@ -265,6 +267,8 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       text: Email.email.find(record => record.id)?.value || 'email',
+      localeTo: null,
+      linkTo: null,
       emailId: Email.email.find(record => record.id)?.id
     },
     {
