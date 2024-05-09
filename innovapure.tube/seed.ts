@@ -109,6 +109,22 @@ const main = async () => {
     }
   ])
 
+  const Address = await seed.address([
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      value: 'Москва, Улица 28',
+      label: 'Москва, Улица 28'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      isPublished: true,
+      value: ({ seed }) => copycat.streetAddress(seed),
+      label: ({ data }) => data.value || null
+    }
+  ])
+
   const Button = await seed.button([
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -235,9 +251,14 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      text: 'Москва, Улица 28',
+      text:
+        Address.address.find(record => record.value === 'Москва, Улица 28')
+          ?.label || 'Адрес',
       localeTo: null,
-      linkTo: null
+      linkTo: null,
+      addressId: Address.address.find(
+        record => record.value === 'Москва, Улица 28'
+      )?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),

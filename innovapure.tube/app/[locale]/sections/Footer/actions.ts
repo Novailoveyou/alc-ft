@@ -29,7 +29,11 @@ export const getFooter = cache(
         buttons: {
           select: {
             text: true,
-            phoneNumber: { select: { label: true, value: true } }
+            phoneNumber: { select: { value: true, label: true } },
+            email: { select: { value: true, label: true } },
+            address: { select: { value: true, label: true } },
+            linkTo: true,
+            localeTo: true
           }
         }
       },

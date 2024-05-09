@@ -6,30 +6,38 @@ import { Button } from '@/components/ui/button'
 type Footer = Exclude<Awaited<ReturnType<typeof getFooter>>, null>
 
 export const Footer = <_Footer extends Footer>({ form, buttons }: _Footer) => {
-  const links = buttons.filter(item => item.linkTo)
-  const phone = buttons.find(item => item.phoneNumberTo)
-  console.log(buttons)
-  // TODO: get address from buttons object
-  const address = 'Москва, Улица 28'
+  const phoneNumberButtons = buttons.filter(button => button.phoneNumber?.value)
+
+  const addressButtons = buttons.filter(button => button.address?.value)
+
+  const emailButtons = buttons.filter(button => button.email?.value)
+
+  const linkButtons = buttons.filter(button => button.linkTo)
+
   return (
     <footer>
       <div className='flex flex-col items-start'>
         <p>Footer</p>
         <p>{form?.title}</p>
         <p>{form?.description}</p>
-        <h2>
-          <a href={`tel:${phone?.phoneNumberTo?.value}`}>
-            {phone?.phoneNumberTo?.label}
-          </a>
-        </h2>
-        {links.map((link, idx) => {
+
+        <div>
+          {phoneNumberButtons.map(({ text, phoneNumber }, idx) => (
+            <a
+              key={`Footer__phoneNumber--${idx + 1}`}
+              href={`tel:${phoneNumber!.value}`}>
+              {phoneNumber?.label || text || phoneNumber!.value}
+            </a>
+          ))}
+        </div>
+        {linkButtons.map(({ linkTo, text }, idx) => {
           return (
             <Link
               key={`Header__Link--${idx + 1}`}
-              href={link.linkTo!}
+              href={linkTo!}
               passHref
               legacyBehavior>
-              <Button variant={'ghost'}>{link.text}</Button>
+              <Button variant={'ghost'}>{text}</Button>
             </Link>
           )
         })}
