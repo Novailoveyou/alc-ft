@@ -5,23 +5,28 @@ import { createSecureHeaders } from 'next-secure-headers'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // env: {},
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/innovapure-tube/**'
+      }
+    ]
+  },
   reactStrictMode: true,
   poweredByHeader: false,
   swcMinify: true,
   ...(prod
     ? {
         compiler: {
-          removeConsole: prod,
-        },
+          removeConsole: prod
+        }
       }
     : {}),
   skipTrailingSlashRedirect: true,
   trailingSlash: false,
-  images: {
-    // loader: 'cloudinary',
-    // path: 'https://res.cloudinary.com/mitu-institute/',
-    domains: ['res.cloudinary.com'],
-  },
   async headers() {
     return [
       {
@@ -32,16 +37,16 @@ const nextConfig = {
             : [
                 true,
                 {
-                  maxAge: 60 * 60 * 24 * 365 * 2,
+                  maxAge: 60 * 60 * 24 * 365 * 2
                   // includeSubDomains: true
-                },
+                }
               ],
           referrerPolicy: 'no-referrer-when-downgrade',
-          frameGuard: false,
-        }),
-      },
+          frameGuard: false
+        })
+      }
     ]
-  },
+  }
 }
 
 export default nextConfig

@@ -487,18 +487,18 @@ const main = async () => {
       _ButtonToFooter: Button.button
         .filter(
           record =>
-            record.text &&
-            [
-              '+7 (777) 777-77-77',
-              'Москва, Улица 28',
-              'sales@innovapure.tube',
-              'Области применения',
-              'Документация',
-              'О нас',
-              'Новости',
-              'Продукция',
-              'Контакты'
-            ].includes(record.text)
+            (record.text &&
+              [
+                'Москва, Улица 28',
+                'Области применения',
+                'Документация',
+                'О нас',
+                'Новости',
+                'Продукция',
+                'Контакты'
+              ].includes(record.text)) ||
+            record.phoneNumberToId ||
+            record.emailToId
         )
         .map(record => ({ A: record.id }))
     })
