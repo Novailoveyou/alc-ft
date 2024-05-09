@@ -13,8 +13,8 @@ export const Category = <_Category extends Category>({
       <div>
         <h1>{category.name}</h1>
 
-        {category.products.map(product => (
-          <div>
+        {category.products.map((product, idx) => (
+          <div key={`Category__product--${idx + 1}`}>
             <Button asChild variant='ghost'>
               <Link href={`/${product.category.slug}/${product.slug}`}>
                 {product.name}

@@ -23,10 +23,11 @@ export const Footer = <_Footer extends Footer>({ form, buttons }: _Footer) => {
         <p>{form?.description}</p>
 
         <div>
-          {phoneNumberButtons.map((phoneNumber, idx) => (
+          {phoneNumberButtons.map(({ text, phoneNumber }, idx) => (
             <PhoneNumberButton
               key={`Footer__phoneNumber--${idx + 1}`}
-              {...phoneNumber}
+              text={text}
+              phoneNumber={phoneNumber}
             />
           ))}
         </div>
