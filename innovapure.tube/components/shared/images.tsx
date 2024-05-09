@@ -1,11 +1,13 @@
 import Image, { ImageProps } from 'next/image'
 
-export const ResponsiveImage = ({
+type ResponsiveImage = Pick<ImageProps, 'src' | 'alt' | 'width' | 'height'>
+
+export const ResponsiveImage = <_ResponsiveImage extends ResponsiveImage>({
   src,
   alt,
   width,
   height
-}: Pick<ImageProps, 'src' | 'alt' | 'width' | 'height'>) => {
+}: _ResponsiveImage) => {
   return (
     <span className='relative'>
       <Image

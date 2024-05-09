@@ -1,26 +1,26 @@
 import { Button, ButtonProps } from '@/components/ui/button'
 import { Props } from '@/types'
 
-export const PrimaryButton = ({
-  children,
-  ...props
-}: Props.Children & Pick<ButtonProps, 'onClick'>) => (
-  <Button {...props}>{children}</Button>
-)
+type Button = Props.Children & Pick<ButtonProps, 'onClick'>
 
-export const SecondaryButton = ({
+export const PrimaryButton = <_Button extends Button>({
   children,
   ...props
-}: Props.Children & Pick<ButtonProps, 'onClick'>) => (
+}: _Button) => <Button {...props}>{children}</Button>
+
+export const SecondaryButton = <_Button extends Button>({
+  children,
+  ...props
+}: _Button) => (
   <Button variant='secondary' {...props}>
     {children}
   </Button>
 )
 
-export const GhostButton = ({
+export const GhostButton = <_Button extends Button>({
   children,
   ...props
-}: Props.Children & Pick<ButtonProps, 'onClick'>) => (
+}: _Button) => (
   <Button variant='ghost' {...props}>
     {children}
   </Button>

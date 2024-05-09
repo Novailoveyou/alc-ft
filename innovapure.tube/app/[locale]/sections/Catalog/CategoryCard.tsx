@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/card'
 import { Catalog } from './Catalog'
 import Link from 'next/link'
-import { ResponsiveImage } from '@/components/shared/imagex'
+import { ResponsiveImage } from '@/components/shared/images'
 
 type CardContent = { category: Catalog['categories'][number] } & {
   descriptionHidden?: boolean

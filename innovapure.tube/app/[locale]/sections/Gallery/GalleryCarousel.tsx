@@ -12,7 +12,7 @@ import { Gallery } from './Gallery'
 import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/shared/icons'
 import { cn } from '@/utils'
-import { ResponsiveImage } from '@/components/shared/imagex'
+import { ResponsiveImage } from '@/components/shared/images'
 
 const ArrowLeft = () => (
   <svg
