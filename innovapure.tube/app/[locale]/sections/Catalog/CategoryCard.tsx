@@ -33,7 +33,11 @@ export const CategoryCard = ({
   className
 }: CardContent) => {
   return (
-    <Card className={cn('flex flex-col justify-between', className)}>
+    <Card
+      className={cn(
+        'flex flex-col justify-between [&_h3]:text-h5 [&_p]:text-small [&_a]:no-underline',
+        className
+      )}>
       <CardContent>
         <div className='flex items-center space-x-4 rounded-md border p-4'>
           <ResponsiveImage
@@ -54,7 +58,10 @@ export const CategoryCard = ({
       <CardFooter>
         <Button asChild className='w-full'>
           <Link href={`/${slug}`}>
-            <CheckIcon className='mr-2 h-4 w-4' /> {text}
+            <span>
+              <CheckIcon className='mr-2 h-4 w-4' />
+            </span>
+            {text}
           </Link>
         </Button>
       </CardFooter>
