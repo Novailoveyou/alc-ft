@@ -101,7 +101,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)']
+        inter: ['var(--font-inter)'],
+        mont: ['var(--font-mont)']
       },
       colors: {
         border: 'hsl(var(--border))',

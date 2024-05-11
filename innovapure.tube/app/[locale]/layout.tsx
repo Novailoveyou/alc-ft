@@ -2,12 +2,58 @@ import 'server-only'
 import type { Metadata } from 'next'
 import Locale from 'intl-locale-textinfo-polyfill'
 import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.scss'
 import { Props } from '@/types'
 import { SWRProvider, ThemeProvider } from '@/components/shared/providers'
 import { cn } from '@/utils'
 
-export const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const mont = localFont({
+  src: [
+    {
+      path: './fonts/mont/Mont-Thin.woff2',
+      weight: '100',
+      style: 'normal'
+    },
+    {
+      path: './fonts/mont/Mont-ExtraLight.woff2',
+      weight: '200',
+      style: 'normal'
+    },
+    {
+      path: './fonts/mont/Mont-Light.woff2',
+      weight: '300',
+      style: 'normal'
+    },
+    {
+      path: './fonts/mont/Mont-Regular.woff2',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: './fonts/mont/Mont-SemiBold.woff2',
+      weight: '600',
+      style: 'normal'
+    },
+    {
+      path: './fonts/mont/Mont-Bold.woff2',
+      weight: '700',
+      style: 'normal'
+    },
+    {
+      path: './fonts/mont/Mont-Heavy.woff2',
+      weight: '800',
+      style: 'normal'
+    },
+    {
+      path: './fonts/mont/Mont-Black.woff2',
+      weight: '900',
+      style: 'normal'
+    }
+  ],
+  variable: '--font-mont'
+})
 
 export const metadata: Metadata = {
   title: 'АЛСИ-ФТ',
@@ -27,10 +73,10 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={dir}
-      className={cn(inter.variable)}
+      className={cn(inter.variable, mont.variable)}
       /** @see https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app */
       suppressHydrationWarning>
-      <body className={inter.variable}>
+      <body className='font-mont'>
         <SWRProvider>
           <ThemeProvider>{children}</ThemeProvider>
         </SWRProvider>
