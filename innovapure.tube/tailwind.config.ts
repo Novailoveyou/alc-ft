@@ -113,6 +113,7 @@ const config = {
         'text-accent': 'hsl(var(--text-accent))',
         'text-dim': 'hsl(var(--text-dim))',
         foreground: 'hsl(var(--foreground))',
+        contrast: 'hsl(var(--contrast))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))'
