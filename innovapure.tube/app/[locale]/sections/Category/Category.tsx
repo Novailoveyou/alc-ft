@@ -11,10 +11,10 @@ type Category = Pick<ComponentProps<'section'>, 'className'> &
 
 export const Category = ({ className, category }: Category) => {
   return (
-    <Section>
-      <div className='text-center flex flex-col flex-nowrap justify-center items-center gap-3 md:gap-5'>
+    <Section className={cn('[&_h1]:mb-3', '[&_h1]:md:mb-5')}>
+      <div className='text-center'>
         <h1>{category.name}</h1>
-        <p>{category.description}</p>
+        <p className='mx-auto'>{category.description}</p>
       </div>
       {category.products.map(({ id, slug, name }) => (
         <div key={id}>
