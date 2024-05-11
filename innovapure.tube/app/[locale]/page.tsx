@@ -40,9 +40,12 @@ const HomePage: NextPage<Props.NextLocaleParams> = async ({
 
   return (
     <Fragment>
-      <Header buttons={header?.buttons || []} />
+      <Header
+        className='bg-background-accent'
+        buttons={header?.buttons || []}
+      />
       <main>
-        <Gallery slides={gallery?.slides || []} />
+        <Gallery className='bg-background-accent' slides={gallery?.slides || []} />
         <Catalog
           title={catalog?.title || ''}
           categories={catalog?.categories || []}
