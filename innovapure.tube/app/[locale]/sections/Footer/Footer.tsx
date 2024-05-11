@@ -2,7 +2,10 @@ import 'server-only'
 import { getFooter } from './actions'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { PhoneNumberButton } from '@/components/shared/buttons'
+import {
+  EmailNumberButton,
+  PhoneNumberButton
+} from '@/components/shared/buttons'
 import { ComponentProps } from 'react'
 import { cn } from '@/utils'
 
@@ -10,31 +13,36 @@ type Footer = Pick<ComponentProps<'footer'>, 'className'> &
   Exclude<Awaited<ReturnType<typeof getFooter>>, null>
 
 export const Footer = ({ className, form, buttons }: Footer) => {
-  const phoneNumberButtons = buttons.filter(button => button.phoneNumber?.value)
+  const phoneNumberButton = buttons.filter(
+    button => button.phoneNumber?.value
+  )[0]
+  const addressButton = buttons.filter(button => button.address?.value)[0]
+  console.log('kompot', addressButton)
 
-  const addressButtons = buttons.filter(button => button.address?.value)
+  const emailButton = buttons.filter(button => button.email?.value)[0]
 
-  const emailButtons = buttons.filter(button => button.email?.value)
-
-  const linkButtons = buttons.filter(button => button.linkTo)
+  const linkButton = buttons.filter(button => button.linkTo)
 
   return (
     <footer className={cn(className)}>
-      <div className='flex flex-col items-start'>
+      <div className='flex flex-col items-start bg-secondary text-contrast'>
         <p>Footer</p>
         <p>{form?.title}</p>
         <p>{form?.description}</p>
 
         <div>
-          {phoneNumberButtons.map(({ text, phoneNumber }, idx) => (
-            <PhoneNumberButton
-              key={`Footer__phoneNumber--${idx + 1}`}
-              text={text}
-              phoneNumber={phoneNumber}
-            />
-          ))}
+          <PhoneNumberButton
+            text={phoneNumberButton.text}
+            phoneNumber={phoneNumberButton.phoneNumber}
+          />
+          <p className='text-inactive'>{addressButton.text}</p>
+          <EmailNumberButton
+            text={emailButton.text}
+            email={emailButton.email}
+            className='text-primary'
+          />
         </div>
-        {linkButtons.map(({ linkTo, text }, idx) => (
+        {linkButton.map(({ linkTo, text }, idx) => (
           <Button key={`Header__Link--${idx + 1}`} asChild variant={'ghost'}>
             <Link href={linkTo!}>{text}</Link>
           </Button>

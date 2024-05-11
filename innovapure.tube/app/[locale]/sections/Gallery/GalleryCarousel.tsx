@@ -79,7 +79,7 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
                     <ResponsiveImage {...image} />
                   </div>
                 </div>
-                <div className='flex'>
+                <div className='flex my-8'>
                   {buttons.map((button, buttonIdx) => (
                     <Button
                       key={`GalleryCarousel__button--${buttonIdx + 1}`}
@@ -97,7 +97,7 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
           }
         )}
       </CarouselContent>
-      <div className='flex items-center gap-4 justify-center sm:justify-start p-4'>
+      <div className='flex items-center gap-4 justify-center sm:justify-start'>
         <div className='hidden sm:flex'>
           <Button variant='outline' onClick={() => api?.scrollPrev()}>
             <Icon>
