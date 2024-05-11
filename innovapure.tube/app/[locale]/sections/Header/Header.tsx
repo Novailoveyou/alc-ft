@@ -68,7 +68,7 @@ export const Header = <_Header extends Header>({ buttons }: _Header) => {
             <Hamburger />
           </Icon>
         </Button>
-        <div>
+        <div className='flex'>
           <LocaleSwitch />
           <ThemeToggle />
         </div>

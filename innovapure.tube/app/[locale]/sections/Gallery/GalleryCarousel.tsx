@@ -50,7 +50,6 @@ const ArrowRight = () => (
 const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
-
   useEffect(() => {
     if (!api) return
     api.on('select', () => {
@@ -65,38 +64,53 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
           ({ strap, title, subtitle, image, buttons, isDecoration }, idx) => {
             return (
               <CarouselItem key={`CarouselItem__button--${idx}`}>
-                <div>
-                  <p>{strap}</p>
-                  <h2>{title}</h2>
-                  <p>{subtitle}</p>
+                <div className='flex flex-col sm:flex-row justify-between'>
+                  <div className='flex flex-col justify-around basis-1/2'>
+                    <p>{strap}</p>
+                    {idx === 0 ? (
+                      <h1 className=''>{title}</h1>
+                    ) : (
+                      <h2 className=''>{title}</h2>
+                    )}
+                    <p>{subtitle}</p>
+                  </div>
+
+                  <div className='basis-1/2'>
+                    <ResponsiveImage {...image} />
+                  </div>
                 </div>
-                <div>
-                  <ResponsiveImage {...image} />
+                <div className='flex'>
+                  {buttons.map((button, buttonIdx) => (
+                    <Button
+                      key={`GalleryCarousel__button--${buttonIdx + 1}`}
+                      variant={buttonIdx == 1 ? 'outline' : 'secondary'}
+                      className={cn(
+                        buttonIdx == 1 && 'hidden sm:block',
+                        buttonIdx == 0 && 'w-full my-8 sm:my-0 sm:w-auto'
+                      )}>
+                      {button.text}
+                    </Button>
+                  ))}
                 </div>
-                {buttons.map((button, buttonIdx) => (
-                  <Button
-                    key={`GalleryCarousel__button--${buttonIdx + 1}`}
-                    variant={buttonIdx == 1 ? 'outline' : 'secondary'}>
-                    {button.text}
-                  </Button>
-                ))}
               </CarouselItem>
             )
           }
         )}
       </CarouselContent>
-      <div className='flex items-center gap-4'>
-        <Button variant='outline' onClick={() => api?.scrollPrev()}>
-          <Icon>
-            <ArrowLeft />
-          </Icon>
-        </Button>
-        <Button variant='outline' onClick={() => api?.scrollNext()}>
-          <Icon>
-            <ArrowRight />
-          </Icon>
-        </Button>
-        <div className='flex gap-4 ml-44'>
+      <div className='flex items-center gap-4 justify-center sm:justify-start p-4'>
+        <div className='hidden sm:flex'>
+          <Button variant='outline' onClick={() => api?.scrollPrev()}>
+            <Icon>
+              <ArrowLeft />
+            </Icon>
+          </Button>
+          <Button variant='outline' onClick={() => api?.scrollNext()}>
+            <Icon>
+              <ArrowRight />
+            </Icon>
+          </Button>
+        </div>
+        <div className='flex gap-4 sm:ml-44 sm:p-8'>
           {slides.map((slide, idx) => {
             return (
               <Button
