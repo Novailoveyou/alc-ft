@@ -101,7 +101,6 @@ const config = {
     },
     extend: {
       fontFamily: {
-        inter: ['var(--font-inter)'],
         mont: ['var(--font-mont)']
       },
       colors: {

@@ -1,14 +1,11 @@
 import 'server-only'
 import type { Metadata } from 'next'
 import Locale from 'intl-locale-textinfo-polyfill'
-import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.scss'
 import { Props } from '@/types'
 import { SWRProvider, ThemeProvider } from '@/components/shared/providers'
-import { cn } from '@/utils'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const mont = localFont({
   src: [
     {
@@ -73,7 +70,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={dir}
-      className={cn(inter.variable, mont.variable)}
+      className={mont.variable}
       /** @see https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app */
       suppressHydrationWarning>
       <body className='font-mont'>
