@@ -35,7 +35,7 @@ const CategoryPage: NextPage<Props.NextLocaleParams> = async ({
   const footer = await getFooter({ locale, page })
 
   return (
-    <Fragment>
+    <div>
       <Header buttons={header?.buttons || []} />
       <main>
         <Catalog
@@ -45,7 +45,7 @@ const CategoryPage: NextPage<Props.NextLocaleParams> = async ({
         />
       </main>
       <Footer form={footer?.form || null} buttons={footer?.buttons || []} />
-    </Fragment>
+    </div>
   )
 }
 

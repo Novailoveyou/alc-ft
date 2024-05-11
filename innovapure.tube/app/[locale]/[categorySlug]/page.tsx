@@ -34,13 +34,13 @@ const CategoryPage: NextPage<CategoryPage> = async ({
   const footer = await getFooter({ locale, page })
 
   return (
-    <Fragment>
+    <div className='bg-background-accent'>
       <Header buttons={header?.buttons || []} />
       <main>
         {category?.category && <Category category={category.category} />}
       </main>
       <Footer form={footer?.form || null} buttons={footer?.buttons || []} />
-    </Fragment>
+    </div>
   )
 }
 

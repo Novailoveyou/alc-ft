@@ -96,6 +96,7 @@
     "@redux-devtools/extension": "^3.3.0",
     "@snaplet/copycat": "^5.0.0",
     "@snaplet/seed": "0.97.8",
+    "@tailwindcss/typography": "^0.5.13",
     "@types/lodash": "^4.17.0",
     "@types/negotiator": "^0.6.3",
     "@types/node": "^20.12.8",
