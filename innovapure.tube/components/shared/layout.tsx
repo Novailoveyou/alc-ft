@@ -1,9 +1,16 @@
 import { cn } from '@/utils'
 import { ComponentProps } from 'react'
 
-type Section = ComponentProps<'section'>
+type Section = ComponentProps<'section'> & {
+  container?: ComponentProps<'div'>
+}
 
-export const Section = ({ children, className, ...props }: Section) => (
+export const Section = ({
+  children,
+  className,
+  container,
+  ...props
+}: Section) => (
   <section
     {...props}
     className={cn(
@@ -12,14 +19,17 @@ export const Section = ({ children, className, ...props }: Section) => (
       'max-w-none',
       'prose-headings:m-0',
       'prose-headings:text-custom-accent',
-      'prose-headings:font-semibold',
       'prose-headings:leading-tight',
       'prose-h1:text-h3',
       'prose-h2:text-h3',
       'prose-h1:md:text-h1',
       'prose-h2:md:text-h1',
       '[&_h1]:font-semibold',
+      '[&_h1]:mb-3',
+      '[&_h1]:md:mb-2',
       '[&_h2]:font-semibold',
+      '[&_h2]:mb-5',
+      '[&_h2]:md:mb-8',
       'prose-p:m-0',
       'prose-p:text-[0.9375rem]',
       '[&_p]:text-custom-accent-foreground',
@@ -33,6 +43,10 @@ export const Section = ({ children, className, ...props }: Section) => (
       // 'md:prose-2xl',
       className
     )}>
-    <div className='container'>{children}</div>
+    <div
+      {...(container || {})}
+      className={cn('container', container?.className && container.className)}>
+      {children}
+    </div>
   </section>
 )

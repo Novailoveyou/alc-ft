@@ -35,6 +35,7 @@ export const CategoryCard = ({
   return (
     <Card
       className={cn(
+        'not-prose',
         'flex',
         'flex-col',
         'justify-between',
