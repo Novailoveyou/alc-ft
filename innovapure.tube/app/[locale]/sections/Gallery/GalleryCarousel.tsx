@@ -61,23 +61,24 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
     <Carousel setApi={setApi}>
       <CarouselContent>
         {slides.map(
-          ({ strap, title, subtitle, image, buttons, isDecoration }, idx) => {
-            return (
-              <CarouselItem key={`CarouselItem__button--${idx}`}>
-                <div className='flex flex-col sm:flex-row justify-between'>
-                  <div className='flex flex-col justify-around basis-1/2'>
-                    <p>{strap}</p>
-                    {idx === 0 ? (
-                      <h1 className=''>{title}</h1>
-                    ) : (
-                      <h2 className=''>{title}</h2>
-                    )}
-                    <p>{subtitle}</p>
-                  </div>
+          (
+            { id, strap, title, subtitle, image, buttons, isDecoration },
+            idx
+          ) => (
+            <CarouselItem key={id}>
+              <div className='flex flex-col sm:flex-row justify-between'>
+                <div className='flex flex-col justify-around basis-1/2'>
+                  <p>{strap}</p>
+                  {idx === 0 ? (
+                    <h1 className=''>{title}</h1>
+                  ) : (
+                    <h2 className=''>{title}</h2>
+                  )}
+                  <p>{subtitle}</p>
+                </div>
 
-                  <div className='basis-1/2'>
-                    <ResponsiveImage {...image} />
-                  </div>
+                <div className='basis-1/2'>
+                  <ResponsiveImage {...image} priority />
                 </div>
                 <div className='flex my-8'>
                   {buttons.map((button, buttonIdx) => (
@@ -111,21 +112,16 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
           </Button>
         </div>
         <div className='flex gap-4 sm:ml-44 sm:p-8'>
-          {slides.map((slide, idx) => {
-            return (
-              <Button
-                key={`GalleryCarousel__slide--${idx + 1}`}
-                variant='ghost'
-                onClick={() => api?.scrollTo(idx)}>
-                <span
-                  className={cn(
-                    'w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-inactive',
-                    current === idx && 'bg-secondary'
-                  )}
-                />
-              </Button>
-            )
-          })}
+          {slides.map(({ id }, idx) => (
+            <Button key={id} variant='ghost' onClick={() => api?.scrollTo(idx)}>
+              <span
+                className={cn(
+                  'w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-inactive',
+                  current === idx && 'bg-secondary'
+                )}
+              />
+            </Button>
+          ))}
         </div>
       </div>
     </Carousel>

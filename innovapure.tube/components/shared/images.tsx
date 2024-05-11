@@ -1,6 +1,9 @@
 import Image, { ImageProps } from 'next/image'
 
-type ResponsiveImage = Pick<ImageProps, 'src' | 'alt' | 'width' | 'height'>
+type ResponsiveImage = Pick<
+  ImageProps,
+  'src' | 'alt' | 'width' | 'height' | 'priority'
+>
 
 export const ResponsiveImage = ({
   src,

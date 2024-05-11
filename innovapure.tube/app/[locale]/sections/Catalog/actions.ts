@@ -15,6 +15,7 @@ export const getCatalog = cache(
         title: true,
         categories: {
           select: {
+            id: true,
             name: true,
             slug: true,
             description: true,

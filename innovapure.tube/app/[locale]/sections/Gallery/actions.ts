@@ -13,6 +13,7 @@ export const getGallery = cache(
       select: {
         slides: {
           select: {
+            id: true,
             strap: true,
             title: true,
             subtitle: true,
@@ -27,6 +28,7 @@ export const getGallery = cache(
             },
             buttons: {
               select: {
+                id: true,
                 text: true
               }
             }

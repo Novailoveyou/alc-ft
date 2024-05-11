@@ -13,6 +13,7 @@ export const getHeader = cache(
       select: {
         buttons: {
           select: {
+            id: true,
             text: true,
             linkTo: true,
             localeTo: true,
