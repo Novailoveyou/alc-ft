@@ -61,40 +61,41 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
     <Carousel setApi={setApi}>
       <CarouselContent>
         {slides.map(
-          ({ strap, title, subtitle, image, buttons, isDecoration }, idx) => {
-            return (
-              <CarouselItem key={`CarouselItem__button--${idx}`}>
-                <div className='flex flex-col sm:flex-row justify-between'>
-                  <div className='flex flex-col justify-around basis-1/2'>
-                    <p>{strap}</p>
-                    {idx === 0 ? (
-                      <h1 className=''>{title}</h1>
-                    ) : (
-                      <h2 className=''>{title}</h2>
-                    )}
-                    <p>{subtitle}</p>
-                  </div>
+          (
+            { id, strap, title, subtitle, image, buttons, isDecoration },
+            idx
+          ) => (
+            <CarouselItem key={id}>
+              <div className='flex flex-col sm:flex-row justify-between'>
+                <div className='flex flex-col justify-around basis-1/2'>
+                  <p>{strap}</p>
+                  {idx === 0 ? (
+                    <h1 className=''>{title}</h1>
+                  ) : (
+                    <h2 className=''>{title}</h2>
+                  )}
+                  <p>{subtitle}</p>
+                </div>
 
-                  <div className='basis-1/2'>
-                    <ResponsiveImage {...image} />
-                  </div>
+                <div className='basis-1/2'>
+                  <ResponsiveImage {...image} priority />
                 </div>
-                <div className='flex'>
-                  {buttons.map((button, buttonIdx) => (
-                    <Button
-                      key={`GalleryCarousel__button--${buttonIdx + 1}`}
-                      variant={buttonIdx == 1 ? 'outline' : 'secondary'}
-                      className={cn(
-                        buttonIdx == 1 && 'hidden sm:block',
-                        buttonIdx == 0 && 'w-full my-8 sm:my-0 sm:w-auto'
-                      )}>
-                      {button.text}
-                    </Button>
-                  ))}
-                </div>
-              </CarouselItem>
-            )
-          }
+              </div>
+              <div className='flex'>
+                {buttons.map(({ id, text }, idx) => (
+                  <Button
+                    key={id}
+                    variant={idx == 1 ? 'outline' : 'secondary'}
+                    className={cn(
+                      idx == 1 && 'hidden sm:block',
+                      idx == 0 && 'w-full my-8 sm:my-0 sm:w-auto'
+                    )}>
+                    {text}
+                  </Button>
+                ))}
+              </div>
+            </CarouselItem>
+          )
         )}
       </CarouselContent>
       <div className='flex items-center gap-4 justify-center sm:justify-start p-4'>
@@ -111,21 +112,16 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
           </Button>
         </div>
         <div className='flex gap-4 sm:ml-44 sm:p-8'>
-          {slides.map((slide, idx) => {
-            return (
-              <Button
-                key={`GalleryCarousel__slide--${idx + 1}`}
-                variant='ghost'
-                onClick={() => api?.scrollTo(idx)}>
-                <span
-                  className={cn(
-                    'w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-inactive',
-                    current === idx && 'bg-secondary'
-                  )}
-                />
-              </Button>
-            )
-          })}
+          {slides.map(({ id }, idx) => (
+            <Button key={id} variant='ghost' onClick={() => api?.scrollTo(idx)}>
+              <span
+                className={cn(
+                  'w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-inactive',
+                  current === idx && 'bg-secondary'
+                )}
+              />
+            </Button>
+          ))}
         </div>
       </div>
     </Carousel>

@@ -16,12 +16,10 @@ export const Category = ({ className, category }: Category) => {
         <h1>{category.name}</h1>
         <p>{category.description}</p>
       </div>
-      {category.products.map((product, idx) => (
-        <div key={`Category__product--${idx + 1}`}>
+      {category.products.map(({ id, slug, name }) => (
+        <div key={id}>
           <Button asChild variant='ghost'>
-            <Link href={`/${product.category.slug}/${product.slug}`}>
-              {product.name}
-            </Link>
+            <Link href={`/${category.slug}/${slug}`}>{name}</Link>
           </Button>
         </div>
       ))}

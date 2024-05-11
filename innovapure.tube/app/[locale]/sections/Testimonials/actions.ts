@@ -14,6 +14,9 @@ export const getTestimonials = cache(
         title: true,
         testimonials: {
           select: {
+            id: true,
+            title: true,
+            description: true,
             image: {
               select: {
                 src: true,
@@ -21,9 +24,7 @@ export const getTestimonials = cache(
                 width: true,
                 height: true
               }
-            },
-            title: true,
-            description: true
+            }
           }
         }
       },

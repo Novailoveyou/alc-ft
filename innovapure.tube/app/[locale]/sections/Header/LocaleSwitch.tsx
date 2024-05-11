@@ -25,11 +25,31 @@ type LocaleIcon = {
   Flag: FlagComponent
 }
 const buttons = [
-  { locale: 'ru', text: 'RU', Flag: RU },
-  { locale: 'en', text: 'EN', Flag: GB },
-  { locale: 'kk', text: 'KZ', Flag: KZ },
-  { locale: 'be', text: 'BY', Flag: BY }
-] as const satisfies LocaleIcon[]
+  {
+    id: '6122e78d-7d36-4670-a9cf-487950906d65',
+    locale: 'ru',
+    text: 'RU',
+    Flag: RU
+  },
+  {
+    id: 'f611eded-7edb-421a-a1da-347ce54fea0e',
+    locale: 'en',
+    text: 'EN',
+    Flag: GB
+  },
+  {
+    id: '9867c26f-715b-4541-bdc1-3a1a6e038b3a',
+    locale: 'kk',
+    text: 'KZ',
+    Flag: KZ
+  },
+  {
+    id: 'e08f3585-447f-4021-987f-f78e374e8e77',
+    locale: 'be',
+    text: 'BY',
+    Flag: BY
+  }
+] as const satisfies ({ id: string } & LocaleIcon)[]
 
 const LocaleSwitchItem = ({
   text,
@@ -65,16 +85,14 @@ export const LocaleSwitch = () => {
           onValueChange={locale => {
             changeLocale(locale as Locale)
           }}>
-          {buttons.map(({ locale, text, Flag }, idx) => {
-            return (
-              <DropdownMenuRadioItem
-                key={`LocaleSwitch__DropdownMenuRadioItem--${idx + 1}`}
-                value={locale}
-                className='[&>*:nth-child(1)]:hidden gap-1 pl-2'>
-                <LocaleSwitchItem text={text} Flag={Flag} />
-              </DropdownMenuRadioItem>
-            )
-          })}
+          {buttons.map(({ id, locale, text, Flag }) => (
+            <DropdownMenuRadioItem
+              key={id}
+              value={locale}
+              className='[&>*:nth-child(1)]:hidden gap-1 pl-2'>
+              <LocaleSwitchItem text={text} Flag={Flag} />
+            </DropdownMenuRadioItem>
+          ))}
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -26,16 +26,12 @@ export const Footer = ({ className, form, buttons }: Footer) => {
         <p>{form?.description}</p>
 
         <div>
-          {phoneNumberButtons.map(({ text, phoneNumber }, idx) => (
-            <PhoneNumberButton
-              key={`Footer__phoneNumber--${idx + 1}`}
-              text={text}
-              phoneNumber={phoneNumber}
-            />
+          {phoneNumberButtons.map(({ id, text, phoneNumber }) => (
+            <PhoneNumberButton key={id} text={text} phoneNumber={phoneNumber} />
           ))}
         </div>
-        {linkButtons.map(({ linkTo, text }, idx) => (
-          <Button key={`Header__Link--${idx + 1}`} asChild variant={'ghost'}>
+        {linkButtons.map(({ id, linkTo, text }) => (
+          <Button key={id} asChild variant={'ghost'}>
             <Link href={linkTo!}>{text}</Link>
           </Button>
         ))}

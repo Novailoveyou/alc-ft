@@ -17,21 +17,18 @@ export const Header = ({ className, buttons }: Header) => {
   return (
     <header className={cn(className)}>
       <div className='container flex justify-between gap-1 py-4'>
-        <Link href='/' className='flex flex-row flex-nowrap items-center grow sm:grow-0 gap-2 '>
+        <Link
+          href='/'
+          className='flex flex-row flex-nowrap items-center grow sm:grow-0 gap-2 '>
           <LogoSvg />
           <span className='text-nowrap'>АЛСИ-ФТ</span>
         </Link>
         <div className='items-center hidden sm:flex flex-wrap justify-center'>
-          {links.map((link, idx) => {
-            return (
-              <Button
-                key={`Header__Link--${idx + 1}`}
-                asChild
-                variant={'ghost'}>
-                <Link href={link.linkTo!}>{link.text}</Link>
-              </Button>
-            )
-          })}
+          {links.map(({ id, linkTo, text }) => (
+            <Button key={id} asChild variant={'ghost'}>
+              <Link href={linkTo!}>{text}</Link>
+            </Button>
+          ))}
         </div>
         <Button variant={'outline'} className='sm:hidden'>
           <Icon>

@@ -28,11 +28,12 @@ export const getFooter = cache(
         },
         buttons: {
           select: {
+            id: true,
             text: true,
             phoneNumber: { select: { value: true, label: true } },
             email: { select: { value: true, label: true } },
             address: { select: { value: true, label: true } },
-            linkTo: true,
+            linkTo: true
           }
         }
       },
