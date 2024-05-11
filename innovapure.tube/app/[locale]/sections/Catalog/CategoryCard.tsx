@@ -35,7 +35,15 @@ export const CategoryCard = ({
   return (
     <Card
       className={cn(
-        'flex flex-col justify-between [&_h3]:text-h5 [&_p]:text-small [&_a]:no-underline',
+        'flex',
+        'flex-col',
+        'justify-between',
+        '[&_a]:no-underline',
+        '[&_h3]:text-p',
+        '[&_h3]:font-semibold',
+        'md:[&_h3]:text-h5',
+        '[&_p]:text-tiny',
+        'md:[&_p]:text-small',
         className
       )}>
       <CardContent>
