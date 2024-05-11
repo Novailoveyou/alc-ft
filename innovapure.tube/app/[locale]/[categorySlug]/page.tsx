@@ -36,16 +36,16 @@ const CategoryPage: NextPage<CategoryPage> = async ({
   return (
     <Fragment>
       <Header
-        className='bg-background-accent'
+        className='bg-custom-background'
         buttons={header?.buttons || []}
       />
-      <main className='bg-background-accent'>
+      <main className='bg-custom-background'>
         {category?.category && (
           <Category className='pt-5' category={category.category} />
         )}
       </main>
       <Footer
-        className='bg-background-accent'
+        className='bg-custom-background'
         form={footer?.form || null}
         buttons={footer?.buttons || []}
       />

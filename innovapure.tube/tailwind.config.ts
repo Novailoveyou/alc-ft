@@ -109,9 +109,6 @@ const config = {
         ring: 'hsl(var(--ring))',
         inactive: 'hsl(var(--inactive))',
         background: 'hsl(var(--background))',
-        'background-accent': 'hsl(var(--background-accent))',
-        'text-accent': 'hsl(var(--text-accent))',
-        'text-dim': 'hsl(var(--text-dim))',
         foreground: 'hsl(var(--foreground))',
         contrast: 'hsl(var(--contrast))',
         primary: {
@@ -141,7 +138,10 @@ const config = {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
-        }
+        },
+        'custom-background': 'hsl(var(--custom-background))',
+        'custom-accent': 'hsl(var(--custom-accent))',
+        'custom-accent-foreground': 'hsl(var(--custom-accent-foreground))'
       },
       borderRadius: {
         lg: 'var(--radius)',

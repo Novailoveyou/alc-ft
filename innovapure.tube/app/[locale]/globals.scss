@@ -5,7 +5,6 @@
 @layer base {
   :root {
     --background: 0 0% 100%; // hsl(0, 0%, 100%)
-    --background-accent: 228 45% 98%; // hsl(228, 45%, 98%)
     --foreground: 0 0% 3.9%; // hsl(0, 0%, 3.9%)
 
     --card: 0 0% 100%; // hsl(0, 0%, 100%)
@@ -28,8 +27,10 @@
     --destructive: 0 84.2% 60.2%; // hsl(0, 84.2%, 60.2%)
     --destructive-foreground: 0 0% 98%; // hsl(0, 0%, 98%)
 
-    --text-accent: 200 95% 9%; // hsl(200, 95%, 99%)
-    --text-dim: 228 4% 36%; // hsl(228, 4%, 36%)
+    --custom-background: 228 45% 98%; // hsl(228, 45%, 98%)
+    --custom-accent: 200 95% 9%; // hsl(200, 95%, 99%)
+    --custom-accent-foreground: 228 4% 36%; // hsl(228, 4%, 36%)
+
     --contrast: 0 0% 100%; // hsl(0, 0%, 100%)
     --border: 0 0% 89.8%; // hsl(0, 0%, 89.8%)
     --input: 0 0% 89.8%; // hsl(0, 0%, 89.8%)

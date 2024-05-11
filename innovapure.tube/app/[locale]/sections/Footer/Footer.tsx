@@ -13,15 +13,13 @@ type Footer = Pick<ComponentProps<'footer'>, 'className'> &
   Exclude<Awaited<ReturnType<typeof getFooter>>, null>
 
 export const Footer = ({ className, form, buttons }: Footer) => {
-  const phoneNumberButton = buttons.filter(
-    button => button.phoneNumber?.value
-  )[0]
-  const addressButton = buttons.filter(button => button.address?.value)[0]
-  console.log('kompot', addressButton)
+  const phoneNumberButtons = buttons.filter(button => button.phoneNumber?.value)
 
-  const emailButton = buttons.filter(button => button.email?.value)[0]
+  const addressButtons = buttons.filter(button => button.address?.value)
 
-  const linkButton = buttons.filter(button => button.linkTo)
+  const emailButtons = buttons.filter(button => button.email?.value)
+
+  const linkButtons = buttons.filter(button => button.linkTo)
 
   return (
     <footer className={cn(className)}>
@@ -31,19 +29,27 @@ export const Footer = ({ className, form, buttons }: Footer) => {
         <p>{form?.description}</p>
 
         <div>
-          <PhoneNumberButton
-            text={phoneNumberButton.text}
-            phoneNumber={phoneNumberButton.phoneNumber}
-          />
-          <p className='text-inactive'>{addressButton.text}</p>
-          <EmailNumberButton
-            text={emailButton.text}
-            email={emailButton.email}
-            className='text-primary'
-          />
+          {phoneNumberButtons.map(({ id, text, phoneNumber }) => (
+            <PhoneNumberButton key={id} text={text} phoneNumber={phoneNumber} />
+          ))}
+
+          {addressButtons.map(({ id, text }) => (
+            <p key={id} className='text-inactive'>
+              {text}
+            </p>
+          ))}
+
+          {emailButtons.map(({ id, text, email }) => (
+            <EmailNumberButton
+              key={id}
+              text={text}
+              email={email}
+              className='text-primary'
+            />
+          ))}
         </div>
-        {linkButton.map(({ linkTo, text }, idx) => (
-          <Button key={`Header__Link--${idx + 1}`} asChild variant={'ghost'}>
+        {linkButtons.map(({ id, linkTo, text }) => (
+          <Button key={id} asChild variant={'ghost'}>
             <Link href={linkTo!}>{text}</Link>
           </Button>
         ))}
