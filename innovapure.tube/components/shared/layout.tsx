@@ -14,12 +14,14 @@ export const Section = ({ children, className, ...props }: Section) => (
       'prose-headings:text-text-accent',
       'prose-headings:font-semibold',
       'prose-headings:leading-tight',
+      'prose-h1:text-h1',
+      'prose-h2:text-h1',
       'prose-headings:m-0',
       'prose-p:text-text-dim',
       'prose-p:max-w-prose',
       'prose-p:font-normal',
       'prose-p:leading-snug',
-      'md:prose-2xl',
+      // 'md:prose-2xl',
       'md:prose-p:prose-xl',
       className
     )}>

@@ -10,7 +10,7 @@ export type Gallery = Pick<ComponentProps<'section'>, 'className'> &
 
 export const Gallery = ({ className, slides }: Gallery) => {
   return (
-    <Section className={cn('rounded-b-lg', className)}>
+    <Section className={cn('rounded-b-lg', 'md:prose-p:prose-lg', className)}>
       <GalleryCarousel slides={slides} />
     </Section>
   )

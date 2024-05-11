@@ -10,6 +10,88 @@ const config = {
   ],
   prefix: '',
   theme: {
+    fontSize: {
+      tiny: [
+        '0.8125rem', // 13px
+        {
+          lineHeight: '130%',
+          fontWeight: '400',
+          letterSpacing: 'normal'
+        }
+      ],
+      small: [
+        '0.875rem', // 14px
+        {
+          lineHeight: '140%',
+          fontWeight: '400',
+          letterSpacing: 'normal'
+        }
+      ],
+      regular: [
+        '1rem', // 16px
+        {
+          lineHeight: '120%',
+          fontWeight: '400',
+          letterSpacing: 'normal'
+        }
+      ],
+      p: [
+        '1.125rem', // 18px
+        {
+          lineHeight: '140%',
+          fontWeight: '400',
+          letterSpacing: 'normal'
+        }
+      ],
+      h6: [
+        '1.25rem', // 20px
+        {
+          lineHeight: '120%',
+          fontWeight: '600',
+          letterSpacing: 'normal'
+        }
+      ],
+      h5: [
+        '1.5rem', // 24px
+        {
+          lineHeight: '110%',
+          fontWeight: '600',
+          letterSpacing: 'normal'
+        }
+      ],
+      h4: [
+        '1.625rem', // 26px
+        {
+          lineHeight: '120%',
+          fontWeight: '600',
+          letterSpacing: 'normal'
+        }
+      ],
+      h3: [
+        '2rem', // 32px
+        {
+          lineHeight: '120%',
+          fontWeight: '500',
+          letterSpacing: 'normal'
+        }
+      ],
+      h2: [
+        '3rem', // 48px
+        {
+          lineHeight: '120%',
+          fontWeight: '500',
+          letterSpacing: 'normal'
+        }
+      ],
+      h1: [
+        '4rem', // 64px
+        {
+          lineHeight: '120%',
+          fontWeight: '600',
+          letterSpacing: 'normal'
+        }
+      ]
+    },
     container: {
       center: true,
       padding: '1rem',
