@@ -8,7 +8,7 @@ type Section = ComponentProps<'section'> & {
 export const Section = ({
   children,
   className,
-  container,
+  container = {},
   ...props
 }: Section) => (
   <section
@@ -19,6 +19,7 @@ export const Section = ({
       'max-w-none',
       'pt-3',
       'md:pt-5',
+      '[&_a]:no-underline',
       'prose-headings:my-0',
       'prose-headings:text-custom-accent',
       'prose-headings:leading-tight',
@@ -45,9 +46,7 @@ export const Section = ({
       // 'md:prose-2xl',
       className
     )}>
-    <div
-      {...(container || {})}
-      className={cn('container', container?.className && container.className)}>
+    <div {...container} className={cn('container', container.className)}>
       {children}
     </div>
   </section>

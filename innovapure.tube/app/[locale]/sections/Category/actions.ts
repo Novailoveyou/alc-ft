@@ -47,12 +47,13 @@ export const getCategory = cache(
                 parameters: {
                   select: {
                     id: true,
-                    title: true,
-                    values: {
+                    label: {
                       select: {
-                        value: true
+                        name: true
                       }
-                    }
+                    },
+                    value: true,
+                    isHighlighted: true
                   }
                 }
               }

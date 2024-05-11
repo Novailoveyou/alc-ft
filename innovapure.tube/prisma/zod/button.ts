@@ -1,25 +1,6 @@
-import * as z from 'zod'
-import { Locale, PageName } from '@prisma/client'
-import {
-  CompletePhoneNumer,
-  RelatedPhoneNumerModel,
-  CompleteEmail,
-  RelatedEmailModel,
-  CompleteAddress,
-  RelatedAddressModel,
-  CompleteCategory,
-  RelatedCategoryModel,
-  CompleteSlide,
-  RelatedSlideModel,
-  CompleteForm,
-  RelatedFormModel,
-  CompleteHeader,
-  RelatedHeaderModel,
-  CompleteFooter,
-  RelatedFooterModel,
-  CompleteProduct,
-  RelatedProductModel
-} from './index'
+import * as z from "zod"
+import { Locale, PageName, LocaleTo } from "@prisma/client"
+import { CompletePhoneNumer, RelatedPhoneNumerModel, CompleteEmail, RelatedEmailModel, CompleteAddress, RelatedAddressModel, CompleteCategory, RelatedCategoryModel, CompleteSlide, RelatedSlideModel, CompleteForm, RelatedFormModel, CompleteHeader, RelatedHeaderModel, CompleteFooter, RelatedFooterModel, CompleteProduct, RelatedProductModel } from "./index"
 
 export const ButtonModel = z.object({
   /**
@@ -61,7 +42,7 @@ export const ButtonModel = z.object({
   /**
    * if button is intended to be a language change, then localeTo is the language
    */
-  localeTo: z.nativeEnum(Locale).nullish()
+  localeTo: z.nativeEnum(LocaleTo).nullish(),
 })
 
 export interface CompleteButton extends z.infer<typeof ButtonModel> {
@@ -81,43 +62,41 @@ export interface CompleteButton extends z.infer<typeof ButtonModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedButtonModel: z.ZodSchema<CompleteButton> = z.lazy(() =>
-  ButtonModel.extend({
-    /**
-     * if button is intended to be a trigger to phone call, then phoneNumber is the number to call
-     */
-    phoneNumber: RelatedPhoneNumerModel.nullish(),
-    /**
-     * if button is intended to be a trigger to email, then email is the email to send to
-     */
-    email: RelatedEmailModel.nullish(),
-    /**
-     * if button is intended to be an address, then address is the address
-     */
-    address: RelatedAddressModel.nullish(),
-    /**
-     * categories with this button
-     */
-    categories: RelatedCategoryModel.array(),
-    /**
-     * slides with this button
-     */
-    slides: RelatedSlideModel.array(),
-    /**
-     * forms with this button
-     */
-    forms: RelatedFormModel.array(),
-    /**
-     * headers with this button
-     */
-    headers: RelatedHeaderModel.array(),
-    /**
-     * footers with this button
-     */
-    footers: RelatedFooterModel.array(),
-    /**
-     * products with this button
-     */
-    products: RelatedProductModel.array()
-  })
-)
+export const RelatedButtonModel: z.ZodSchema<CompleteButton> = z.lazy(() => ButtonModel.extend({
+  /**
+   * if button is intended to be a trigger to phone call, then phoneNumber is the number to call
+   */
+  phoneNumber: RelatedPhoneNumerModel.nullish(),
+  /**
+   * if button is intended to be a trigger to email, then email is the email to send to
+   */
+  email: RelatedEmailModel.nullish(),
+  /**
+   * if button is intended to be an address, then address is the address
+   */
+  address: RelatedAddressModel.nullish(),
+  /**
+   * categories with this button
+   */
+  categories: RelatedCategoryModel.array(),
+  /**
+   * slides with this button
+   */
+  slides: RelatedSlideModel.array(),
+  /**
+   * forms with this button
+   */
+  forms: RelatedFormModel.array(),
+  /**
+   * headers with this button
+   */
+  headers: RelatedHeaderModel.array(),
+  /**
+   * footers with this button
+   */
+  footers: RelatedFooterModel.array(),
+  /**
+   * products with this button
+   */
+  products: RelatedProductModel.array(),
+}))

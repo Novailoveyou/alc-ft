@@ -1,6 +1,6 @@
 import * as z from "zod"
 import { Locale } from "@prisma/client"
-import { CompleteParameterValue, RelatedParameterValueModel, CompleteProduct, RelatedProductModel } from "./index"
+import { CompleteParameterLabel, RelatedParameterLabelModel, CompleteProduct, RelatedProductModel } from "./index"
 
 export const ParameterModel = z.object({
   /**
@@ -29,17 +29,18 @@ export const ParameterModel = z.object({
    */
   updatedAt: z.date(),
   /**
-   * parameter title
+   * parameter value
    */
-  title: z.string().trim().min(1).max(240),
+  value: z.string().trim().min(1).max(240),
   /**
    * whether parameter is highlighted
    */
   isHighlighted: z.boolean(),
+  parameterLabelId: z.string(),
 })
 
 export interface CompleteParameter extends z.infer<typeof ParameterModel> {
-  values: CompleteParameterValue[]
+  label: CompleteParameterLabel
   products: CompleteProduct[]
 }
 
@@ -50,9 +51,9 @@ export interface CompleteParameter extends z.infer<typeof ParameterModel> {
  */
 export const RelatedParameterModel: z.ZodSchema<CompleteParameter> = z.lazy(() => ParameterModel.extend({
   /**
-   * parameter values
+   * parameter label
    */
-  values: RelatedParameterValueModel.array(),
+  label: RelatedParameterLabelModel,
   /**
    * parameter product
    */

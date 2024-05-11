@@ -444,29 +444,30 @@ const main = async () => {
     })
   )
 
-  const Parameter = await seed.parameter(x =>
-    x(3, {
+  const ParameterLabel = await seed.parameterLabel(x =>
+    x(4, {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      title: ({ seed }) =>
+      name: ({ seed }) =>
         copycat.oneOfString([
           'Толщина стенки',
           'Внутренний диаметр',
           'Длина',
           'Наружный диаметр'
-        ])(seed),
-      isHighlighted: ({ seed }) => copycat.bool(seed)
+        ])(seed)
     })
   )
 
-  const ParameterValue = await seed.parameterValue(x =>
-    x(6, {
+  const Parameter = await seed.parameter(x =>
+    x(12, {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
+      parameterLabelId: ParameterLabel.parameterLabel.find(label => label.id)
+        ?.id,
       value: ({ seed }) => copycat.oneOfString(['5мм', '10мм', '15мм'])(seed),
-      parameterId: Parameter.parameter.find(record => record.id)?.id
+      isHighlighted: ({ seed }) => copycat.bool(seed)
     })
   )
 

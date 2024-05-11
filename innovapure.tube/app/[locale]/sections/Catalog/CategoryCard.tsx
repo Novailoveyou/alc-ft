@@ -39,7 +39,6 @@ export const CategoryCard = ({
         'flex',
         'flex-col',
         'justify-between',
-        '[&_a]:no-underline',
         '[&_h3]:text-p',
         '[&_h3]:font-semibold',
         'md:[&_h3]:text-h5',

@@ -26,11 +26,6 @@ type PhoneNumber = Pick<ComponentProps<'a'>, 'className'> &
     phoneNumber: Pick<CompletePhoneNumer, 'label' | 'value'> | null
   }
 
-type Email = Pick<ComponentProps<'a'>, 'className'> &
-  Pick<CompleteButton, 'text'> & {
-    email: Pick<CompletePhoneNumer, 'label' | 'value'> | null
-  }
-
 export const PhoneNumberButton = ({
   text,
   phoneNumber,
@@ -44,6 +39,12 @@ export const PhoneNumberButton = ({
     </a>
   )
 }
+
+type Email = Pick<ComponentProps<'a'>, 'className'> &
+  Pick<CompleteButton, 'text'> & {
+    email: Pick<CompletePhoneNumer, 'label' | 'value'> | null
+  }
+
 export const EmailNumberButton = ({ text, email, ...props }: Email) => {
   if (!email?.value) return <></>
 

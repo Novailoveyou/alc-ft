@@ -11,6 +11,7 @@ type Category = Pick<ComponentProps<'section'>, 'className'> &
   Exclude<Awaited<ReturnType<typeof getCategory>>, null>
 
 export const Category = ({ className, category }: Category) => {
+  console.log('category: ', category.products[0].parameters)
   return (
     <Section
       className={cn(
