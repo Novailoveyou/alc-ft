@@ -34,13 +34,22 @@ const CategoryPage: NextPage<CategoryPage> = async ({
   const footer = await getFooter({ locale, page })
 
   return (
-    <div className='bg-background-accent'>
-      <Header buttons={header?.buttons || []} />
-      <main>
-        {category?.category && <Category category={category.category} />}
+    <Fragment>
+      <Header
+        className='bg-background-accent'
+        buttons={header?.buttons || []}
+      />
+      <main className='bg-background-accent'>
+        {category?.category && (
+          <Category className='pt-5' category={category.category} />
+        )}
       </main>
-      <Footer form={footer?.form || null} buttons={footer?.buttons || []} />
-    </div>
+      <Footer
+        className='bg-background-accent'
+        form={footer?.form || null}
+        buttons={footer?.buttons || []}
+      />
+    </Fragment>
   )
 }
 

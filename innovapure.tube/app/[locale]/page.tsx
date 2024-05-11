@@ -39,7 +39,7 @@ const HomePage: NextPage<Props.NextLocaleParams> = async ({
   const footer = await getFooter({ locale, page })
 
   return (
-    <div>
+    <Fragment>
       <Header buttons={header?.buttons || []} />
       <main>
         <Gallery slides={gallery?.slides || []} />
@@ -49,7 +49,7 @@ const HomePage: NextPage<Props.NextLocaleParams> = async ({
         />
       </main>
       <Footer form={footer?.form || null} buttons={footer?.buttons || []} />
-    </div>
+    </Fragment>
   )
 }
 

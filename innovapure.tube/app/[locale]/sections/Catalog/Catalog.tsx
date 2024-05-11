@@ -7,11 +7,7 @@ export type Catalog = Exclude<Awaited<ReturnType<typeof getCatalog>>, null> & {
   isFullWidth?: true
 }
 
-export const Catalog = <_Catalog extends Catalog>({
-  title,
-  categories,
-  isFullWidth
-}: _Catalog) => {
+export const Catalog = ({ title, categories, isFullWidth }: Catalog) => {
   return (
     <section>
       <div className='container'>

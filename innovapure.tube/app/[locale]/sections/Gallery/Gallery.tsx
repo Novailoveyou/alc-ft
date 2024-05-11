@@ -4,7 +4,7 @@ import GalleryCarousel from './GalleryCarousel'
 
 export type Gallery = Exclude<Awaited<ReturnType<typeof getGallery>>, null>
 
-export const Gallery = <_Gallery extends Gallery>({ slides }: _Gallery) => {
+export const Gallery = ({ slides }: Gallery) => {
   return (
     <section className='bg-background-accent rounded-b-lg'>
       <div className='container'>

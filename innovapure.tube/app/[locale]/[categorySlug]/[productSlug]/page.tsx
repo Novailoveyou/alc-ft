@@ -39,11 +39,11 @@ const ProductPage: NextPage<ProductPage> = async ({
   const footer = await getFooter({ locale, page })
 
   return (
-    <div>
+    <Fragment>
       <Header buttons={header?.buttons || []} />
       <main>{product?.product && <Product product={product.product} />}</main>
       <Footer form={footer?.form || null} buttons={footer?.buttons || []} />
-    </div>
+    </Fragment>
   )
 }
 
