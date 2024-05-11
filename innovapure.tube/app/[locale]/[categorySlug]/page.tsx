@@ -40,9 +40,7 @@ const CategoryPage: NextPage<CategoryPage> = async ({
         buttons={header?.buttons || []}
       />
       <main className='bg-custom-background'>
-        {category?.category && (
-          <Category className='pt-5' category={category.category} />
-        )}
+        {category?.category && <Category category={category.category} />}
       </main>
       <Footer
         className='bg-custom-background'

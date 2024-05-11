@@ -17,6 +17,8 @@ export const Section = ({
       'prose',
       'dark:prose-invert',
       'max-w-none',
+      'pt-3',
+      'md:pt-5',
       'prose-headings:my-0',
       'prose-headings:text-custom-accent',
       'prose-headings:leading-tight',

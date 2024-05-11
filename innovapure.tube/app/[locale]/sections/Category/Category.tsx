@@ -17,7 +17,8 @@ export const Category = ({ className, category }: Category) => {
         '[&_h1]:mb-3',
         '[&_h1]:md:mb-5',
         '[&_h1]:text-center',
-        '[&_p]:text-center'
+        '[&_p]:text-center',
+        className
       )}>
       <h1>{category.name}</h1>
       <p className='mx-auto'>{category.description}</p>
