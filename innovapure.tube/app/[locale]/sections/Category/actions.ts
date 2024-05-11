@@ -42,6 +42,16 @@ export const getCategory = cache(
                     width: true,
                     height: true
                   }
+                },
+                parameters: {
+                  select: {
+                    title: true,
+                    values: {
+                      select: {
+                        value: true
+                      }
+                    }
+                  }
                 }
               }
             },

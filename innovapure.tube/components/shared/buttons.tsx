@@ -5,24 +5,17 @@ import { ComponentProps } from 'react'
 
 type Button = Props.Children & Pick<ButtonProps, 'onClick'>
 
-export const PrimaryButton = <_Button extends Button>({
-  children,
-  ...props
-}: _Button) => <Button {...props}>{children}</Button>
+export const PrimaryButton = ({ children, ...props }: Button) => (
+  <Button {...props}>{children}</Button>
+)
 
-export const SecondaryButton = <_Button extends Button>({
-  children,
-  ...props
-}: _Button) => (
+export const SecondaryButton = ({ children, ...props }: Button) => (
   <Button variant='secondary' {...props}>
     {children}
   </Button>
 )
 
-export const GhostButton = <_Button extends Button>({
-  children,
-  ...props
-}: _Button) => (
+export const GhostButton = ({ children, ...props }: Button) => (
   <Button variant='ghost' {...props}>
     {children}
   </Button>
@@ -33,11 +26,11 @@ type PhoneNumber = Pick<ComponentProps<'a'>, 'className'> &
     phoneNumber: Pick<CompletePhoneNumer, 'label' | 'value'> | null
   }
 
-export const PhoneNumberButton = <_PhoneNumber extends PhoneNumber>({
+export const PhoneNumberButton = ({
   text,
   phoneNumber,
   ...props
-}: _PhoneNumber) => {
+}: PhoneNumber) => {
   if (!phoneNumber?.value) return <></>
 
   return (

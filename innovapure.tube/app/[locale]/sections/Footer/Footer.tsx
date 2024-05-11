@@ -3,10 +3,13 @@ import { getFooter } from './actions'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { PhoneNumberButton } from '@/components/shared/buttons'
+import { ComponentProps } from 'react'
+import { cn } from '@/utils'
 
-type Footer = Exclude<Awaited<ReturnType<typeof getFooter>>, null>
+type Footer = Pick<ComponentProps<'footer'>, 'className'> &
+  Exclude<Awaited<ReturnType<typeof getFooter>>, null>
 
-export const Footer = <_Footer extends Footer>({ form, buttons }: _Footer) => {
+export const Footer = ({ className, form, buttons }: Footer) => {
   const phoneNumberButtons = buttons.filter(button => button.phoneNumber?.value)
 
   const addressButtons = buttons.filter(button => button.address?.value)
@@ -16,7 +19,7 @@ export const Footer = <_Footer extends Footer>({ form, buttons }: _Footer) => {
   const linkButtons = buttons.filter(button => button.linkTo)
 
   return (
-    <footer>
+    <footer className={cn(className)}>
       <div className='flex flex-col items-start'>
         <p>Footer</p>
         <p>{form?.title}</p>
@@ -32,10 +35,8 @@ export const Footer = <_Footer extends Footer>({ form, buttons }: _Footer) => {
           ))}
         </div>
         {linkButtons.map(({ linkTo, text }, idx) => (
-          <Button asChild variant={'ghost'}>
-            <Link key={`Header__Link--${idx + 1}`} href={linkTo!}>
-              {text}
-            </Link>
+          <Button key={`Header__Link--${idx + 1}`} asChild variant={'ghost'}>
+            <Link href={linkTo!}>{text}</Link>
           </Button>
         ))}
       </div>

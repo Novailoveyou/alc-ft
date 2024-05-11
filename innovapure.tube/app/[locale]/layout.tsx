@@ -5,12 +5,13 @@ import { Inter } from 'next/font/google'
 import './globals.scss'
 import { Props } from '@/types'
 import { SWRProvider, ThemeProvider } from '@/components/shared/providers'
+import { cn } from '@/utils'
 
-const inter = Inter({ subsets: ['latin'] })
+export const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   title: 'АЛСИ-ФТ',
-  description: 'Силиконовые трубки',
+  description: 'Силиконовые трубки'
 }
 
 /**
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
  */
 export default async function RootLayout({
   children,
-  params: { locale },
+  params: { locale }
 }: Props.Children & Props.NextLocaleParams) {
   const { direction: dir } = new Locale(locale).textInfo
 
@@ -26,9 +27,10 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={dir}
+      className={cn(inter.variable)}
       /** @see https://github.com/pacocoursey/next-themes?tab=readme-ov-file#with-app */
       suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={inter.variable}>
         <SWRProvider>
           <ThemeProvider>{children}</ThemeProvider>
         </SWRProvider>

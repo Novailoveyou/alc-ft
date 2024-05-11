@@ -18,6 +18,9 @@ const config = {
       }
     },
     extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)']
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -25,6 +28,8 @@ const config = {
         inactive: 'hsl(var(--inactive))',
         background: 'hsl(var(--background))',
         'background-accent': 'hsl(var(--background-accent))',
+        'text-accent': 'hsl(var(--text-accent))',
+        'text-dim': 'hsl(var(--text-dim))',
         foreground: 'hsl(var(--foreground))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
@@ -76,7 +81,7 @@ const config = {
       }
     }
   },
-  plugins: [require('tailwindcss-animate')]
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')]
 } satisfies Config
 
 export default config

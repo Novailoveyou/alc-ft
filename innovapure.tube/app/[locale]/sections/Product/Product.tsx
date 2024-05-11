@@ -1,8 +1,9 @@
+import 'server-only'
 import { getProduct } from './actions'
 
 type Product = Exclude<Awaited<ReturnType<typeof getProduct>>, null>
 
-export const Product = <_Product extends Product>({ product }: _Product) => {
+export const Product = ({ product }: Product) => {
   return (
     <div>
       Product
