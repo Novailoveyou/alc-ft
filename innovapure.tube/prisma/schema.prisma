@@ -543,6 +543,7 @@ model ParameterLabel {
 
   parameters Parameter[]
 
+  @@unique([name])
   @@map(name: "parameterLabels")
 }
 
@@ -575,8 +576,8 @@ model Parameter {
   isHighlighted Boolean @default(false)
 
   /// parameter label
-  label            ParameterLabel @relation(fields: [parameterLabelId], references: [id])
-  parameterLabelId String
+  label     ParameterLabel @relation(fields: [labelName], references: [name])
+  labelName String
 
   /// parameter product
   products Product[]

@@ -36,7 +36,7 @@ export const ParameterModel = z.object({
    * whether parameter is highlighted
    */
   isHighlighted: z.boolean(),
-  parameterLabelId: z.string(),
+  labelName: z.string(),
 })
 
 export interface CompleteParameter extends z.infer<typeof ParameterModel> {

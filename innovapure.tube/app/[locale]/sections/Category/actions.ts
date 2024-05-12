@@ -31,11 +31,7 @@ export const getCategory = cache(
                 name: true,
                 slug: true,
                 description: true,
-                category: {
-                  select: {
-                    slug: true
-                  }
-                },
+                categorySlug: true,
                 image: {
                   select: {
                     src: true,
@@ -47,11 +43,7 @@ export const getCategory = cache(
                 parameters: {
                   select: {
                     id: true,
-                    label: {
-                      select: {
-                        name: true
-                      }
-                    },
+                    labelName: true,
                     value: true,
                     isHighlighted: true
                   }

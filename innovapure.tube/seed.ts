@@ -464,8 +464,7 @@ const main = async () => {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      parameterLabelId: ParameterLabel.parameterLabel.find(label => label.id)
-        ?.id,
+      labelName: ParameterLabel.parameterLabel.find(label => label.name)?.name,
       value: ({ seed }) => copycat.oneOfString(['5мм', '10мм', '15мм'])(seed),
       isHighlighted: ({ seed }) => copycat.bool(seed)
     })
