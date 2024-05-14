@@ -7,7 +7,11 @@ import { Header, getHeader } from '@/app/[locale]/sections/Header'
 import { Footer, getFooter } from '@/app/[locale]/sections/Footer'
 import { PageName } from '@prisma/client'
 import { getCategoryStaticParams } from './actions'
-import { Category, getCategory } from '../sections/Category'
+import { Category, getCategory } from '@/app/[locale]/sections/Category'
+import {
+  Testimonials,
+  getTestimonials
+} from '@/app/[locale]/sections/Testimonials'
 
 type CategoryPage = {
   params: Awaited<ReturnType<typeof generateStaticParams>>[number]
@@ -31,6 +35,7 @@ const CategoryPage: NextPage<CategoryPage> = async ({
 
   const header = await getHeader({ locale, page })
   const category = await getCategory({ locale, page, categorySlug })
+  const testimonials = await getTestimonials({ locale, page })
   const footer = await getFooter({ locale, page })
 
   return (
@@ -41,6 +46,12 @@ const CategoryPage: NextPage<CategoryPage> = async ({
       />
       <main className='bg-custom-background'>
         {category?.category && <Category category={category.category} />}
+        {testimonials && (
+          <Testimonials
+            title={testimonials.title}
+            testimonials={testimonials.testimonials}
+          />
+        )}
       </main>
       <Footer
         className='bg-custom-background'
