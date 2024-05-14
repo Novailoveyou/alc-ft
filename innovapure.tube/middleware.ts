@@ -17,3 +17,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: ['/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)']
 }
+
+// export { auth as middleware } from "@/auth"
+// TODO: compose middleware https://github.com/vercel/next.js/discussions/53997 and https://stackoverflow.com/questions/76603369/how-to-use-multiple-middlewares-in-next-js-using-the-middleware-ts-file

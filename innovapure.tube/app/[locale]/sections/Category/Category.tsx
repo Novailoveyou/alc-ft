@@ -1,36 +1,37 @@
 import 'server-only'
 import { getCategory } from './actions'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/utils'
 import { ComponentProps } from 'react'
 import { Section } from '@/components/shared/layout'
-import { Filters } from './components'
+import { Filters, ProductCard } from './components'
 
-type Category = Pick<ComponentProps<'section'>, 'className'> &
+export type Category = Pick<ComponentProps<'section'>, 'className'> &
   Exclude<Awaited<ReturnType<typeof getCategory>>, null>
 
-export const Category = ({ className, category }: Category) => {
-  console.log('category: ', category.products[0].parameters)
+export const Category = ({
+  className,
+  category: { name, description, products }
+}: Category) => {
   return (
     <Section
       className={cn(
         '[&_h1]:mb-3',
         '[&_h1]:md:mb-5',
         '[&_h1]:text-center',
-        '[&_p]:text-center',
+        '[&_h1~p]:mx-auto',
+        '[&_h1~p]:text-center',
         className
       )}>
-      <h1>{category.name}</h1>
-      <p className='mx-auto'>{category.description}</p>
+      <h1>{name}</h1>
+      <p>{description}</p>
       <Filters />
-      {category.products.map(({ id, slug, name }) => (
-        <div key={id}>
-          <Button asChild variant='ghost'>
-            <Link href={`/${category.slug}/${slug}`}>{name}</Link>
-          </Button>
-        </div>
-      ))}
+      <ul className='flex flex-wrap p-0'>
+        {products.map(product => (
+          <li key={product.id} className='flex flex-grow'>
+            <ProductCard product={product} />
+          </li>
+        ))}
+      </ul>
     </Section>
   )
 }
