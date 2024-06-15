@@ -13,39 +13,8 @@ import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/shared/icons'
 import { cn } from '@/utils'
 import { ResponsiveImage } from '@/components/shared/images'
-
-const ArrowLeft = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='24'
-    height='24'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-    className='lucide lucide-arrow-left h-4 w-4'>
-    <path d='m12 19-7-7 7-7'></path>
-    <path d='M19 12H5'></path>
-  </svg>
-)
-const ArrowRight = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='24'
-    height='24'
-    viewBox='0 0 24 24'
-    fill='none'
-    stroke='currentColor'
-    strokeWidth='2'
-    strokeLinecap='round'
-    strokeLinejoin='round'
-    className='lucide lucide-arrow-right h-4 w-4'>
-    <path d='M5 12h14'></path>
-    <path d='m12 5 7 7-7 7'></path>
-  </svg>
-)
+import arrowRightIcon from './images/arrow-right.svg'
+import arrowLeftIcon from './images/arrow-left.svg'
 
 const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
   const [api, setApi] = useState<CarouselApi>()
@@ -66,8 +35,8 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
             idx
           ) => (
             <CarouselItem key={id}>
-              <div className='flex flex-col sm:flex-row justify-between'>
-                <div className='flex flex-col justify-around basis-1/2'>
+              <div className='flex flex-col justify-between sm:flex-row'>
+                <div className='flex basis-1/2 flex-col justify-around'>
                   <p>{strap}</p>
                   {idx === 0 ? (
                     <h1 className=''>{title}</h1>
@@ -80,14 +49,14 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
                 <div className='basis-1/2'>
                   <ResponsiveImage {...image} priority />
                 </div>
-                <div className='flex my-8'>
+                <div className='my-8 flex'>
                   {buttons.map((button, buttonIdx) => (
                     <Button
                       key={`GalleryCarousel__button--${buttonIdx + 1}`}
                       variant={buttonIdx == 1 ? 'outline' : 'secondary'}
                       className={cn(
                         buttonIdx == 1 && 'hidden sm:block',
-                        buttonIdx == 0 && 'w-full my-8 sm:my-0 sm:w-auto'
+                        buttonIdx == 0 && 'my-8 w-full sm:my-0 sm:w-auto'
                       )}>
                       {button.text}
                     </Button>
@@ -98,17 +67,13 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
           )
         )}
       </CarouselContent>
-      <div className='flex items-center gap-4 justify-center sm:justify-start'>
+      <div className='flex items-center justify-center gap-4 sm:justify-start'>
         <div className='hidden sm:flex'>
           <Button variant='outline' onClick={() => api?.scrollPrev()}>
-            <Icon>
-              <ArrowLeft />
-            </Icon>
+            <ResponsiveImage src={arrowLeftIcon} alt='Листать влево' />
           </Button>
           <Button variant='outline' onClick={() => api?.scrollNext()}>
-            <Icon>
-              <ArrowRight />
-            </Icon>
+            <ResponsiveImage src={arrowRightIcon} alt='Листать вправо' />
           </Button>
         </div>
         <div className='flex gap-4 sm:ml-44 sm:p-8'>
@@ -116,7 +81,7 @@ const GalleryCarousel = ({ slides }: Pick<Gallery, 'slides'>) => {
             <Button key={id} variant='ghost' onClick={() => api?.scrollTo(idx)}>
               <span
                 className={cn(
-                  'w-8 h-0.5 mx-auto mt-0 my-4 border-0 rounded md:my-10 bg-inactive',
+                  'mx-auto my-4 mt-0 h-0.5 w-8 rounded border-0 bg-inactive md:my-10',
                   current === idx && 'bg-secondary'
                 )}
               />

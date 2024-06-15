@@ -156,11 +156,18 @@ const config = {
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' }
+        },
+        'button-glow': {
+          '50%': {
+            backgroundColor: 'hsl(var(--accent))',
+            color: 'hsl(var(--accent-foreground))'
+          }
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out'
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'button-glow': 'button-glow 2000ms infinite'
       }
     }
   },

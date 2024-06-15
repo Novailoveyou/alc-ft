@@ -101,6 +101,9 @@ model Image {
 
   user User?
 
+  /// parameterLabel with this image
+  parameterLabel ParameterLabel[]
+
   @@unique([src])
   @@map(name: "images")
 }
@@ -214,6 +217,12 @@ model Button {
 
   /// if button is intended to be a language change, then localeTo is the language
   localeTo LocaleTo?
+
+  /// if button is intended to add product to cart, then addToCart is true
+  isAddToCart Boolean @default(false)
+
+  /// if button is intended to open lead form, then isLeadForm is true
+  isLeadForm Boolean @default(false)
 
   /// categories with this button
   categories Category[]
@@ -425,6 +434,9 @@ model ParameterLabel {
   /// parameter label name
   /// @zod.trim().min(1).max(240)
   name String
+
+  image   Image  @relation(fields: [imageId], references: [id])
+  imageId String
 
   parameters Parameter[]
 

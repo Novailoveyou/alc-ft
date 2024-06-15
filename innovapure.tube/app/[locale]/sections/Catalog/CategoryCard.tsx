@@ -22,13 +22,7 @@ type CardContent = { category: Catalog['categories'][number] } & {
 }
 
 export const CategoryCard = ({
-  category: {
-    name,
-    description,
-    slug,
-    image: { src, alt, width, height },
-    button: { text }
-  },
+  category: { name, description, slug, image, button },
   descriptionHidden,
   className
 }: CardContent) => {
@@ -49,10 +43,11 @@ export const CategoryCard = ({
       <CardContent>
         <div className='flex items-center space-x-4 rounded-md border p-4'>
           <ResponsiveImage
-            src={src}
-            alt={alt}
-            width={width / 2}
-            height={height / 2}
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            maxw={306}
           />
         </div>
       </CardContent>
@@ -69,7 +64,7 @@ export const CategoryCard = ({
             <span>
               <CheckIcon className='mr-2 h-4 w-4' />
             </span>
-            {text}
+            {button.text}
           </Link>
         </Button>
       </CardFooter>

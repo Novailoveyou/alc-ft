@@ -21,6 +21,8 @@ endOfLine: lf
 embeddedLanguageFormatting: auto
 singleAttributePerLine: false
 editorconfig: false
+plugins:
+  - 'prettier-plugin-tailwindcss'
 overrides:
   - files: '*.css'
     options:

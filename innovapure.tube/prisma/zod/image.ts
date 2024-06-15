@@ -1,6 +1,6 @@
 import * as z from "zod"
 import { Locale } from "@prisma/client"
-import { CompleteSlide, RelatedSlideModel, CompleteCategory, RelatedCategoryModel, CompleteTestimonial, RelatedTestimonialModel, CompleteProduct, RelatedProductModel, CompleteUser, RelatedUserModel } from "./index"
+import { CompleteSlide, RelatedSlideModel, CompleteCategory, RelatedCategoryModel, CompleteTestimonial, RelatedTestimonialModel, CompleteProduct, RelatedProductModel, CompleteUser, RelatedUserModel, CompleteParameterLabel, RelatedParameterLabelModel } from "./index"
 
 export const ImageModel = z.object({
   /**
@@ -36,6 +36,7 @@ export interface CompleteImage extends z.infer<typeof ImageModel> {
   testimonials: CompleteTestimonial[]
   product: CompleteProduct[]
   user?: CompleteUser | null
+  parameterLabel: CompleteParameterLabel[]
 }
 
 /**
@@ -61,4 +62,8 @@ export const RelatedImageModel: z.ZodSchema<CompleteImage> = z.lazy(() => ImageM
    */
   product: RelatedProductModel.array(),
   user: RelatedUserModel.nullish(),
+  /**
+   * parameterLabel with this image
+   */
+  parameterLabel: RelatedParameterLabelModel.array(),
 }))

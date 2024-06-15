@@ -1,6 +1,6 @@
 import * as z from "zod"
 import { Locale } from "@prisma/client"
-import { CompleteParameter, RelatedParameterModel } from "./index"
+import { CompleteImage, RelatedImageModel, CompleteParameter, RelatedParameterModel } from "./index"
 
 export const ParameterLabelModel = z.object({
   /**
@@ -16,9 +16,11 @@ export const ParameterLabelModel = z.object({
    * parameter label name
    */
   name: z.string().trim().min(1).max(240),
+  imageId: z.string(),
 })
 
 export interface CompleteParameterLabel extends z.infer<typeof ParameterLabelModel> {
+  image: CompleteImage
   parameters: CompleteParameter[]
 }
 
@@ -28,5 +30,6 @@ export interface CompleteParameterLabel extends z.infer<typeof ParameterLabelMod
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
 export const RelatedParameterLabelModel: z.ZodSchema<CompleteParameterLabel> = z.lazy(() => ParameterLabelModel.extend({
+  image: RelatedImageModel,
   parameters: RelatedParameterModel.array(),
 }))

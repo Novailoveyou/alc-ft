@@ -25,9 +25,9 @@ export const Category = ({
       <h1>{name}</h1>
       <p>{description}</p>
       <Filters />
-      <ul className='flex flex-wrap p-0'>
+      <ul className='m-0 grid gap-8 p-0 md:grid-cols-2 xl:grid-cols-3'>
         {products.map(product => (
-          <li key={product.id} className='flex flex-grow'>
+          <li key={product.id} className='m-0 grid p-0'>
             <ProductCard product={product} />
           </li>
         ))}

@@ -39,12 +39,36 @@ export const getCategory = cache(
                     height: true
                   }
                 },
+                buttons: {
+                  select: {
+                    id: true,
+                    text: true,
+                    phoneNumber: { select: { value: true, label: true } },
+                    email: { select: { value: true, label: true } },
+                    address: { select: { value: true, label: true } },
+                    linkTo: true,
+                    isAddToCart: true,
+                    isLeadForm: true
+                  }
+                },
                 parameters: {
                   select: {
                     id: true,
-                    labelName: true,
                     value: true,
-                    isHighlighted: true
+                    isHighlighted: true,
+                    label: {
+                      select: {
+                        name: true,
+                        image: {
+                          select: {
+                            src: true,
+                            alt: true,
+                            width: true,
+                            height: true
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }

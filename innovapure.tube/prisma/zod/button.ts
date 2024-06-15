@@ -27,6 +27,14 @@ export const ButtonModel = z.object({
    * if button is intended to be a language change, then localeTo is the language
    */
   localeTo: z.nativeEnum(LocaleTo).nullish(),
+  /**
+   * if button is intended to add product to cart, then addToCart is true
+   */
+  isAddToCart: z.boolean(),
+  /**
+   * if button is intended to open lead form, then isLeadForm is true
+   */
+  isLeadForm: z.boolean(),
 })
 
 export interface CompleteButton extends z.infer<typeof ButtonModel> {

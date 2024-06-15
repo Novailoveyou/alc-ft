@@ -19,6 +19,8 @@ const main = async () => {
       locale: 'ru',
       isPublished: true,
       src: '/',
+      width: 1200,
+      height: 870,
       alt: 'Test'
     },
     {
@@ -74,6 +76,78 @@ const main = async () => {
       width: 1050,
       height: 460,
       alt: 'Innovaprene'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1718265095/magic-wand_hubmsi.svg',
+      width: 60,
+      height: 60,
+      alt: 'Волшебная палочка'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1718265095/lightning_x8og4a.svg',
+      width: 60,
+      height: 60,
+      alt: 'Молния'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1718265096/home_wzcxb0.svg',
+      width: 60,
+      height: 60,
+      alt: 'Дом с чердаком'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1718487785/shopping-cart_z4emwi.svg',
+      width: 60,
+      height: 60,
+      alt: 'Корзина'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1718487785/inner-diamete_o0jyhm.svg',
+      width: 60,
+      height: 60,
+      alt: 'Внутренний диаметр'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1718487785/weight-scale_ygrgtk.svg',
+      width: 60,
+      height: 60,
+      alt: 'Весы'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1718487785/ruler_sjinmr.svg',
+      width: 60,
+      height: 60,
+      alt: 'Линейка'
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      src: 'https://res.cloudinary.com/innovapure-tube/image/upload/v1718487785/circle_vvwmnz.svg',
+      width: 60,
+      height: 60,
+      alt: 'Круг'
     }
   ])
 
@@ -325,7 +399,11 @@ const main = async () => {
       isPublished: true,
       title: 'Передовые технологии',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
-      imageId: Image.image.find(record => record.src === '/')?.id
+      imageId: Image.image.find(
+        record =>
+          record.src ===
+          'https://res.cloudinary.com/innovapure-tube/image/upload/v1718265095/magic-wand_hubmsi.svg'
+      )?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -333,7 +411,11 @@ const main = async () => {
       isPublished: true,
       title: 'Срок поставки',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
-      imageId: Image.image.find(record => record.src === '/')?.id
+      imageId: Image.image.find(
+        record =>
+          record.src ===
+          'https://res.cloudinary.com/innovapure-tube/image/upload/v1718265095/lightning_x8og4a.svg'
+      )?.id
     },
     {
       id: ({ seed }) => copycat.uuid(seed),
@@ -341,7 +423,11 @@ const main = async () => {
       isPublished: true,
       title: 'Цена/качество',
       description: ({ seed }) => copycat.paragraph(seed, { maxSentences: 2 }),
-      imageId: Image.image.find(record => record.src === '/')?.id
+      imageId: Image.image.find(
+        record =>
+          record.src ===
+          'https://res.cloudinary.com/innovapure-tube/image/upload/v1718265096/home_wzcxb0.svg'
+      )?.id
     }
   ])
 
@@ -444,34 +530,98 @@ const main = async () => {
     })
   )
 
-  const ParameterLabel = await seed.parameterLabel(x =>
-    x(4, {
+  const ParameterLabel = await seed.parameterLabel([
+    {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      name: ({ seed }) =>
-        copycat.oneOfString([
-          'Толщина стенки',
-          'Внутренний диаметр',
-          'Длина',
-          'Наружный диаметр'
-        ])(seed)
-    })
-  )
+      name: 'Внутренний диаметр',
+      imageId: Image.image.find(
+        record =>
+          record.src ===
+          'https://res.cloudinary.com/innovapure-tube/image/upload/v1718487785/inner-diamete_o0jyhm.svg'
+      )?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      name: 'Толщина стенки',
+      imageId: Image.image.find(
+        record =>
+          record.src ===
+          'https://res.cloudinary.com/innovapure-tube/image/upload/v1718487785/circle_vvwmnz.svg'
+      )?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      name: 'Вес',
+      imageId: Image.image.find(
+        record =>
+          record.src ===
+          'https://res.cloudinary.com/innovapure-tube/image/upload/v1718487785/weight-scale_ygrgtk.svg'
+      )?.id
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      name: 'Длинна',
+      imageId: Image.image.find(
+        record =>
+          record.src ===
+          'https://res.cloudinary.com/innovapure-tube/image/upload/v1718487785/ruler_sjinmr.svg'
+      )?.id
+    }
+  ])
 
-  const Parameter = await seed.parameter(x =>
-    x(12, {
+  const Parameter = await seed.parameter([
+    {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
-      labelName: ParameterLabel.parameterLabel.find(label => label.name)?.name,
-      value: ({ seed }) => copycat.oneOfString(['5мм', '10мм', '15мм'])(seed),
-      isHighlighted: ({ seed }) => copycat.bool(seed)
-    })
-  )
+      labelName: ParameterLabel.parameterLabel.find(
+        label => label.name === 'Внутренний диаметр'
+      )?.name,
+      value: '2мм',
+      isHighlighted: true
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      labelName: ParameterLabel.parameterLabel.find(
+        label => label.name === 'Вес'
+      )?.name,
+      value: '5м.п. гр',
+      isHighlighted: false
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      labelName: ParameterLabel.parameterLabel.find(
+        label => label.name === 'Длинна'
+      )?.name,
+      value: '65м',
+      isHighlighted: false
+    },
+    {
+      id: ({ seed }) => copycat.uuid(seed),
+      locale: 'ru',
+      isPublished: true,
+      labelName: ParameterLabel.parameterLabel.find(
+        label => label.name === 'Толщина стенки'
+      )?.name,
+      value: '1мм',
+      isHighlighted: false
+    }
+  ])
 
   const Product = await seed.product(x =>
-    x(20, {
+    x(5, {
       id: ({ seed }) => copycat.uuid(seed),
       locale: 'ru',
       isPublished: true,
@@ -487,7 +637,11 @@ const main = async () => {
         copycat.paragraph(seed, { maxSentences: 8 }),
       categorySlug: Category.category.find(record => record.id)?.slug,
       formId: Form.form.find(record => record.id)?.id,
-      imageId: Image.image.find(record => record.id)?.id,
+      imageId: Image.image.find(
+        record =>
+          record.src ===
+          'https://res.cloudinary.com/innovapure-tube/image/upload/v1715253674/assets/Innovaprene_6b85c088-de5e-412a-a15b-d487aec6208b-PhotoRoom.png-PhotoRoom_1_pcziiw.png'
+      )?.id,
       _ParameterToProduct: Parameter.parameter.map(record => ({
         A: record.id
       })),
