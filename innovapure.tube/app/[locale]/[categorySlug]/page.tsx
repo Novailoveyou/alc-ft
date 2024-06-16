@@ -53,11 +53,7 @@ const CategoryPage: NextPage<CategoryPage> = async ({
           />
         )}
       </main>
-      <Footer
-        className='bg-custom-background'
-        form={footer?.form || null}
-        buttons={footer?.buttons || []}
-      />
+      <Footer form={footer?.form || null} buttons={footer?.buttons || []} />
     </Fragment>
   )
 }

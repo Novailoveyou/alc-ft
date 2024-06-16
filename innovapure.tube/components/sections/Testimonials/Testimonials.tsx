@@ -10,7 +10,7 @@ export const Testimonials = ({ title, testimonials }: Testimonials) => {
   return (
     <Section
       className={
-        'mt-16 pt-0 md:mt-28 md:pt-0 [&_h2]:mb-8 [&_h2]:text-h4 [&_h2]:md:mb-12 [&_h2]:md:text-h2 [&_h3]:text-h6 [&_h3]:md:text-h4 [&_h3]:lg:max-w-[16ch]'
+        'py-16 md:py-28 [&_h2]:mb-8 [&_h2]:text-h4 [&_h2]:md:mb-12 [&_h2]:md:text-h2 [&_h3]:text-h6 [&_h3]:md:text-h4 [&_h3]:lg:max-w-[16ch]'
       }>
       <h2>{title}</h2>
       <ul className='m-0 grid gap-8 p-0 md:gap-10 lg:grid-cols-3'>

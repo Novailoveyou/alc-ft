@@ -21,6 +21,7 @@
 
     --muted: 0 0% 96.1%; // hsl(0, 0%, 96.1%)
     --muted-foreground: 0 0% 45.1%; // hsl(0, 0%, 45.1%)
+
     --accent: 0 0% 96.1%; // hsl(0, 0%, 96.1%)
     --accent-foreground: 0 0% 9%; // hsl(0, 0%, 9%)
 
@@ -39,12 +40,13 @@
     --inactive: 0 0% 70%; // hsl(0, 0%, 70%)
 
     --radius: 2.125rem;
+    --radius-50: 3.125rem;
   }
 
   .dark {
     --background: 0 0% 3.9%; // hsl(0, 0%, 3.9%)
     --foreground: 0 0% 98%; // hsl(0, 0%, 98%)
-    --background-accent: 0 0% 3.9%; // hsl(0, 0%, 8.8%)
+
     --card: 0 0% 3.9%; // hsl(0, 0%, 3.9%)
     --card-foreground: 0 0% 98%; // hsl(0, 0%, 98%)
 
@@ -66,15 +68,16 @@
     --destructive: 0 62.8% 30.6%; // hsl(0, 62.8%, 30.6%)
     --destructive-foreground: 0 0% 98%; // hsl(0, 0%, 98%)
 
+    --custom-background: 240 10% 3.9%; // hsl(0, 0%, 9%)
+    --custom-accent: 0 0% 98%; // hsl(0, 0%, 95%)
+    --custom-accent-foreground: 228 4% 60.2%; // hsl(228, 4%, 60.2%)
+
+    --contrast: 0 0% 0%; // hsl(0, 0%, 0%)
     --border: 0 0% 14.9%; // hsl(0, 0%, 14.9%)
     --input: 0 0% 14.9%; // hsl(0, 0%, 14.9%)
     --ring: 0 0% 83.1%; // hsl(0, 0%, 83.1%)
 
-    --contrast: 0 0% 0%; // hsl(0, 0%, 0%)
-
-    --custom-background: 240 10% 3.9%; // hsl(0, 0%, 9%)
-    --custom-accent: 0 0% 98%; // hsl(0, 0%, 95%)
-    --custom-accent-foreground: 228 4% 60.2%; // hsl(228, 4%, 60.2%)
+    --inactive: 0 0% 70%; // hsl(0, 0%, 70%)
   }
 }
 

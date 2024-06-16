@@ -144,6 +144,7 @@ const config = {
         'custom-accent-foreground': 'hsl(var(--custom-accent-foreground))'
       },
       borderRadius: {
+        xl: 'var(--radius-50)',
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'

@@ -8,6 +8,7 @@ import {
 } from '@/components/shared/buttons'
 import { ComponentProps } from 'react'
 import { cn } from '@/utils'
+import { Section } from '@/components/shared/layout'
 
 type Footer = Pick<ComponentProps<'footer'>, 'className'> &
   Exclude<Awaited<ReturnType<typeof getFooter>>, null>
@@ -22,12 +23,23 @@ export const Footer = ({ className, form, buttons }: Footer) => {
   const linkButtons = buttons.filter(button => button.linkTo)
 
   return (
-    <footer className={cn(className)}>
-      <div className='flex flex-col items-start bg-secondary text-contrast'>
-        <p>Footer</p>
-        <p>{form?.title}</p>
+    <Section
+      className={cn(
+        'not-prose',
+        '[&_h1]:mb-3',
+        '[&_h1]:md:mb-5',
+        '[&_h1]:text-center',
+        '[&_h1~p]:mx-auto',
+        '[&_h1~p]:text-center',
+        'bg-secondary',
+        className
+      )}
+      as='footer'>
+      <form className='rounded-lg bg-primary py-24 text-center text-background [&_h2]:mb-2 [&_h2]:text-h3 md:[&_h2]:mb-3 md:[&_h2]:text-h1 [&_p]:text-background'>
+        <h2>{form?.title}</h2>
         <p>{form?.description}</p>
-
+      </form>
+      <div className='flex flex-col items-start'>
         <div>
           {phoneNumberButtons.map(({ id, text, phoneNumber }) => (
             <PhoneNumberButton key={id} text={text} phoneNumber={phoneNumber} />
@@ -49,11 +61,11 @@ export const Footer = ({ className, form, buttons }: Footer) => {
           ))}
         </div>
         {linkButtons.map(({ id, linkTo, text }) => (
-          <Button key={id} asChild variant={'ghost'}>
+          <Button key={id} asChild variant='ghost'>
             <Link href={linkTo!}>{text}</Link>
           </Button>
         ))}
       </div>
-    </footer>
+    </Section>
   )
 }
