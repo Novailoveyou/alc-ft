@@ -6,9 +6,9 @@ import { getStaticParams } from '@/locales/server'
 import { ONE_HOUR_IN_SECONDS } from '@/constants'
 import { Fragment } from 'react'
 import { Revalidate } from 'next/dist/server/lib/revalidate'
-import { Header, getHeader } from '@/app/[locale]/sections/Header'
-import { Footer, getFooter } from '@/app/[locale]/sections/Footer'
-import { Catalog, getCatalog } from '@/app/[locale]/sections/Catalog'
+import { Header, getHeader } from '@/components/sections/Header'
+import { Footer, getFooter } from '@/components/sections/Footer'
+import { Catalog, getCatalog } from '@/components/sections/Catalog'
 import { PageName } from '@prisma/client'
 
 /**

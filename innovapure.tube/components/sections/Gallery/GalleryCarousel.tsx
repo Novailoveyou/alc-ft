@@ -10,7 +10,6 @@ import {
 import { useState, useEffect } from 'react'
 import { Gallery } from './Gallery'
 import { Button } from '@/components/ui/button'
-import { Icon } from '@/components/shared/icons'
 import { cn } from '@/utils'
 import { ResponsiveImage } from '@/components/shared/images'
 import arrowRightIcon from './images/arrow-right.svg'

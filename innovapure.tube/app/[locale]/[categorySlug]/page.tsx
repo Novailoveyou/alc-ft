@@ -3,15 +3,15 @@ import { NextPage } from 'next'
 import { ONE_HOUR_IN_SECONDS } from '@/constants'
 import { Fragment } from 'react'
 import { Revalidate } from 'next/dist/server/lib/revalidate'
-import { Header, getHeader } from '@/app/[locale]/sections/Header'
-import { Footer, getFooter } from '@/app/[locale]/sections/Footer'
+import { Header, getHeader } from '@/components/sections/Header'
+import { Footer, getFooter } from '@/components/sections/Footer'
 import { PageName } from '@prisma/client'
 import { getCategoryStaticParams } from './actions'
-import { Category, getCategory } from '@/app/[locale]/sections/Category'
+import { Category, getCategory } from '@/components/sections/Category'
 import {
   Testimonials,
   getTestimonials
-} from '@/app/[locale]/sections/Testimonials'
+} from '@/components/sections/Testimonials'
 
 type CategoryPage = {
   params: Awaited<ReturnType<typeof generateStaticParams>>[number]

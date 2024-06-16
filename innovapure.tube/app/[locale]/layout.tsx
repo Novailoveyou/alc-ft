@@ -9,42 +9,42 @@ import { SWRProvider, ThemeProvider } from '@/components/shared/providers'
 const mont = localFont({
   src: [
     {
-      path: './fonts/mont/Mont-Thin.woff2',
+      path: '../../fonts/mont/Mont-Thin.woff2',
       weight: '100',
       style: 'normal'
     },
     {
-      path: './fonts/mont/Mont-ExtraLight.woff2',
+      path: '../../fonts/mont/Mont-ExtraLight.woff2',
       weight: '200',
       style: 'normal'
     },
     {
-      path: './fonts/mont/Mont-Light.woff2',
+      path: '../../fonts/mont/Mont-Light.woff2',
       weight: '300',
       style: 'normal'
     },
     {
-      path: './fonts/mont/Mont-Regular.woff2',
+      path: '../../fonts/mont/Mont-Regular.woff2',
       weight: '400',
       style: 'normal'
     },
     {
-      path: './fonts/mont/Mont-SemiBold.woff2',
+      path: '../../fonts/mont/Mont-SemiBold.woff2',
       weight: '600',
       style: 'normal'
     },
     {
-      path: './fonts/mont/Mont-Bold.woff2',
+      path: '../../fonts/mont/Mont-Bold.woff2',
       weight: '700',
       style: 'normal'
     },
     {
-      path: './fonts/mont/Mont-Heavy.woff2',
+      path: '../../fonts/mont/Mont-Heavy.woff2',
       weight: '800',
       style: 'normal'
     },
     {
-      path: './fonts/mont/Mont-Black.woff2',
+      path: '../../fonts/mont/Mont-Black.woff2',
       weight: '900',
       style: 'normal'
     }

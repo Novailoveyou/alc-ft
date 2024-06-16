@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/card'
 import { ResponsiveImage } from '@/components/shared/images'
 import { cn } from '@/utils'
-import { Icon } from '@/components/shared/icons'
 import shoppingCartIcon from './images/shopping-cart.svg'
 
 type ProductCard = {
@@ -35,10 +34,7 @@ export const ProductCard = ({
         '[&_h2]:font-semibold',
         '[&_p]:text-small',
         '[&>*]:px-6',
-        '[&_a]:flex',
-        '[&_a]:h-auto',
-        '[&_a]:text-p',
-        '[&_a]:font-semibold',
+
         'md:[&>*]:px-7'
       )}>
       <CardHeader
@@ -73,7 +69,7 @@ export const ProductCard = ({
           ))}
         </ul>
       </CardContent>
-      <CardFooter className='items-stretch gap-3 md:pb-8'>
+      <CardFooter className='items-stretch gap-3 md:pb-8 [&>a]:flex [&>a]:h-auto [&>a]:text-p [&>a]:font-semibold'>
         <Button
           asChild
           variant='outline'
@@ -85,6 +81,7 @@ export const ProductCard = ({
           asChild
           variant='outline'
           size='icon'
+          title={button2.text}
           className='aspect-square max-w-[3.75rem] flex-grow'>
           <Link href={`/${categorySlug}/${slug}`}>
             <ResponsiveImage src={shoppingCartIcon} alt='Корзина' />

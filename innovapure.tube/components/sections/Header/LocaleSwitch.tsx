@@ -12,7 +12,6 @@ import {
   DropdownMenuRadioItem
 } from '@/components/ui/dropdown-menu'
 import { RU, GB, KZ, BY, FlagComponent } from 'country-flag-icons/react/3x2'
-import { Icon } from '@/components/shared/icons'
 import { Locale } from '@prisma/client'
 import { useChangeLocale, useCurrentLocale } from '@/locales/client'
 import { cn } from '@/utils'
@@ -57,10 +56,8 @@ const LocaleSwitchItem = ({
   strong
 }: Pick<LocaleIcon, 'text' | 'Flag'> & { strong?: boolean }) => {
   return (
-    <span className='flex gap-1 items-center'>
-      <Icon className='w-5'>
-        <Flag />
-      </Icon>
+    <span className='flex items-center gap-1'>
+      <Flag className='w-5' />
       <span className={cn(strong && 'font-bold')}>{text}</span>
     </span>
   )
@@ -89,7 +86,7 @@ export const LocaleSwitch = () => {
             <DropdownMenuRadioItem
               key={id}
               value={locale}
-              className='[&>*:nth-child(1)]:hidden gap-1 pl-2'>
+              className='gap-1 pl-2 [&>*:nth-child(1)]:hidden'>
               <LocaleSwitchItem text={text} Flag={Flag} />
             </DropdownMenuRadioItem>
           ))}
