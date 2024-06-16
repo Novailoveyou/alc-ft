@@ -8,7 +8,7 @@ import {
 import type {} from '@redux-devtools/extension' // required for devtools typing
 import { z } from 'zod'
 import { zfd } from 'zod-form-data'
-import { CompleteLead, CompleteUser, LeadModel, UserModel } from '@/prisma/zod'
+import { CompleteUser, LeadModel, UserModel } from '@/prisma/zod'
 import { querystring } from 'zustand-querystring'
 import { immer } from 'zustand/middleware/immer'
 
@@ -16,7 +16,7 @@ const formData = UserModel.pick({
   name: true,
   // phoneNumber: true,
   // email: true,
-  company: true,
+  // company: true,
   locale: true,
   isDataUsageAgreement: true
 })
@@ -24,7 +24,7 @@ const formData = UserModel.pick({
 const formDataSchema = zfd.formData(formData)
 type FormData = z.infer<typeof formDataSchema>
 
-export const lead = LeadModel.omit({ id: true, userId: true, createdAt: true })
+export const lead = LeadModel.omit({ id: true, createdAt: true })
   .merge(formData)
   .partial()
   .strict()

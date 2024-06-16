@@ -9,6 +9,7 @@ import { cn } from '@/utils'
 import hamburgerIcon from './images/hamburger.svg'
 import logoIcon from './images/logo.svg'
 import { ResponsiveImage } from '@/components/shared/images'
+import ProgressBar from './ProgressBar'
 
 type Header = Pick<ComponentProps<'header'>, 'className'> &
   Exclude<Awaited<ReturnType<typeof getHeader>>, null>
@@ -18,6 +19,7 @@ export const Header = ({ className, buttons }: Header) => {
 
   return (
     <header className={cn(className)}>
+      <ProgressBar />
       <div className='container flex justify-between gap-1 py-4'>
         <Link
           href='/'

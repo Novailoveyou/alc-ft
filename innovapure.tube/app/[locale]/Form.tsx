@@ -14,48 +14,49 @@ const formData = zfd.formData(lead)
 
 export type FormData = z.infer<typeof formData>
 
-const Form = ({ formName }: Pick<Store, 'formName'>) => {
+// const Form = ({ formName }: Pick<Store, 'formName'>) => {
+const Form = () => {
   const locale = useCurrentLocale()
 
-  const {
-    utm_source,
-    utm_medium,
-    utm_campaign,
-    utm_content,
-    utm_term,
-    setStore
-  } = useStore(
-    useShallow(
-      ({
-        utm_source,
-        utm_medium,
-        utm_campaign,
-        utm_content,
-        utm_term,
-        setStore
-      }) => ({
-        utm_source,
-        utm_medium,
-        utm_campaign,
-        utm_content,
-        utm_term,
-        setStore
-      })
-    )
-  )
+  // const {
+  //   utm_source,
+  //   utm_medium,
+  //   utm_campaign,
+  //   utm_content,
+  //   utm_term,
+  //   setStore
+  // } = useStore(
+  //   useShallow(
+  //     ({
+  //       utm_source,
+  //       utm_medium,
+  //       utm_campaign,
+  //       utm_content,
+  //       utm_term,
+  //       setStore
+  //     }) => ({
+  //       utm_source,
+  //       utm_medium,
+  //       utm_campaign,
+  //       utm_content,
+  //       utm_term,
+  //       setStore
+  //     })
+  //   )
+  // )
 
-  const form = useForm<FormData>({
-    resolver: zodResolver(formData),
-    defaultValues: {
-      locale,
-      formName,
-      utm_source,
-      utm_medium,
-      utm_campaign,
-      utm_content,
-      utm_term
-    }
-  })
+  // const form = useForm<FormData>({
+  //   resolver: zodResolver(formData),
+  //   defaultValues: {
+  //     locale,
+  //     formName,
+  //     utm_source,
+  //     utm_medium,
+  //     utm_campaign,
+  //     utm_content,
+  //     utm_term
+  //   }
+  // })
 
   const onMyFormSubmit = async (data: FormData) => {
     // const res = await createLead(data)
@@ -71,7 +72,7 @@ const Form = ({ formName }: Pick<Store, 'formName'>) => {
     // console.log(res)
   }
 
-  console.log('form.formState.errors: ', form.formState.errors)
+  // console.log('form.formState.errors: ', form.formState.errors)
 
   // const setUTMStore = useUTMStore(state => state.setUTMStore)
   const utmCampaign = useUTMStore(state => state.utm_campaign)
